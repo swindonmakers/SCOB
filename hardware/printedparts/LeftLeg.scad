@@ -22,19 +22,32 @@ module LeftLeg_STL() {
             }
         }
     }
+
+    //ref
+    color([0,0,0,0.5])
+        import("../ref/Leg_LH__repaired_.stl");
 }
 
 
 module LeftLeg_Model()
 {
     // local vars
+    w = 13;
+    d = 25;
+    h = 25;
 
-    import("../ref/Leg_LH__repaired_.stl");
 
     // model
     difference() {
         union() {
-            cube([10,10,10]);
+            // base
+            cube([w,d,dw]);
+
+            // riser
+            cube([w,dw,h]);
+
+            // fillet
+            
         }
 
 
