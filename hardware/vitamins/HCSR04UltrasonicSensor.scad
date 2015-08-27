@@ -11,6 +11,10 @@
 
 */
 
+// Globla dims
+HCSR04UltrasonicSensor_CanSpacing = 26;
+HCSR04UltrasonicSensor_CanOD = 16;
+
 
 // Connectors
 HCSR04UltrasonicSensor_Con_VCC = [[44.5/2 - 1.5*2.54, 0, -4.3], [0,-1,0], 0,0,0];

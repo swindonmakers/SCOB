@@ -12,7 +12,8 @@ function Battery_OD(t)         = t[2];
 
 // Type table
 //             TypeSuffix, Len,       OD,
-Battery_AA = [ "AA",       50.5,      14.5  ];
+Battery_AA  = [ "AA",       50.5,      14.5  ];
+Battery_AAA = [ "AAA",      44.5,      10.5  ];
 
 
 // Connectors

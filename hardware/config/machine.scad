@@ -26,6 +26,6 @@ tw 				= ThickWall;
 // Global design parameters
 
 // Head outer dimensions
-Head_Width = 50;
-Head_Depth = 50;
-Head_Height = 50;
+Head_Width = 60;
+Head_Depth = 60;
+Head_Height = 70;
