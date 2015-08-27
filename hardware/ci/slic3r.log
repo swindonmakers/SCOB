@@ -1,0 +1,8 @@
+=> Processing triangulated mesh
+=> Generating perimeters
+=> Preparing infill
+=> Infilling layers
+=> Generating skirt
+=> Exporting G-code to ../printedparts/stl/Lid.gcode
+Done. Process took 0 minutes and 7.157 seconds
+Filament required: 1966.9mm (13.9cm3)
