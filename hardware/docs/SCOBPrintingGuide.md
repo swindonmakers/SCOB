@@ -1,4 +1,4 @@
-# BOBO
+# SCOB
 # Printing Guide
 
 ### Head

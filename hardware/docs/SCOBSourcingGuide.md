@@ -1,4 +1,4 @@
-# BOBO
+# SCOB
 # Sourcing Guide
 
 ### 1x Arduino Pro Mini Pins underneath, inc serial pins

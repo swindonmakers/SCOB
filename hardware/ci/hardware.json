@@ -1,7 +1,7 @@
 [
     {
         "cut": [],
-        "hash": "34cb577f02fcab126ac7aef3146c447b",
+        "hash": "71557c9142a2fc4b626418a50748bef4",
         "vitamins": [
             {
                 "hash": "7bb239147204653977f54edf8f85cea7",
@@ -172,7 +172,7 @@
                 "file": "vitamins/Battery.scad"
             }
         ],
-        "title": "BOBO",
+        "title": "SCOB",
         "assemblies": [
             {
                 "cut": [],
@@ -260,7 +260,7 @@
                                     218
                                 ],
                                 "dist": 400,
-                                "filepath": "../assemblies/BOBO/Final_step1_view.png",
+                                "filepath": "../assemblies/SCOB/Final_step1_view.png",
                                 "title": "view",
                                 "caption": "view",
                                 "translate": [
@@ -287,7 +287,7 @@
                                     25
                                 ],
                                 "dist": 500,
-                                "filepath": "../assemblies/BOBO/Final_step2_view.png",
+                                "filepath": "../assemblies/SCOB/Final_step2_view.png",
                                 "title": "view",
                                 "caption": "view",
                                 "translate": [
@@ -314,7 +314,7 @@
                                     25
                                 ],
                                 "dist": 500,
-                                "filepath": "../assemblies/BOBO/Final_step3_view.png",
+                                "filepath": "../assemblies/SCOB/Final_step3_view.png",
                                 "title": "view",
                                 "caption": "view",
                                 "translate": [
@@ -341,7 +341,7 @@
                                     25
                                 ],
                                 "dist": 500,
-                                "filepath": "../assemblies/BOBO/Final_step4_view.png",
+                                "filepath": "../assemblies/SCOB/Final_step4_view.png",
                                 "title": "view",
                                 "caption": "view",
                                 "translate": [
@@ -368,7 +368,7 @@
                                     25
                                 ],
                                 "dist": 500,
-                                "filepath": "../assemblies/BOBO/Final_step5_view.png",
+                                "filepath": "../assemblies/SCOB/Final_step5_view.png",
                                 "title": "view",
                                 "caption": "view",
                                 "translate": [
@@ -395,7 +395,7 @@
                                     25
                                 ],
                                 "dist": 500,
-                                "filepath": "../assemblies/BOBO/Final_step6_view.png",
+                                "filepath": "../assemblies/SCOB/Final_step6_view.png",
                                 "title": "view",
                                 "caption": "view",
                                 "translate": [
@@ -421,18 +421,6 @@
                 "hash": "247e8623997e77422ba88df846ecfd83",
                 "plasticWeight": 0.048375,
                 "title": "Head",
-                "aabb": [
-                    [
-                        -30.0,
-                        -30.0,
-                        0.0
-                    ],
-                    [
-                        30.0,
-                        30.0,
-                        68.0
-                    ]
-                ],
                 "views": [
                     {
                         "rotate": [
@@ -457,14 +445,12 @@
                     }
                 ],
                 "qty": 1,
-                "volume": 35189.58208365273,
-                "area": 35331.181143810565,
                 "plasticVolume": 38.7,
                 "call": "Head_STL()",
                 "file": "printedparts/Head.scad"
             }
         ],
-        "file": "BOBO.scad",
+        "file": "SCOB.scad",
         "type": "machine",
         "children": [
             {
@@ -475,7 +461,7 @@
                 ],
                 "dist": 500,
                 "title": "view",
-                "filepath": "../images/BOBO_view.png",
+                "filepath": "../images/SCOB_view.png",
                 "caption": "view",
                 "translate": [
                     68,
@@ -968,7 +954,7 @@
         "files": [
             {
                 "type": "file",
-                "file": "BOBO.scad"
+                "file": "SCOB.scad"
             },
             {
                 "type": "file",

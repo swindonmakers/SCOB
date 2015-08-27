@@ -1,7 +1,7 @@
-# BOBO
+# SCOB
 # Assembly Guide
 
-![view](../images/BOBO_view.png)
+![view](../images/SCOB_view.png)
 
 ## Bill of Materials
 
@@ -52,16 +52,16 @@ Qty | Part Name | Image
 ### Assembly Steps
 
 1. Insert sensor
-![](../assemblies/BOBO/Final_step1_view.png)
+![](../assemblies/SCOB/Final_step1_view.png)
 2. Left servo
-![](../assemblies/BOBO/Final_step2_view.png)
+![](../assemblies/SCOB/Final_step2_view.png)
 3. Right servo
-![](../assemblies/BOBO/Final_step3_view.png)
+![](../assemblies/SCOB/Final_step3_view.png)
 4. Power switch
-![](../assemblies/BOBO/Final_step4_view.png)
+![](../assemblies/SCOB/Final_step4_view.png)
 5. Shove in an Arduino
-![](../assemblies/BOBO/Final_step5_view.png)
+![](../assemblies/SCOB/Final_step5_view.png)
 6. Followed by a battery pack
-![](../assemblies/BOBO/Final_step6_view.png)
+![](../assemblies/SCOB/Final_step6_view.png)
 
 
