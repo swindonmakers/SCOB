@@ -27,7 +27,8 @@ MicroServo_FixingSpacing = MicroServo_Depth + 4;
 
 // Connector: MicroServo_Con_Horn
 // Positioned at base of contro horn spline - see <MicroServo>
-MicroServo_Con_Horn				= [ [6.3, 6.3, 26.5], [0,0,1], 0, 0, 0];
+MicroServo_Con_Horn				= [ [6.3, 6.3, 26.5], [0,0,-1], 0, 0, 0];
+
 
 // Connector: MicroServo_Con_Fixing1
 // Positioned at x- fixing point - see <MicroServo>

@@ -29,6 +29,8 @@ module LeftLeg_Model()
 {
     // local vars
 
+    import("../ref/Leg_LH__repaired_.stl");
+
     // model
     difference() {
         union() {

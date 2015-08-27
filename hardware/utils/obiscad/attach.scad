@@ -76,6 +76,7 @@ function invertVector(v) = v * -1;
 
 function invertConnector(a) = [a[0], invertVector(a[1]), a[2], a[3], a[4]];
 function offsetConnector(a, o) = [[a[0][0]+o[0], a[0][1]+o[1], a[0][2]+o[2]], a[1], a[2], a[3], a[4]];
+function rollConnector(a,r) = [a[0], a[1], a[2]+r, a[3], a[4]];
 
 //-------------------------------------------------------------------------
 //--  ATTACH OPERATOR

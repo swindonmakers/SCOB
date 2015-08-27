@@ -20,16 +20,22 @@ module FinalAssembly () {
         step(2, "Left servo") {
             view();
 
-            attach(Head_Con_LeftServo, MicroServo_Con_Fixing1)
+            attach(Head_Con_LeftServo, MicroServo_Con_Fixing1) {
                 MicroServo();
+                attach(MicroServo_Con_Horn, DefConDown)
+                    ServoHorn();
+            }
         }
 
         // insert right servo
         step(3, "Right servo") {
             view();
 
-            attach(Head_Con_RightServo, MicroServo_Con_Fixing1)
+            attach(Head_Con_RightServo, MicroServo_Con_Fixing1) {
                 MicroServo();
+                attach(MicroServo_Con_Horn, DefConDown)
+                    ServoHorn();
+            }
         }
 
         step(4, "Power switch") {
@@ -56,6 +62,20 @@ module FinalAssembly () {
                         translate([i*11 - 16.5,0,0])
                         Battery(type=Battery_AAA);
                 }
+        }
+
+        step(7, "Attach the legs") {
+            view();
+
+            attach(Head_Con_LeftServo, MicroServo_Con_Fixing1) {
+                attach(rollConnector(MicroServo_Con_Horn, -90), LeftLeg_Con_Hip)
+                    LeftLegAssembly();
+            }
+
+            attach(Head_Con_RightServo, MicroServo_Con_Fixing1) {
+                attach(rollConnector(MicroServo_Con_Horn, 90), RightLeg_Con_Hip)
+                    RightLegAssembly();
+            }
         }
 
     }
