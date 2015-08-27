@@ -25,6 +25,9 @@ tw 				= ThickWall;
 
 // Global design parameters
 
+// Pin system
+PinDiameter = 7;
+
 // Head outer dimensions
 Head_Width = 60;
 Head_Depth = 60;

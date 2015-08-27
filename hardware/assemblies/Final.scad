@@ -36,7 +36,7 @@ module FinalAssembly () {
             view();
 
             attach(Head_Con_PowerSwitch, MiniToggleSwitch_Con_Def)
-                MiniToggleSwitch();
+                MiniToggleSwitch(washerOffset=dw);
         }
 
         step(5, "Shove in an Arduino") {

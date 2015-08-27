@@ -6,3 +6,4 @@ include <../printedparts/LeftLeg.scad>
 include <../printedparts/RightLeg.scad>
 include <../printedparts/Foot.scad>
 include <../printedparts/Hat.scad>
+include <../printedparts/PinTack.scad>
