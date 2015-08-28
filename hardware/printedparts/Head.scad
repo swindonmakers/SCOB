@@ -5,22 +5,22 @@ Head_Con_Def = [[0,0,0], [0,0,-1], 0,0,0];
 Head_Con_SensorTX = [[13,Head_Depth/2-dw-4,45], [0,1,0], 180,0,0];
 Head_Con_SensorRX = [[-13,Head_Depth/2-dw-4,45], [0,1,0], 180,0,0];
 
-Head_Con_LeftServo = [[-16, -MicroServo_FixingSpacing/2,-2], [0,0,1], -90,0,0];
-Head_Con_RightServo = [[16, -MicroServo_FixingSpacing/2,-2], [0,0,1], -90,0,0];
+Head_Con_LeftServo = [[-Head_ServoSpacing/2, -MicroServo_FixingSpacing/2,-2], [0,0,1], -90,0,0];
+Head_Con_RightServo = [[Head_ServoSpacing/2, -MicroServo_FixingSpacing/2,-2], [0,0,1], -90,0,0];
 
-Head_Con_PowerSwitch = [[0,-Head_Depth/2 + dw, 15], [0,-1,0], 0,0,0];
+Head_Con_PowerSwitch = [[0,-Head_Depth/2 + dw, 10], [0,-1,0], 0,0,0];
 
 Head_Con_Arduino = [[0,0,30], [0,0,-1], 90,0,0];
 
 Head_Con_BatteryPack = [[0,-Head_Depth/2 + 10,20], [0,0,-1], 0,0,0];
 
 // Pin fixings
-Head_Con_Mouth = [[0, Head_Depth/2, 15], [0,-1,0], 0,0,0];
+Head_Con_Mouth = [[0, Head_Depth/2, 20], [0,-1,0], 0,0,0];
 Head_Con_Nose = [[0, Head_Depth/2, 30], [0,-1,0], 0,0,0];
-Head_Con_LeftArm = [[-Head_Width/2, 0, 15], [1,0,0], 0,0,0];
-Head_Con_LeftEar = [[-Head_Width/2, 0, 45], [1,0,0], 0,0,0];
-Head_Con_RightArm = [[Head_Width/2, 0, 45], [-1,0,0], 0,0,0];
-Head_Con_RightEar = [[Head_Width/2, 0, 15], [-1,0,0], 0,0,0];
+Head_Con_LeftArm = [[-Head_Width/2, 0, 20], [1,0,0], 0,0,0];
+Head_Con_LeftEar = [[-Head_Width/2, 0, 40], [1,0,0], 0,0,0];
+Head_Con_RightArm = [[Head_Width/2, 0, 40], [-1,0,0], 0,0,0];
+Head_Con_RightEar = [[Head_Width/2, 0, 20], [-1,0,0], 0,0,0];
 
 module Head_STL() {
 
@@ -84,7 +84,7 @@ module Head_Model()
             cylinder(r=PinDiameter/2, h=10, center=true);
 
         // nose fixing
-        attach(Head_Con_Nose, DefConUp)
+        *attach(Head_Con_Nose, DefConUp)
             cylinder(r=PinDiameter/2, h=10, center=true);
 
         // left arm + ear
@@ -112,9 +112,9 @@ module Head_Model()
 
         // servo mounts
         attach(Head_Con_LeftServo, MicroServo_Con_Fixing1)
-            MicroServo_BodySubVolume();
+            MicroServo_BodySubVolume(tol=0);
         attach(Head_Con_RightServo, MicroServo_Con_Fixing1)
-            MicroServo_BodySubVolume();
+            MicroServo_BodySubVolume(tol=0);
 
         // servo screw fixings
         attach(Head_Con_LeftServo, DefConUp)

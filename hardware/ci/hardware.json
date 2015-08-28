@@ -1,7 +1,7 @@
 [
     {
         "cut": [],
-        "hash": "71557c9142a2fc4b626418a50748bef4",
+        "hash": "4774671c6bcb2f92370f16652bc7b74a",
         "vitamins": [
             {
                 "hash": "7bb239147204653977f54edf8f85cea7",
@@ -14,8 +14,8 @@
                             22
                         ],
                         "dist": 320,
-                        "title": "view",
                         "filepath": "../vitamins/images/HCSR04UltrasonicSensor_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             23,
@@ -45,8 +45,8 @@
                             33
                         ],
                         "dist": 280,
-                        "title": "view",
                         "filepath": "../vitamins/images/9gMicroServo_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             6.9,
@@ -60,7 +60,7 @@
                         ]
                     }
                 ],
-                "qty": 2,
+                "qty": 4,
                 "parts": [
                     {
                         "call": "MicroServo_Body()",
@@ -79,6 +79,37 @@
                 "file": "vitamins/MicroServo.scad"
             },
             {
+                "hash": "8de87d77902b4b6fac0dd24f38a6e0c4",
+                "title": "Servo Horn",
+                "views": [
+                    {
+                        "rotate": [
+                            66,
+                            0,
+                            60
+                        ],
+                        "dist": 119,
+                        "filepath": "../vitamins/images/ServoHorn_view.png",
+                        "title": "view",
+                        "caption": "view",
+                        "translate": [
+                            -1,
+                            0,
+                            -1
+                        ],
+                        "type": "view",
+                        "size": [
+                            400,
+                            300
+                        ]
+                    }
+                ],
+                "qty": 4,
+                "parts": [],
+                "call": "ServoHorn()",
+                "file": "vitamins/ServoHorn.scad"
+            },
+            {
                 "hash": "f8fb079a66e80ee2d1f43169f39dc0f7",
                 "title": "SPST6A Mini Toggle Switch",
                 "views": [
@@ -89,8 +120,8 @@
                             25
                         ],
                         "dist": 140,
-                        "title": "view",
                         "filepath": "../vitamins/images/SPST6AMiniToggleSwitch_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             0,
@@ -120,8 +151,8 @@
                             25
                         ],
                         "dist": 140,
-                        "title": "view",
                         "filepath": "../vitamins/images/ArduinoProMiniPinsunderneathincserialpins_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             0,
@@ -151,8 +182,8 @@
                             33
                         ],
                         "dist": 280,
-                        "title": "view",
                         "filepath": "../vitamins/images/AAABattery_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             6.9,
@@ -176,7 +207,7 @@
         "assemblies": [
             {
                 "cut": [],
-                "hash": "56c0e5261ed89757ce0dc8c9ca2c8d4a",
+                "hash": "8222ae6e4afd4b319558023dc51d0bf0",
                 "vitamins": [
                     {
                         "title": "HCSR04 Ultrasonic Sensor",
@@ -208,6 +239,14 @@
                         "file": "vitamins/MicroServo.scad"
                     },
                     {
+                        "title": "Servo Horn",
+                        "views": [],
+                        "qty": 2,
+                        "parts": [],
+                        "call": "ServoHorn()",
+                        "file": "vitamins/ServoHorn.scad"
+                    },
+                    {
                         "title": "SPST6A Mini Toggle Switch",
                         "views": [],
                         "qty": 1,
@@ -233,7 +272,34 @@
                     }
                 ],
                 "views": [],
-                "assemblies": [],
+                "assemblies": [
+                    {
+                        "cut": [],
+                        "vitamins": [],
+                        "views": [],
+                        "assemblies": [],
+                        "title": "Left Leg",
+                        "qty": 1,
+                        "call": "LeftLegAssembly()",
+                        "printed": [],
+                        "file": "assemblies/LeftLeg.scad",
+                        "steps": [],
+                        "level": 1
+                    },
+                    {
+                        "cut": [],
+                        "vitamins": [],
+                        "views": [],
+                        "assemblies": [],
+                        "title": "Right Leg",
+                        "qty": 1,
+                        "call": "RightLegAssembly()",
+                        "printed": [],
+                        "file": "assemblies/RightLeg.scad",
+                        "steps": [],
+                        "level": 1
+                    }
+                ],
                 "title": "Final",
                 "qty": 1,
                 "call": "FinalAssembly()",
@@ -410,17 +476,218 @@
                                 ]
                             }
                         ]
+                    },
+                    {
+                        "desc": "Attach the legs",
+                        "num": 7,
+                        "views": [
+                            {
+                                "rotate": [
+                                    55,
+                                    0,
+                                    25
+                                ],
+                                "dist": 500,
+                                "filepath": "../assemblies/SCOB/Final_step7_view.png",
+                                "title": "view",
+                                "caption": "view",
+                                "translate": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "type": "view",
+                                "size": [
+                                    400,
+                                    300
+                                ]
+                            }
+                        ]
                     }
                 ],
                 "level": 0
+            },
+            {
+                "cut": [],
+                "hash": "a89d60c66408ab9a1c976affe1783d31",
+                "vitamins": [
+                    {
+                        "title": "9g Micro Servo",
+                        "views": [],
+                        "qty": 1,
+                        "parts": [
+                            {
+                                "call": "MicroServo_Body()",
+                                "type": "part",
+                                "children": [],
+                                "title": "MicroServo_Body"
+                            },
+                            {
+                                "call": "MicroServo_Spline()",
+                                "type": "part",
+                                "children": [],
+                                "title": "MicroServo_Spline"
+                            }
+                        ],
+                        "call": "MicroServo()",
+                        "file": "vitamins/MicroServo.scad"
+                    },
+                    {
+                        "title": "Servo Horn",
+                        "views": [],
+                        "qty": 1,
+                        "parts": [],
+                        "call": "ServoHorn()",
+                        "file": "vitamins/ServoHorn.scad"
+                    }
+                ],
+                "views": [],
+                "assemblies": [],
+                "title": "Left Leg",
+                "qty": 1,
+                "call": "LeftLegAssembly()",
+                "printed": [
+                    {
+                        "markdown": [],
+                        "title": "Foot",
+                        "views": [],
+                        "qty": 1,
+                        "call": "Foot_STL()",
+                        "file": "printedparts/Foot.scad"
+                    }
+                ],
+                "file": "assemblies/LeftLeg.scad",
+                "steps": [
+                    {
+                        "desc": "Fix servo to foot",
+                        "num": 1,
+                        "views": [
+                            {
+                                "rotate": [
+                                    52,
+                                    0,
+                                    218
+                                ],
+                                "dist": 200,
+                                "filepath": "../assemblies/SCOB/LeftLeg_step1_view.png",
+                                "title": "view",
+                                "caption": "view",
+                                "translate": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "type": "view",
+                                "size": [
+                                    400,
+                                    300
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "level": 2
+            },
+            {
+                "cut": [],
+                "hash": "1a515ea1d09abf0e2d40d0f48ec11af6",
+                "vitamins": [
+                    {
+                        "title": "9g Micro Servo",
+                        "views": [],
+                        "qty": 1,
+                        "parts": [
+                            {
+                                "call": "MicroServo_Body()",
+                                "type": "part",
+                                "children": [],
+                                "title": "MicroServo_Body"
+                            },
+                            {
+                                "call": "MicroServo_Spline()",
+                                "type": "part",
+                                "children": [],
+                                "title": "MicroServo_Spline"
+                            }
+                        ],
+                        "call": "MicroServo()",
+                        "file": "vitamins/MicroServo.scad"
+                    },
+                    {
+                        "title": "Servo Horn",
+                        "views": [],
+                        "qty": 1,
+                        "parts": [],
+                        "call": "ServoHorn()",
+                        "file": "vitamins/ServoHorn.scad"
+                    }
+                ],
+                "views": [],
+                "assemblies": [],
+                "title": "Right Leg",
+                "qty": 1,
+                "call": "RightLegAssembly()",
+                "printed": [
+                    {
+                        "markdown": [],
+                        "title": "Foot",
+                        "views": [],
+                        "qty": 1,
+                        "call": "Foot_STL()",
+                        "file": "printedparts/Foot.scad"
+                    }
+                ],
+                "file": "assemblies/RightLeg.scad",
+                "steps": [
+                    {
+                        "desc": "Fix servo to foot",
+                        "num": 1,
+                        "views": [
+                            {
+                                "rotate": [
+                                    52,
+                                    0,
+                                    218
+                                ],
+                                "dist": 200,
+                                "filepath": "../assemblies/SCOB/RightLeg_step1_view.png",
+                                "title": "view",
+                                "caption": "view",
+                                "translate": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "type": "view",
+                                "size": [
+                                    400,
+                                    300
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "level": 2
             }
         ],
         "printed": [
             {
                 "markdown": [],
-                "hash": "247e8623997e77422ba88df846ecfd83",
+                "hash": "618f4d8d0e26a823efd2a6afa49f7a55",
                 "plasticWeight": 0.048375,
                 "title": "Head",
+                "aabb": [
+                    [
+                        -30.0,
+                        -30.0,
+                        0.0
+                    ],
+                    [
+                        30.0,
+                        30.0,
+                        68.0
+                    ]
+                ],
                 "views": [
                     {
                         "rotate": [
@@ -429,8 +696,8 @@
                             130
                         ],
                         "dist": 400,
-                        "title": "view",
                         "filepath": "../printedparts/images/Head_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             0,
@@ -445,9 +712,58 @@
                     }
                 ],
                 "qty": 1,
+                "volume": 30861.77431147852,
+                "area": 31420.29415113777,
                 "plasticVolume": 38.7,
                 "call": "Head_STL()",
                 "file": "printedparts/Head.scad"
+            },
+            {
+                "markdown": [],
+                "hash": "3cee258b79c44452d929d9e752ffc934",
+                "plasticWeight": 0.008125,
+                "title": "Foot",
+                "aabb": [
+                    [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        45.0,
+                        60.0,
+                        14.59
+                    ]
+                ],
+                "views": [
+                    {
+                        "rotate": [
+                            72,
+                            0,
+                            130
+                        ],
+                        "dist": 400,
+                        "filepath": "../printedparts/images/Foot_view.png",
+                        "title": "view",
+                        "caption": "view",
+                        "translate": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "type": "view",
+                        "size": [
+                            400,
+                            300
+                        ]
+                    }
+                ],
+                "qty": 2,
+                "volume": 6234.721887978007,
+                "area": 6318.185777756812,
+                "plasticVolume": 6.5,
+                "call": "Foot_STL()",
+                "file": "printedparts/Foot.scad"
             }
         ],
         "file": "SCOB.scad",
@@ -489,6 +805,7 @@
                                     130
                                 ],
                                 "dist": 400,
+                                "filepath": "../printedparts/images/Head_view.png",
                                 "title": "view",
                                 "caption": "view",
                                 "translate": [
@@ -541,6 +858,7 @@
                                             22
                                         ],
                                         "dist": 320,
+                                        "filepath": "../vitamins/images/HCSR04UltrasonicSensor_view.png",
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
@@ -596,6 +914,7 @@
                                             33
                                         ],
                                         "dist": 280,
+                                        "filepath": "../vitamins/images/9gMicroServo_view.png",
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
@@ -624,6 +943,35 @@
                                 ],
                                 "file": "vitamins/MicroServo.scad",
                                 "title": "9g Micro Servo"
+                            },
+                            {
+                                "call": "ServoHorn()",
+                                "type": "vitamin",
+                                "children": [
+                                    {
+                                        "rotate": [
+                                            66,
+                                            0,
+                                            60
+                                        ],
+                                        "dist": 119,
+                                        "filepath": "../vitamins/images/ServoHorn_view.png",
+                                        "title": "view",
+                                        "caption": "view",
+                                        "translate": [
+                                            -1,
+                                            0,
+                                            -1
+                                        ],
+                                        "type": "view",
+                                        "size": [
+                                            400,
+                                            300
+                                        ]
+                                    }
+                                ],
+                                "file": "vitamins/ServoHorn.scad",
+                                "title": "Servo Horn"
                             }
                         ],
                         "desc": "Left servo"
@@ -691,6 +1039,34 @@
                                 ],
                                 "file": "vitamins/MicroServo.scad",
                                 "title": "9g Micro Servo"
+                            },
+                            {
+                                "call": "ServoHorn()",
+                                "type": "vitamin",
+                                "children": [
+                                    {
+                                        "rotate": [
+                                            66,
+                                            0,
+                                            60
+                                        ],
+                                        "dist": 119,
+                                        "title": "view",
+                                        "caption": "view",
+                                        "translate": [
+                                            -1,
+                                            0,
+                                            -1
+                                        ],
+                                        "type": "view",
+                                        "size": [
+                                            400,
+                                            300
+                                        ]
+                                    }
+                                ],
+                                "file": "vitamins/ServoHorn.scad",
+                                "title": "Servo Horn"
                             }
                         ],
                         "desc": "Right servo"
@@ -730,6 +1106,7 @@
                                             25
                                         ],
                                         "dist": 140,
+                                        "filepath": "../vitamins/images/SPST6AMiniToggleSwitch_view.png",
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
@@ -785,6 +1162,7 @@
                                             25
                                         ],
                                         "dist": 140,
+                                        "filepath": "../vitamins/images/ArduinoProMiniPinsunderneathincserialpins_view.png",
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
@@ -840,6 +1218,7 @@
                                             33
                                         ],
                                         "dist": 280,
+                                        "filepath": "../vitamins/images/AAABattery_view.png",
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
@@ -943,6 +1322,296 @@
                             }
                         ],
                         "desc": "Followed by a battery pack"
+                    },
+                    {
+                        "num": 7,
+                        "type": "step",
+                        "children": [
+                            {
+                                "rotate": [
+                                    55,
+                                    0,
+                                    25
+                                ],
+                                "dist": 500,
+                                "title": "view",
+                                "caption": "view",
+                                "translate": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "type": "view",
+                                "size": [
+                                    400,
+                                    300
+                                ]
+                            },
+                            {
+                                "call": "LeftLegAssembly()",
+                                "type": "assembly",
+                                "children": [
+                                    {
+                                        "call": "Foot_STL()",
+                                        "type": "printed",
+                                        "children": [
+                                            {
+                                                "rotate": [
+                                                    72,
+                                                    0,
+                                                    130
+                                                ],
+                                                "dist": 400,
+                                                "filepath": "../printedparts/images/Foot_view.png",
+                                                "title": "view",
+                                                "caption": "view",
+                                                "translate": [
+                                                    0,
+                                                    0,
+                                                    0
+                                                ],
+                                                "type": "view",
+                                                "size": [
+                                                    400,
+                                                    300
+                                                ]
+                                            }
+                                        ],
+                                        "file": "printedparts/Foot.scad",
+                                        "title": "Foot"
+                                    },
+                                    {
+                                        "num": 1,
+                                        "type": "step",
+                                        "children": [
+                                            {
+                                                "rotate": [
+                                                    52,
+                                                    0,
+                                                    218
+                                                ],
+                                                "dist": 200,
+                                                "title": "view",
+                                                "caption": "view",
+                                                "translate": [
+                                                    0,
+                                                    0,
+                                                    0
+                                                ],
+                                                "type": "view",
+                                                "size": [
+                                                    400,
+                                                    300
+                                                ]
+                                            },
+                                            {
+                                                "call": "MicroServo()",
+                                                "type": "vitamin",
+                                                "children": [
+                                                    {
+                                                        "rotate": [
+                                                            72,
+                                                            0,
+                                                            33
+                                                        ],
+                                                        "dist": 280,
+                                                        "title": "view",
+                                                        "caption": "view",
+                                                        "translate": [
+                                                            6.9,
+                                                            13.6,
+                                                            10.3
+                                                        ],
+                                                        "type": "view",
+                                                        "size": [
+                                                            400,
+                                                            300
+                                                        ]
+                                                    },
+                                                    {
+                                                        "call": "MicroServo_Body()",
+                                                        "type": "part",
+                                                        "children": [],
+                                                        "title": "MicroServo_Body"
+                                                    },
+                                                    {
+                                                        "call": "MicroServo_Spline()",
+                                                        "type": "part",
+                                                        "children": [],
+                                                        "title": "MicroServo_Spline"
+                                                    }
+                                                ],
+                                                "file": "vitamins/MicroServo.scad",
+                                                "title": "9g Micro Servo"
+                                            },
+                                            {
+                                                "call": "ServoHorn()",
+                                                "type": "vitamin",
+                                                "children": [
+                                                    {
+                                                        "rotate": [
+                                                            66,
+                                                            0,
+                                                            60
+                                                        ],
+                                                        "dist": 119,
+                                                        "title": "view",
+                                                        "caption": "view",
+                                                        "translate": [
+                                                            -1,
+                                                            0,
+                                                            -1
+                                                        ],
+                                                        "type": "view",
+                                                        "size": [
+                                                            400,
+                                                            300
+                                                        ]
+                                                    }
+                                                ],
+                                                "file": "vitamins/ServoHorn.scad",
+                                                "title": "Servo Horn"
+                                            }
+                                        ],
+                                        "desc": "Fix servo to foot"
+                                    }
+                                ],
+                                "file": "assemblies/LeftLeg.scad",
+                                "title": "Left Leg"
+                            },
+                            {
+                                "call": "RightLegAssembly()",
+                                "type": "assembly",
+                                "children": [
+                                    {
+                                        "call": "Foot_STL()",
+                                        "type": "printed",
+                                        "children": [
+                                            {
+                                                "rotate": [
+                                                    72,
+                                                    0,
+                                                    130
+                                                ],
+                                                "dist": 400,
+                                                "title": "view",
+                                                "caption": "view",
+                                                "translate": [
+                                                    0,
+                                                    0,
+                                                    0
+                                                ],
+                                                "type": "view",
+                                                "size": [
+                                                    400,
+                                                    300
+                                                ]
+                                            }
+                                        ],
+                                        "file": "printedparts/Foot.scad",
+                                        "title": "Foot"
+                                    },
+                                    {
+                                        "num": 1,
+                                        "type": "step",
+                                        "children": [
+                                            {
+                                                "rotate": [
+                                                    52,
+                                                    0,
+                                                    218
+                                                ],
+                                                "dist": 200,
+                                                "title": "view",
+                                                "caption": "view",
+                                                "translate": [
+                                                    0,
+                                                    0,
+                                                    0
+                                                ],
+                                                "type": "view",
+                                                "size": [
+                                                    400,
+                                                    300
+                                                ]
+                                            },
+                                            {
+                                                "call": "MicroServo()",
+                                                "type": "vitamin",
+                                                "children": [
+                                                    {
+                                                        "rotate": [
+                                                            72,
+                                                            0,
+                                                            33
+                                                        ],
+                                                        "dist": 280,
+                                                        "title": "view",
+                                                        "caption": "view",
+                                                        "translate": [
+                                                            6.9,
+                                                            13.6,
+                                                            10.3
+                                                        ],
+                                                        "type": "view",
+                                                        "size": [
+                                                            400,
+                                                            300
+                                                        ]
+                                                    },
+                                                    {
+                                                        "call": "MicroServo_Body()",
+                                                        "type": "part",
+                                                        "children": [],
+                                                        "title": "MicroServo_Body"
+                                                    },
+                                                    {
+                                                        "call": "MicroServo_Spline()",
+                                                        "type": "part",
+                                                        "children": [],
+                                                        "title": "MicroServo_Spline"
+                                                    }
+                                                ],
+                                                "file": "vitamins/MicroServo.scad",
+                                                "title": "9g Micro Servo"
+                                            },
+                                            {
+                                                "call": "ServoHorn()",
+                                                "type": "vitamin",
+                                                "children": [
+                                                    {
+                                                        "rotate": [
+                                                            66,
+                                                            0,
+                                                            60
+                                                        ],
+                                                        "dist": 119,
+                                                        "title": "view",
+                                                        "caption": "view",
+                                                        "translate": [
+                                                            -1,
+                                                            0,
+                                                            -1
+                                                        ],
+                                                        "type": "view",
+                                                        "size": [
+                                                            400,
+                                                            300
+                                                        ]
+                                                    }
+                                                ],
+                                                "file": "vitamins/ServoHorn.scad",
+                                                "title": "Servo Horn"
+                                            }
+                                        ],
+                                        "desc": "Fix servo to foot"
+                                    }
+                                ],
+                                "file": "assemblies/RightLeg.scad",
+                                "title": "Right Leg"
+                            }
+                        ],
+                        "desc": "Attach the legs"
                     }
                 ],
                 "file": "assemblies/Final.scad",
@@ -974,6 +1643,10 @@
             },
             {
                 "type": "file",
+                "file": "vitamins/ServoHorn.scad"
+            },
+            {
+                "type": "file",
                 "file": "vitamins/MiniToggleSwitch.scad"
             },
             {
@@ -983,6 +1656,18 @@
             {
                 "type": "file",
                 "file": "vitamins/Battery.scad"
+            },
+            {
+                "type": "file",
+                "file": "assemblies/LeftLeg.scad"
+            },
+            {
+                "type": "file",
+                "file": "printedparts/Foot.scad"
+            },
+            {
+                "type": "file",
+                "file": "assemblies/RightLeg.scad"
             }
         ],
         "type": "filelist"

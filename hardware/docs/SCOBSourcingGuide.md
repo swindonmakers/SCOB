@@ -25,7 +25,7 @@ No sources found
 
 
 
-### 2x 9g Micro Servo
+### 4x 9g Micro Servo
 
 No sources found
 
@@ -43,6 +43,14 @@ Unit Cost | Source | Notes
 
 
 
+### 4x Servo Horn
+
+No sources found
+
+![](../vitamins/images/ServoHorn_view.png) 
+
+
+
 
 
 
@@ -52,7 +60,7 @@ Unit Cost | Source | Notes
 
 Metric | Value 
 --- | --- 
-Total Vitamins | 9
+Total Vitamins | 15
 Total Cost (cheapest) | 0.56 GBP
 
 

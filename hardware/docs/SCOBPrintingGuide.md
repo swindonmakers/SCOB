@@ -1,6 +1,20 @@
 # SCOB
 # Printing Guide
 
+### Foot
+
+Metric | Value 
+--- | --- 
+Quantity | 2
+STL | [Foot](../printedparts/stl/Foot.stl)
+Plastic (Kg) | 0.02
+Plastic (cm3) | 13.0
+Approx Plastic Cost | 0.24 GBP
+
+![](../printedparts/images/Foot_view.png)
+
+
+
 ### Head
 
 Metric | Value 
@@ -23,9 +37,9 @@ Approx Plastic Cost | 0.73 GBP
 
 Metric | Value 
 --- | --- 
-Total Parts | 1
-Total Plastic (Kg) | 0.05KG
-Total Plastic (cm3) | 38.7cm3
-Approx Plastic Cost | 0.73 GBP
+Total Parts | 3
+Total Plastic (Kg) | 0.06KG
+Total Plastic (cm3) | 51.7cm3
+Approx Plastic Cost | 0.97 GBP
 
 

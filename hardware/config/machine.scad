@@ -32,3 +32,5 @@ PinDiameter = 7;
 Head_Width = 60;
 Head_Depth = 60;
 Head_Height = 70;
+
+Head_ServoSpacing = 40;
