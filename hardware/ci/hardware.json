@@ -1,7 +1,7 @@
 [
     {
         "cut": [],
-        "hash": "4774671c6bcb2f92370f16652bc7b74a",
+        "hash": "d0791f5467e081e28cacc0c2fd427a44",
         "vitamins": [
             {
                 "hash": "7bb239147204653977f54edf8f85cea7",
@@ -771,18 +771,18 @@
         "children": [
             {
                 "rotate": [
-                    73,
+                    96,
                     0,
-                    229
+                    212
                 ],
-                "dist": 500,
+                "dist": 400,
                 "title": "view",
                 "filepath": "../images/SCOB_view.png",
                 "caption": "view",
                 "translate": [
-                    68,
-                    49,
-                    -37
+                    0,
+                    -8,
+                    15
                 ],
                 "type": "view",
                 "size": [
