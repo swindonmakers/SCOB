@@ -15,10 +15,9 @@ Servo servoLeftAnkle;
 Servo servoRightAnkle;
 
 int LeftHipCenter = 97; //Enter actual servo alingment values here
-int RightHipCenter = 87;
+int RightHipCenter = 75;
 int LeftAnkleCenter = 92;
 int RightAnkleCenter = 102;
-
 
 void setup()
 {
@@ -42,7 +41,11 @@ delay (5000); // delay to place Bob on the floor before starting to walk
 
 void loop()
 {
-
+  WalkForwards1();
+  WalkForwards2();
+  WalkForwards3();
+  WalkForwards4();  
+/*
 Ping();
 WalkForwards1();
 Ping();
@@ -51,6 +54,7 @@ Ping();
 WalkForwards3();
 Ping();
 WalkForwards4();
+*/
 }
 
 

@@ -8,82 +8,88 @@ int RAP1=0;
 int LHP1=0;
 int RHP1=0;
 
+//#define DEBUG_FWD
+
 void WalkForwards1()
 {
+  Serial.println("F1");
+  Move1:  
+  LAP1 = LAP1+1; 
+  RAP1 = RAP1+1;
+  servoLeftAnkle.write(LeftAnkleCenter-LAP1);
+  servoRightAnkle.write(RightAnkleCenter-RAP1);
+  delay (AngleDelay);
+  if (LAP1<23){goto Move1;}//Left Ankle goto 23deg
+  if (RAP1<23){goto Move1;}//Right Ankle goto 23deg
   
-
-Move1:  
-LAP1 = LAP1+1; 
-RAP1 = RAP1+1;
-servoLeftAnkle.write(LeftAnkleCenter-LAP1);
-servoRightAnkle.write(RightAnkleCenter-RAP1);
-delay (AngleDelay);
-if (LAP1<23){goto Move1;}//Left Ankle goto 23deg
-if (RAP1<23){goto Move1;}//Right Ankle goto 23deg
-
-delay (StepDelay); 
+  delay (StepDelay); 
 }
 
 void WalkForwards2()
 {
-
-Move2:
-LHP1=LHP1+1;
-RHP1=RHP1+1;
-servoLeftHip.write(LeftHipCenter+LHP1);
-servoRightHip.write(RightHipCenter+RHP1);
-delay (AngleDelay);
-if (LHP1<25){goto Move2;}//Left Hip goto 25deg
-if (RHP1<25){goto Move2;}//Right Hipe goto 25deg
- 
-delay (StepDelay);  
+  Serial.println("F2");
+  Move2:
+  LHP1=LHP1+1;
+  RHP1=RHP1+1;
+  servoLeftHip.write(LeftHipCenter+LHP1);
+  servoRightHip.write(RightHipCenter+RHP1);
+  delay (AngleDelay);
+  if (LHP1<25){goto Move2;}//Left Hip goto 25deg
+  if (RHP1<25){goto Move2;}//Right Hipe goto 25deg
+   
+  delay (StepDelay);  
 }
 
 void WalkForwards3()
 {
+  Serial.println("F3");
+  Move3:  
+  LAP1 = LAP1-1; 
+  RAP1 = RAP1-1;
+  servoLeftAnkle.write(LeftAnkleCenter-LAP1);
+  servoRightAnkle.write(RightAnkleCenter-RAP1);
+  delay (AngleDelay);
+
+#ifdef DEBUG_FWD
+  Serial.print("LAP1: ");
+  Serial.print(LAP1);
+  Serial.println("Degrees");
   
-
-Move3:  
-LAP1 = LAP1-1; 
-RAP1 = RAP1-1;
-servoLeftAnkle.write(LeftAnkleCenter-LAP1);
-servoRightAnkle.write(RightAnkleCenter-RAP1);
-delay (AngleDelay);
-
-Serial.print("LAP1: ");
-Serial.print(LAP1);
-Serial.println("Degrees");
-
-Serial.print("RAP1: ");
-Serial.print(RAP1);
-Serial.println("Degrees");
-
-if (LAP1>-23){goto Move3;}//Left Ankle goto 23degrees
-if (RAP1>-23){goto Move3;}//Right Ankle goto 23degrees
-
-delay (StepDelay); 
+  Serial.print("RAP1: ");
+  Serial.print(RAP1);
+  Serial.println("Degrees");
+#endif
+  
+  if (LAP1>-23){goto Move3;}//Left Ankle goto 23degrees
+  if (RAP1>-23){goto Move3;}//Right Ankle goto 23degrees
+  
+  delay (StepDelay); 
 }
+
 void WalkForwards4()
 {
-Move4:
-LHP1=LHP1-1;
-RHP1=RHP1-1;
-servoLeftHip.write(LeftHipCenter+LHP1);
-servoRightHip.write(RightHipCenter+RHP1);
-delay (AngleDelay);
+  Serial.println("F4");
+  Move4:
+  LHP1=LHP1-1;
+  RHP1=RHP1-1;
+  servoLeftHip.write(LeftHipCenter+LHP1);
+  servoRightHip.write(RightHipCenter+RHP1);
+  delay (AngleDelay);
 
-Serial.print("LHP1: ");
-Serial.print(LHP1);
-Serial.println("Degrees");
-
-Serial.print("RHP1: ");
-Serial.print(RHP1);
-Serial.println("Degrees");
-if (LHP1>-25){goto Move4;}//Left Hip goto 25deg
-if (RHP1>-25){goto Move4;}//Right Hipe goto 25deg
- 
-delay (StepDelay);  
-
+#ifdef DEBUG_FWD
+  Serial.print("LHP1: ");
+  Serial.print(LHP1);
+  Serial.println("Degrees");
+  
+  Serial.print("RHP1: ");
+  Serial.print(RHP1);
+  Serial.println("Degrees");
+#endif
+  if (LHP1>-25){goto Move4;}//Left Hip goto 25deg
+  if (RHP1>-25){goto Move4;}//Right Hipe goto 25deg
+   
+  delay (StepDelay);  
 }
+
 
 
