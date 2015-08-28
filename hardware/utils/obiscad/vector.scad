@@ -30,8 +30,11 @@ function unitv(v) = v/mod(v);
 //-- Return the angle between two vectores
 function anglev(u,v) = acos( dot(u,v) / (mod(u)*mod(v)) );
 
+//-- Return a vector orthogonal to u and v - fairly robust!
+function orthogonalTo(u,v) = mod(cross(u,v)) > 0 ? cross(u,v) : (u[2] != 0 ? [0,1,0] : [0,0,1]);
+
 //----------------------------------------------------------
-//--  Draw a point in the position given by the vector p  
+//--  Draw a point in the position given by the vector p
 //----------------------------------------------------------
 module point(p)
 {
@@ -56,7 +59,7 @@ module vectorz(l=10, l_arrow=4, mark=false)
 
   //-- The vector is locatead at 0,0,0
   translate([0,0,lb/2])
-  render() 
+  render()
   union() {
 
     //-- Draw the arrow
@@ -94,7 +97,7 @@ module orientate(v,vref=[0,0,1], roll=0)
   //-- Calculate the rotation axis
   //raxis = cross(vref,v);
   raxis = v[0]==vref[0] && v[1]==vref[1] ? [0,1,0] : cross(vref,v);
-  
+
   //-- Calculate the angle between the vectors
   ang = anglev(vref,v);
   echo(ang);
@@ -106,11 +109,11 @@ module orientate(v,vref=[0,0,1], roll=0)
 }
 
 //---------------------------------------------------------------------------
-//-- Draw a vector 
+//-- Draw a vector
 //--
 //-- There are two modes of drawing the vector
 //-- * Mode 1: Given by a cartesian point(x,y,z). A vector from the origin
-//--           to the end (x,y,z) is drawn. The l parameter (length) must 
+//--           to the end (x,y,z) is drawn. The l parameter (length) must
 //--           be 0  (l=0)
 //-- * Mode 2: Give by direction and length
 //--           A vector of length l pointing to the direction given by
@@ -144,7 +147,7 @@ module vector(v,l=0, l_arrow=4, mark=false)
   vref = [0,0,1];
   //raxis = cross(vref,v);
   raxis = v[0]==vref[0] && v[1]==vref[1] ? [0,1,0] : cross(vref,v);
-  
+
   //-- Calculate the angle between the vectors
   ang = anglev(vref,v);
 
@@ -248,7 +251,7 @@ module Test_vectors2()
     [0,  -1, 1],
     [1,  -1, 1],
     [1,   0, 1],
-  
+
     [1,   1, -1],
     [0,   1, -1],
     [-1,  1, -1],
@@ -291,7 +294,7 @@ module Test_vector3()
   w = cross(v,u);
   vector(w*20);
 
-  //-- The cross product is NOT conmutative... 
+  //-- The cross product is NOT conmutative...
   //-- change the order of v and u
   w2 = cross(u,v);
   vector(w2*20);
@@ -340,8 +343,6 @@ module Test_vector4()
 Test_vectors1();
 
 
-translate([60,0,0]) 
+translate([60,0,0])
   Test_vectors2();
 */
-
-

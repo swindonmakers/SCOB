@@ -29,6 +29,34 @@ Approx Plastic Cost | 0.73 GBP
 
 
 
+### Left Leg
+
+Metric | Value 
+--- | --- 
+Quantity | 1
+STL | [Left Leg](../printedparts/stl/LeftLeg.stl)
+Plastic (Kg) | 0.0
+Plastic (cm3) | 1.3
+Approx Plastic Cost | 0.02 GBP
+
+![](../printedparts/images/LeftLeg_view.png)
+
+
+
+### Right Leg
+
+Metric | Value 
+--- | --- 
+Quantity | 1
+STL | [Right Leg](../printedparts/stl/RightLeg.stl)
+Plastic (Kg) | 0.0
+Plastic (cm3) | 1.3
+Approx Plastic Cost | 0.02 GBP
+
+![](../printedparts/images/RightLeg_view.png)
+
+
+
 
 
 ## Summary
@@ -37,9 +65,9 @@ Approx Plastic Cost | 0.73 GBP
 
 Metric | Value 
 --- | --- 
-Total Parts | 3
-Total Plastic (Kg) | 0.06KG
-Total Plastic (cm3) | 51.7cm3
-Approx Plastic Cost | 0.97 GBP
+Total Parts | 5
+Total Plastic (Kg) | 0.07KG
+Total Plastic (cm3) | 54.3cm3
+Approx Plastic Cost | 1.02 GBP
 
 

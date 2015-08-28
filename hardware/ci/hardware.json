@@ -1,7 +1,7 @@
 [
     {
         "cut": [],
-        "hash": "d0791f5467e081e28cacc0c2fd427a44",
+        "hash": "4c604118346c59b60e3307fed7497176",
         "vitamins": [
             {
                 "hash": "7bb239147204653977f54edf8f85cea7",
@@ -207,7 +207,7 @@
         "assemblies": [
             {
                 "cut": [],
-                "hash": "8222ae6e4afd4b319558023dc51d0bf0",
+                "hash": "48b9f7501c3e1788b352698cc613ac0f",
                 "vitamins": [
                     {
                         "title": "HCSR04 Ultrasonic Sensor",
@@ -311,6 +311,22 @@
                         "qty": 1,
                         "call": "Head_STL()",
                         "file": "printedparts/Head.scad"
+                    },
+                    {
+                        "markdown": [],
+                        "title": "Left Leg",
+                        "views": [],
+                        "qty": 1,
+                        "call": "LeftLeg_STL()",
+                        "file": "printedparts/LeftLeg.scad"
+                    },
+                    {
+                        "markdown": [],
+                        "title": "Right Leg",
+                        "views": [],
+                        "qty": 1,
+                        "call": "RightLeg_STL()",
+                        "file": "printedparts/RightLeg.scad"
                     }
                 ],
                 "file": "assemblies/Final.scad",
@@ -720,6 +736,53 @@
             },
             {
                 "markdown": [],
+                "hash": "538aa312fbfb4cfb72184a81d6cb36c4",
+                "plasticWeight": 0.001625,
+                "title": "Left Leg",
+                "aabb": [
+                    [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        13.0,
+                        25.4897,
+                        25.5
+                    ]
+                ],
+                "views": [
+                    {
+                        "rotate": [
+                            72,
+                            0,
+                            130
+                        ],
+                        "dist": 400,
+                        "filepath": "../printedparts/images/LeftLeg_view.png",
+                        "title": "view",
+                        "caption": "view",
+                        "translate": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "type": "view",
+                        "size": [
+                            400,
+                            300
+                        ]
+                    }
+                ],
+                "qty": 1,
+                "volume": 1234.243761886532,
+                "area": 1551.900458122555,
+                "plasticVolume": 1.3,
+                "call": "LeftLeg_STL()",
+                "file": "printedparts/LeftLeg.scad"
+            },
+            {
+                "markdown": [],
                 "hash": "3cee258b79c44452d929d9e752ffc934",
                 "plasticWeight": 0.008125,
                 "title": "Foot",
@@ -743,8 +806,8 @@
                             130
                         ],
                         "dist": 400,
-                        "filepath": "../printedparts/images/Foot_view.png",
                         "title": "view",
+                        "filepath": "../printedparts/images/Foot_view.png",
                         "caption": "view",
                         "translate": [
                             0,
@@ -764,6 +827,53 @@
                 "plasticVolume": 6.5,
                 "call": "Foot_STL()",
                 "file": "printedparts/Foot.scad"
+            },
+            {
+                "markdown": [],
+                "hash": "353eb84cef7846cdf40f66e242c2307b",
+                "plasticWeight": 0.001625,
+                "title": "Right Leg",
+                "aabb": [
+                    [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        13.0,
+                        25.4897,
+                        25.5
+                    ]
+                ],
+                "views": [
+                    {
+                        "rotate": [
+                            72,
+                            0,
+                            130
+                        ],
+                        "dist": 400,
+                        "filepath": "../printedparts/images/RightLeg_view.png",
+                        "title": "view",
+                        "caption": "view",
+                        "translate": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "type": "view",
+                        "size": [
+                            400,
+                            300
+                        ]
+                    }
+                ],
+                "qty": 1,
+                "volume": 1234.2437714397404,
+                "area": 1551.9004941717349,
+                "plasticVolume": 1.3,
+                "call": "RightLeg_STL()",
+                "file": "printedparts/RightLeg.scad"
             }
         ],
         "file": "SCOB.scad",
@@ -1348,6 +1458,35 @@
                                 ]
                             },
                             {
+                                "call": "LeftLeg_STL()",
+                                "type": "printed",
+                                "children": [
+                                    {
+                                        "rotate": [
+                                            72,
+                                            0,
+                                            130
+                                        ],
+                                        "dist": 400,
+                                        "filepath": "../printedparts/images/LeftLeg_view.png",
+                                        "title": "view",
+                                        "caption": "view",
+                                        "translate": [
+                                            0,
+                                            0,
+                                            0
+                                        ],
+                                        "type": "view",
+                                        "size": [
+                                            400,
+                                            300
+                                        ]
+                                    }
+                                ],
+                                "file": "printedparts/LeftLeg.scad",
+                                "title": "Left Leg"
+                            },
+                            {
                                 "call": "LeftLegAssembly()",
                                 "type": "assembly",
                                 "children": [
@@ -1362,7 +1501,6 @@
                                                     130
                                                 ],
                                                 "dist": 400,
-                                                "filepath": "../printedparts/images/Foot_view.png",
                                                 "title": "view",
                                                 "caption": "view",
                                                 "translate": [
@@ -1478,6 +1616,35 @@
                                 ],
                                 "file": "assemblies/LeftLeg.scad",
                                 "title": "Left Leg"
+                            },
+                            {
+                                "call": "RightLeg_STL()",
+                                "type": "printed",
+                                "children": [
+                                    {
+                                        "rotate": [
+                                            72,
+                                            0,
+                                            130
+                                        ],
+                                        "dist": 400,
+                                        "filepath": "../printedparts/images/RightLeg_view.png",
+                                        "title": "view",
+                                        "caption": "view",
+                                        "translate": [
+                                            0,
+                                            0,
+                                            0
+                                        ],
+                                        "type": "view",
+                                        "size": [
+                                            400,
+                                            300
+                                        ]
+                                    }
+                                ],
+                                "file": "printedparts/RightLeg.scad",
+                                "title": "Right Leg"
                             },
                             {
                                 "call": "RightLegAssembly()",
@@ -1659,11 +1826,19 @@
             },
             {
                 "type": "file",
+                "file": "printedparts/LeftLeg.scad"
+            },
+            {
+                "type": "file",
                 "file": "assemblies/LeftLeg.scad"
             },
             {
                 "type": "file",
                 "file": "printedparts/Foot.scad"
+            },
+            {
+                "type": "file",
+                "file": "printedparts/RightLeg.scad"
             },
             {
                 "type": "file",

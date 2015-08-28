@@ -1,10 +1,10 @@
 
-LeftLeg_Con_Hip = [[10,30,40], [0,0,1], 0,0,0];
+LeftFootAssembly_Con_Servo = [[10.3,10,8.2], [0,1,0], 0,0,0];
 
 module LeftLegAssembly () {
 
     if (DebugConnectors) {
-        connector(LeftLeg_Con_Hip);
+        connector(LeftFootAssembly_Con_Servo);
     }
 
     assembly("assemblies/LeftLeg.scad", "Left Leg", str("LeftLegAssembly()")) {

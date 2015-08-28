@@ -24,11 +24,13 @@ Qty | Part Name | Image
 --- | --- | ---
 2 | [Foot](../printedparts/stl/Foot.stl) | ![](../printedparts/images/Foot_view.png) | 
 1 | [Head](../printedparts/stl/Head.stl) | ![](../printedparts/images/Head_view.png) | 
+1 | [Left Leg](../printedparts/stl/LeftLeg.stl) | ![](../printedparts/images/LeftLeg_view.png) | 
+1 | [Right Leg](../printedparts/stl/RightLeg.stl) | ![](../printedparts/images/RightLeg_view.png) | 
 
 
 **Plastic Required**
 
-51.7cm3, 0.06KG,  approx: 0.84 GBP
+54.3cm3, 0.07KG,  approx: 0.88 GBP
 
 
 # Assembly Instructions
@@ -93,6 +95,8 @@ Qty | Vitamin | Image
 Qty | Part Name | Image
 --- | --- | ---
 1 | [Head](../printedparts/stl/Head.stl) | ![](../printedparts/images/Head_view.png) | 
+1 | [Left Leg](../printedparts/stl/LeftLeg.stl) | ![](../printedparts/images/LeftLeg_view.png) | 
+1 | [Right Leg](../printedparts/stl/RightLeg.stl) | ![](../printedparts/images/RightLeg_view.png) | 
 
 ### Sub-Assemblies
 

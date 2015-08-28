@@ -321,7 +321,7 @@ module fillet(r, h) {
 
 module right_triangle(width, height, h, center = true) {
 	linear_extrude(height = h, center = center)
-		right_triangle_2d(width,height,center=center);
+		rightTriangle(width,height,center=center);
 }
 
 module roundedRightTriangle(width, height, h, r=[1,1,1], center = true, $fn=12) {

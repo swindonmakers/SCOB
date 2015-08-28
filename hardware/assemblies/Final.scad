@@ -68,13 +68,28 @@ module FinalAssembly () {
             view();
 
             attach(Head_Con_LeftServo, MicroServo_Con_Fixing1) {
-                attach(rollConnector(MicroServo_Con_Horn, -90), LeftLeg_Con_Hip)
-                    LeftLegAssembly();
+                attach(
+                    rollConnector(MicroServo_Con_Horn, -90),
+                    offsetConnector(invertConnector(LeftLeg_Con_Hip), [0,0,-4.5])
+                ) {
+                    LeftLeg_STL();
+
+                    attach(LeftLeg_Con_Ankle, LeftFootAssembly_Con_Servo)
+                        LeftLegAssembly();
+                }
+
             }
 
             attach(Head_Con_RightServo, MicroServo_Con_Fixing1) {
-                attach(rollConnector(MicroServo_Con_Horn, 90), RightLeg_Con_Hip)
-                    RightLegAssembly();
+                attach(
+                    rollConnector(MicroServo_Con_Horn, -90),
+                    offsetConnector(invertConnector(RightLeg_Con_Hip), [0,0,-4.5])
+                ) {
+                    RightLeg_STL();
+
+                    attach(RightLeg_Con_Ankle, RightFootAssembly_Con_Servo)
+                        RightLegAssembly();
+                }
             }
         }
 
