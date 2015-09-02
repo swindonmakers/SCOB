@@ -14,7 +14,7 @@
 
 struct ANIMATION {
     uint8_t numFrames;
-    byte *frames[][SERVOANIMATOR_NUM_SERVOS];
+    byte *frames;
     unsigned long *durations;
 };
 
@@ -30,7 +30,8 @@ private:
         Servo *servo;
     };
 
-    SERVO _servos[SERVOANIMATOR_NUM_SERVOS]; // array of servo structures
+    uint8_t _numServos;
+    SERVO *_servos; // array of servo structures
 
     // how long to take in ms to get to targetPos from startPos
     unsigned long _moveDuration = 250;
@@ -45,18 +46,21 @@ private:
 
     uint8_t _animFrame = 0;
 
+    uint8_t _repeatCount = 0;
+
 public:
 
-    ServoAnimator ();
+    ServoAnimator (uint8_t numServos);
     void initServo(uint8_t num, uint8_t pin, uint8_t center);
 
-    void moveServosTo(const byte keyframe[SERVOANIMATOR_NUM_SERVOS], unsigned long dur);
+    void moveServosTo(const byte *keyframe, unsigned long dur);
     void setAnimation(const ANIMATION * animation);
+    void setRepeatCount(uint8_t repeatCount);
 
     boolean isBusy();
 
     void update();
-    void moveToFrame(uint8_t frame);
+    boolean moveToFrame(uint8_t frame); // returns false when done
     void nextFrame();
 
 };

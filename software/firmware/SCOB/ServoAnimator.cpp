@@ -1,7 +1,8 @@
 #include "ServoAnimator.h"
 
-ServoAnimator::ServoAnimator() {
-
+ServoAnimator::ServoAnimator(uint8_t numServos) {
+    _numServos = numServos;
+    _servos = new SERVO[_numServos];
 }
 
 void ServoAnimator::initServo(uint8_t num, uint8_t pin, uint8_t center) {
@@ -18,7 +19,7 @@ void ServoAnimator::initServo(uint8_t num, uint8_t pin, uint8_t center) {
     s->servo->write(center);
 }
 
-void ServoAnimator::moveServosTo(const byte keyframe[SERVOANIMATOR_NUM_SERVOS], unsigned long dur) {
+void ServoAnimator::moveServosTo(const byte *keyframe, unsigned long dur) {
    if (_busy) return;
 
    _moveStartedAt = millis();
@@ -27,16 +28,25 @@ void ServoAnimator::moveServosTo(const byte keyframe[SERVOANIMATOR_NUM_SERVOS], 
    for (uint8_t i=0; i<_numServos; i++) {
        _servos[i].targetPos = _servos[i].center + keyframe[i];
 
+       /*
        Serial.print(i);
        Serial.print(':');
-       Serial.println(keyframe[i]);
+       Serial.print(keyframe[i]);
+       Serial.print(',');
+       Serial.println(_servos[i].targetPos);
+       */
    }
 
 }
 
 void ServoAnimator::setAnimation(const ANIMATION * animation) {
     _animation = (ANIMATION*) animation;
+    setRepeatCount(0);
     moveToFrame(0);
+}
+
+void ServoAnimator::setRepeatCount(uint8_t repeatCount) {
+    _repeatCount = repeatCount;
 }
 
 boolean ServoAnimator::isBusy() {
@@ -78,14 +88,25 @@ void ServoAnimator::update() {
   }
 }
 
-void ServoAnimator::moveToFrame(uint8_t frame) {
-    if (_animation ==0 || frame >= _animation->numFrames) return;
+boolean ServoAnimator::moveToFrame(uint8_t frame) {
+    if (_animation ==0 || frame >= _animation->numFrames) return false;
     _animFrame = frame;
-    moveServosTo(_animation->frames[_animFrame][0], _animation->durations[_animFrame]);
+    /*
+    Serial.print('F');
+    Serial.println(_animFrame);
+    */
+    moveServosTo(&_animation->frames[_animFrame * _numServos], _animation->durations[_animFrame]);
+    return true;
 }
 
 void ServoAnimator::nextFrame() {
     if (_animation ==0) return;
     _animFrame++;
-    moveToFrame(_animFrame);
+    if (!moveToFrame(_animFrame)) {
+        if (_repeatCount>0) {
+            // restart
+            _repeatCount--;
+            moveToFrame(0);
+        }
+    }
 }
