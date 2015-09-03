@@ -63,6 +63,8 @@ public:
     boolean moveToFrame(uint8_t frame); // returns false when done
     void nextFrame();
 
+    void stop();
+
 };
 
 #endif

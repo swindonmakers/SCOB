@@ -18,3 +18,11 @@ uint8_t servoPins[NUM_JOINTS] = {LHIP_PIN, LANKLE_PIN, RANKLE_PIN, RHIP_PIN};
 
 // centers - calibrate these!  TODO: move to EEPROM with serial re-program
 uint8_t servoCenters[NUM_JOINTS] = {97, 92, 102, 75};
+
+
+// Commands
+#define CMD_FD 0
+#define CMD_BK 1
+#define CMD_LT 2
+#define CMD_RT 3
+#define CMD_ST 4

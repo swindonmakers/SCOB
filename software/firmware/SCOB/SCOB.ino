@@ -3,14 +3,17 @@
 #include "ServoAnimator.h"
 #include "Config.h"
 #include "Animations.h"
+#include <CommandQueue.h>
 
 // Objects
 //NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 ServoAnimator anim(NUM_JOINTS);
+CommandQueue cmdQ(15);
 
 // Animation state - used to switch between different animations
 uint8_t state = 0;
 
+String cmd;  // cmd received over serial - builds up char at a time
 
 void setup() {
   Serial.begin(9600);
@@ -27,10 +30,38 @@ void setup() {
 
 
 void loop() {
+    // Parse Logo commands from Serial
+    if (Serial.available()) {
+        char c = toupper(Serial.read());
+        if (c == '\r' || c == '\n') {  // if found a line end
+            if (cmd != "") {  // check the command isn't blank
+            if (cmdQ.isFull()) {
+                Serial.println("BUSY");
+            } else {
+                parseCommand(cmd);
+                Serial.println("OK:" + cmd);
+            }
+
+            // reset the command buffer
+            cmd = "";
+        }
+    } else {
+        cmd += c;  // append the character onto the command buffer
+    }
+}
+
+
+  // keep animation going
   anim.update();
 
   // repeat the animation
   if (!anim.isBusy()) {
+
+      if (!cmdQ.isEmpty()) {
+          doCommand(cmdQ.dequeue());
+      }
+
+      /*
       switch(state) {
           case 0:
           anim.setAnimation(&stand);
@@ -40,7 +71,7 @@ void loop() {
           anim.setAnimation(&walkForward);
           anim.setRepeatCount(2);
           break;
-          
+
           case 2:
           anim.setAnimation(&stand);
           anim.setRepeatCount(2);
@@ -49,7 +80,7 @@ void loop() {
           anim.setAnimation(&turnLeft);
           anim.setRepeatCount(2); // turn left total of 3 times
           break;
-          
+
           case 4:
           anim.setAnimation(&stand);
           anim.setRepeatCount(2);
@@ -58,7 +89,7 @@ void loop() {
           anim.setAnimation(&walkForward);
           anim.setRepeatCount(2);
           break;
-          
+
           case 6:
           anim.setAnimation(&stand);
           anim.setRepeatCount(2);
@@ -69,5 +100,98 @@ void loop() {
           break;
       }
       state++;
+      */
   }
+}
+
+static void parseCommand(String c) {
+    // parse and queue/insert
+    uint8_t cmdType = 0xff;
+
+    // check for urgent commands
+    boolean doNow = false;
+    if (cmd[0] == '!') {
+        doNow = true;
+        c = c.substring(1);
+    }
+
+    // parse the command type
+    if (c.startsWith("FD")) {
+        cmdType = CMD_FD;
+    } else if (c.startsWith("BK")) {
+        cmdType = CMD_BK;
+    } else if (c.startsWith("RT")) {
+        cmdType = CMD_RT;
+    } else if (c.startsWith("LT")) {
+        cmdType = CMD_LT;
+    } else if (c.startsWith("ST")) {
+        cmdType = CMD_ST;
+    }
+
+    // give up if command not recognised
+    if (cmdType == 0xff) return;
+
+    // lose the command name, keep the parameters
+    int sp = c.indexOf(' ');
+    if (sp > -1) {
+        c = c.substring(sp+1);
+    } else {
+        c = "";
+    }
+
+    // insert/queue the command
+    if (doNow) {
+        anim.stop();  // stop the bot
+        cmdQ.insert(c, cmdType);  // insert the new command at the head of the command queue
+    } else {
+        cmdQ.enqueue(c, cmdType);
+    }
+
+    // debug what bot is up to
+    /*
+    Serial.print("CQ Peek: ");
+    Serial.println(cmdQ.peekAtType());
+    Serial.print("bot.isQFull:");
+    Serial.println(bot.isQFull());
+    */
+}
+
+static void doCommand(COMMAND *c)
+{
+    if (c == NULL) return;
+
+    // Parse out parameter values
+    int sp = c->cmd.indexOf(' ');
+    float f1 = 0;
+    float f2 = 0;
+    if (sp > -1) {
+        f1 = c->cmd.substring(0,sp).toFloat();
+        f2 = c->cmd.substring(sp+1).toFloat();
+    } else {
+        f1 = c->cmd.toFloat();
+    }
+
+    // Handle each command type
+    switch(c->cmdType) {
+        case CMD_FD:
+            anim.setAnimation(&walkForward);
+            anim.setRepeatCount(f1);
+            break;
+        case CMD_BK:
+            anim.setAnimation(&walkForward);
+            anim.setRepeatCount(f1);
+            break;
+        case CMD_LT:
+            anim.setAnimation(&turnLeft);
+            anim.setRepeatCount(f1);
+            break;
+        case CMD_RT:
+            anim.setAnimation(&turnRight);
+            anim.setRepeatCount(f1);
+            break;
+        case CMD_ST:
+            anim.stop();
+            anim.setAnimation(&stand);
+            break;
+    }
 }

@@ -110,3 +110,9 @@ void ServoAnimator::nextFrame() {
         }
     }
 }
+
+void ServoAnimator::stop() {
+    _busy = false;
+    for (uint8_t i=0; i<_numServos; i++)
+      _servos[i].startPos = _servos[i].pos;
+}
