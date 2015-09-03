@@ -19,7 +19,7 @@ void ServoAnimator::initServo(uint8_t num, uint8_t pin, uint8_t center) {
     s->servo->write(center);
 }
 
-void ServoAnimator::moveServosTo(const byte *keyframe, unsigned long dur) {
+void ServoAnimator::moveServosTo(const byte keyframe[], unsigned long dur) {
    if (_busy) return;
 
    _moveStartedAt = millis();
@@ -39,8 +39,8 @@ void ServoAnimator::moveServosTo(const byte *keyframe, unsigned long dur) {
 
 }
 
-void ServoAnimator::setAnimation(const ANIMATION * animation) {
-    _animation = (ANIMATION*) animation;
+void ServoAnimator::setAnimation(ANIMATION& animation) {
+    _animation = &animation;
     setRepeatCount(0);
     moveToFrame(0);
 }

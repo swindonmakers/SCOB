@@ -53,8 +53,8 @@ public:
     ServoAnimator (uint8_t numServos);
     void initServo(uint8_t num, uint8_t pin, uint8_t center);
 
-    void moveServosTo(const byte *keyframe, unsigned long dur);
-    void setAnimation(const ANIMATION * animation);
+    void moveServosTo(const byte keyframe[], unsigned long dur);
+    void setAnimation(ANIMATION& animation);
     void setRepeatCount(uint8_t repeatCount);
 
     boolean isBusy();

@@ -16,7 +16,7 @@ const byte walkForwardKeyframes[4][NUM_JOINTS] = {
 };
 const unsigned long walkForwardDurations[4] = {700,700,700,700};
 ANIMATION walkForward {
-    4, (byte *) &walkForwardKeyframes[0][0], (unsigned long*)&walkForwardDurations
+    4, (byte *) &walkForwardKeyframes, (unsigned long*)&walkForwardDurations
 };
 
 const byte turnLeftKeyframes[8][NUM_JOINTS] = {
@@ -31,7 +31,7 @@ const byte turnLeftKeyframes[8][NUM_JOINTS] = {
 };
 const unsigned long turnLeftDurations[8] = {400,400,400,400,400,400,400,400};
 ANIMATION turnLeft {
-    8, (byte *) &turnLeftKeyframes[0][0], (unsigned long*)&turnLeftDurations
+    8, (byte *) &turnLeftKeyframes, (unsigned long*)&turnLeftDurations
 };
 
 const byte turnRightKeyframes[8][NUM_JOINTS] = {
@@ -46,7 +46,7 @@ const byte turnRightKeyframes[8][NUM_JOINTS] = {
 };
 const unsigned long turnRightDurations[8] = {400,400,400,400,400,400,400,400};
 ANIMATION turnRight {
-    8, (byte *) &turnRightKeyframes[0][0], (unsigned long*)&turnRightDurations
+    8, (byte *) &turnRightKeyframes, (unsigned long*)&turnRightDurations
 };
 
 // Interactive state - used when adjusting joint parameters via serial interface

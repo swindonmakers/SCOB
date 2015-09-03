@@ -25,7 +25,7 @@ void setup() {
   }
 
   //anim.moveServosTo((const byte*) walkForwardKeyframes, 1000);
-  anim.setAnimation(&stand);
+  anim.setAnimation(stand);
 }
 
 
@@ -139,24 +139,24 @@ static void doCommand(COMMAND *c)
     // Handle each command type
     switch(c->cmdType) {
         case CMD_FD:
-            anim.setAnimation(&walkForward);
+            anim.setAnimation(walkForward);
             anim.setRepeatCount(f1);
             break;
         case CMD_BK:
-            anim.setAnimation(&walkForward);
+            anim.setAnimation(walkForward);
             anim.setRepeatCount(f1);
             break;
         case CMD_LT:
-            anim.setAnimation(&turnLeft);
+            anim.setAnimation(turnLeft);
             anim.setRepeatCount(f1);
             break;
         case CMD_RT:
-            anim.setAnimation(&turnRight);
+            anim.setAnimation(turnRight);
             anim.setRepeatCount(f1);
             break;
         case CMD_ST:
             anim.stop();
-            anim.setAnimation(&stand);
+            anim.setAnimation(stand);
             break;
         case CMD_PG:
             Serial.print(sonar.ping_cm());
@@ -173,7 +173,7 @@ static void doCommand(COMMAND *c)
 
 void updateInteractivePositions() {
     anim.stop();
-    anim.setAnimation(&interactive);
+    anim.setAnimation(interactive);
 
     // debug
     for (uint8_t i=0; i<NUM_JOINTS; i++) {
