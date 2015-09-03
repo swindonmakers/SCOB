@@ -1,5 +1,13 @@
 
 // Motion patterns - joint angles relative to center
+const byte standKeyFrames[1][NUM_JOINTS] = {
+  {0, 0, 0, 0}
+};
+const unsigned long standDurations[1] = {1000};
+ANIMATION stand {
+  1, (byte *) &standKeyFrames, (unsigned long*)&standDurations
+};
+
 const byte walkForwardKeyframes[4][NUM_JOINTS] = {
   {-25,-23,-23,-25},
   {25,-23,-23,25},
