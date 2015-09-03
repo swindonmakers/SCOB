@@ -1,17 +1,17 @@
 #include <Servo.h>
-//#include <NewPing.h>
+#include <NewPing.h>
 #include "ServoAnimator.h"
 #include "Config.h"
 #include "Animations.h"
 #include <CommandQueue.h>
 
 // Objects
-//NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
+NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 ServoAnimator anim(NUM_JOINTS);
 CommandQueue cmdQ(15);
 
-// Animation state - used to switch between different animations
-uint8_t state = 0;
+// mode
+uint8_t mode = MODE_INTERACTIVE;
 
 String cmd;  // cmd received over serial - builds up char at a time
 
@@ -54,53 +54,14 @@ void loop() {
   // keep animation going
   anim.update();
 
-  // repeat the animation
+  // is current movement complete?
   if (!anim.isBusy()) {
-
-      if (!cmdQ.isEmpty()) {
-          doCommand(cmdQ.dequeue());
+      // work out what to do next
+      switch(mode){
+          case MODE_INTERACTIVE:
+            if (!cmdQ.isEmpty()) doCommand(cmdQ.dequeue());
+            break;
       }
-
-      /*
-      switch(state) {
-          case 0:
-          anim.setAnimation(&stand);
-          anim.setRepeatCount(2);
-
-          case 1:
-          anim.setAnimation(&walkForward);
-          anim.setRepeatCount(2);
-          break;
-
-          case 2:
-          anim.setAnimation(&stand);
-          anim.setRepeatCount(2);
-
-          case 3:
-          anim.setAnimation(&turnLeft);
-          anim.setRepeatCount(2); // turn left total of 3 times
-          break;
-
-          case 4:
-          anim.setAnimation(&stand);
-          anim.setRepeatCount(2);
-
-          case 5:
-          anim.setAnimation(&walkForward);
-          anim.setRepeatCount(2);
-          break;
-
-          case 6:
-          anim.setAnimation(&stand);
-          anim.setRepeatCount(2);
-
-          case 7:
-          anim.setAnimation(&turnRight);
-          anim.setRepeatCount(2);   // turn right twice
-          break;
-      }
-      state++;
-      */
   }
 }
 
@@ -126,6 +87,8 @@ static void parseCommand(String c) {
         cmdType = CMD_LT;
     } else if (c.startsWith("ST")) {
         cmdType = CMD_ST;
+    } else if (c.startsWith("PG")) {
+        cmdType = CMD_PG;
     }
 
     // give up if command not recognised
@@ -192,6 +155,10 @@ static void doCommand(COMMAND *c)
         case CMD_ST:
             anim.stop();
             anim.setAnimation(&stand);
+            break;
+        case CMD_PG:
+            Serial.print(sonar.ping_cm());
+            Serial.println("cm");
             break;
     }
 }

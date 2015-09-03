@@ -26,3 +26,8 @@ uint8_t servoCenters[NUM_JOINTS] = {97, 92, 102, 75};
 #define CMD_LT 2
 #define CMD_RT 3
 #define CMD_ST 4
+#define CMD_PG 5  // ping - report sonar distance
+
+
+// Modes
+#define MODE_INTERACTIVE 0
