@@ -29,8 +29,8 @@ tw 				= ThickWall;
 PinDiameter = 7;
 
 // Head outer dimensions
-Head_Width = 60;
+Head_Width = 65;
 Head_Depth = 60;
 Head_Height = 70;
 
-Head_ServoSpacing = 40;
+Head_ServoSpacing = 45;
