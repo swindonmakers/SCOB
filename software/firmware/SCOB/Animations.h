@@ -48,3 +48,12 @@ const unsigned long turnRightDurations[8] = {400,400,400,400,400,400,400,400};
 ANIMATION turnRight {
     8, (byte *) &turnRightKeyframes[0][0], (unsigned long*)&turnRightDurations
 };
+
+// Interactive state - used when adjusting joint parameters via serial interface
+byte interactiveKeyFrames[1][NUM_JOINTS] = {
+  {0, 0, 0, 0}
+};
+const unsigned long interactiveDurations[1] = {1000};
+ANIMATION interactive {
+  1, (byte *) &interactiveKeyFrames, (unsigned long*)&interactiveDurations
+};

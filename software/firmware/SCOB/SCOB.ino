@@ -35,20 +35,20 @@ void loop() {
         char c = toupper(Serial.read());
         if (c == '\r' || c == '\n') {  // if found a line end
             if (cmd != "") {  // check the command isn't blank
-            if (cmdQ.isFull()) {
-                Serial.println("BUSY");
-            } else {
-                parseCommand(cmd);
-                Serial.println("OK:" + cmd);
-            }
+                if (cmdQ.isFull()) {
+                    Serial.println("BUSY");
+                } else {
+                    parseCommand(cmd);
+                    Serial.println("OK:" + cmd);
+                }
 
-            // reset the command buffer
-            cmd = "";
+                // reset the command buffer
+                cmd = "";
+            }
+        } else {
+            cmd += c;  // append the character onto the command buffer
         }
-    } else {
-        cmd += c;  // append the character onto the command buffer
     }
-}
 
 
   // keep animation going
@@ -89,6 +89,8 @@ static void parseCommand(String c) {
         cmdType = CMD_ST;
     } else if (c.startsWith("PG")) {
         cmdType = CMD_PG;
+    } else if (c.startsWith("POS")) {
+        cmdType = CMD_POS;
     }
 
     // give up if command not recognised
@@ -160,5 +162,23 @@ static void doCommand(COMMAND *c)
             Serial.print(sonar.ping_cm());
             Serial.println("cm");
             break;
+
+        case CMD_POS:
+            if (f1 < 0 || f1 > NUM_JOINTS-1) break;
+            interactiveKeyFrames[0][(uint8_t)f1] = (byte)f2;
+            updateInteractivePositions();
+            break;
     }
+}
+
+void updateInteractivePositions() {
+    anim.stop();
+    anim.setAnimation(&interactive);
+
+    // debug
+    for (uint8_t i=0; i<NUM_JOINTS; i++) {
+        if (i>0) Serial.print(',');
+        Serial.print(interactiveKeyFrames[0][i]);
+    }
+    Serial.println();
 }

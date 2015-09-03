@@ -21,13 +21,13 @@ uint8_t servoCenters[NUM_JOINTS] = {97, 92, 102, 75};
 
 
 // Commands
-#define CMD_FD 0
-#define CMD_BK 1
-#define CMD_LT 2
-#define CMD_RT 3
-#define CMD_ST 4
+#define CMD_FD 0  // forward
+#define CMD_BK 1  // backward
+#define CMD_LT 2  // turn left
+#define CMD_RT 3  // turn right
+#define CMD_ST 4  // stop
 #define CMD_PG 5  // ping - report sonar distance
-
+#define CMD_POS 6 // set position of servo x to y (relative to center)
 
 // Modes
 #define MODE_INTERACTIVE 0
