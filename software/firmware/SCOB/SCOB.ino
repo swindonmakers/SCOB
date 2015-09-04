@@ -8,7 +8,7 @@
 // Objects
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 ServoAnimator anim(NUM_JOINTS);
-CommandQueue cmdQ(15);
+CommandQueue cmdQ(COMMAND_QUEUE_LENGTH);
 
 // mode
 uint8_t mode = MODE_INTERACTIVE;

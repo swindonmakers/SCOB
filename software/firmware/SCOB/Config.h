@@ -11,7 +11,7 @@
 
 // Other defines
 #define MAX_DISTANCE 100 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
-
+#define COMMAND_QUEUE_LENGTH 15
 
 // pin references
 uint8_t servoPins[NUM_JOINTS] = {LHIP_PIN, LANKLE_PIN, RANKLE_PIN, RHIP_PIN};
