@@ -65,7 +65,7 @@ void ServoAnimator::update() {
   if (t>=1) t = 1;
 
   // apply easing - smooth in/out
-  t = bezierAt(t, 0, 0.6, 0.4, 1);
+  t = bezierAt(t, 0, 0.2, 0.8, 1);
   if (t>1) t = 1;
   if (t<0) t = 0;
 
