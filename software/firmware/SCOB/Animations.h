@@ -60,11 +60,12 @@ ANIMATION footTap {
 
 ANIMATION standTall {
   1,
-  (byte *)new byte[1][NUM_JOINTS]
+  (byte *)new byte[2][NUM_JOINTS]
   {
+    {0, 60, -60, 0},
     {0, 60, -60, 0}
   },
-  new unsigned long[1]{500}
+  new unsigned long[2]{500, 2000}
 };
 
 // Interactive state - used when adjusting joint parameters via serial interface
