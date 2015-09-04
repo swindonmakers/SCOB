@@ -28,7 +28,8 @@ uint8_t servoCenters[NUM_JOINTS] = {97, 92, 102, 75};
 #define CMD_ST 4  // stop
 #define CMD_PG 5  // ping - report sonar distance
 #define CMD_POS 6 // set position of servo x to y (relative to center)
-#define CMD_FT 7 // tap foot
+#define CMD_FT 7  // tap foot
+#define CMD_TL 8  // stand tall (balerina)
 
 // Modes
 #define MODE_INTERACTIVE 0

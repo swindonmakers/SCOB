@@ -58,6 +58,15 @@ ANIMATION footTap {
   2, (byte *) &footTapKeyframes, (unsigned long*)&footTapDurations
 };
 
+ANIMATION standTall {
+  1,
+  (byte *)new byte[1][NUM_JOINTS]
+  {
+    {0, 60, -60, 0}
+  },
+  new unsigned long[1]{500}
+};
+
 // Interactive state - used when adjusting joint parameters via serial interface
 byte interactiveKeyFrames[1][NUM_JOINTS] = {
   {0, 0, 0, 0}

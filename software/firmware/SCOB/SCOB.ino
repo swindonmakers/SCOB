@@ -93,6 +93,8 @@ static void parseCommand(String c) {
         cmdType = CMD_POS;
     } else if (c.startsWith("FT")) {
         cmdType = CMD_FT;
+    } else if (c.startsWith("TL")) {
+        cmdType = CMD_TL;
     }
 
     // give up if command not recognised
@@ -172,6 +174,10 @@ static void doCommand(COMMAND *c)
             break;
         case CMD_FT:
             anim.setAnimation(footTap);
+            anim.setRepeatCount(f1);
+            break;
+        case CMD_TL:
+            anim.setAnimation(standTall);
             anim.setRepeatCount(f1);
             break;
     }
