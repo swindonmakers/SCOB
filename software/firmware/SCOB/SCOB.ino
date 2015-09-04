@@ -12,8 +12,11 @@ CommandQueue cmdQ(COMMAND_QUEUE_LENGTH);
 
 // mode
 uint8_t mode = MODE_INTERACTIVE;
+long lastCommand;
 
 String cmd;  // cmd received over serial - builds up char at a time
+
+COMMAND randomCmd;
 
 void setup() {
   Serial.begin(9600);
@@ -26,6 +29,7 @@ void setup() {
 
   //anim.moveServosTo((const byte*) walkForwardKeyframes, 1000);
   anim.setAnimation(stand);
+  lastCommand = millis();
 }
 
 
@@ -48,8 +52,13 @@ void loop() {
         } else {
             cmd += c;  // append the character onto the command buffer
         }
+        lastCommand = millis();
+        mode = MODE_INTERACTIVE;
     }
 
+  if (ENABLE_RANDOM && millis() - lastCommand > 5000) {
+    mode = MODE_RANDOM;
+  }
 
   // keep animation going
   anim.update();
@@ -60,6 +69,21 @@ void loop() {
       switch(mode){
           case MODE_INTERACTIVE:
             if (!cmdQ.isEmpty()) doCommand(cmdQ.dequeue());
+            break;
+            
+          case MODE_RANDOM:
+            if (cmdQ.isEmpty()) {
+              int r = random(-1, 7);
+              if (r == -1) {
+                // rest for a little while
+                lastCommand = millis();
+                randomCmd.cmdType = CMD_ST;
+                mode = MODE_INTERACTIVE;
+              } else {
+                randomCmd.cmdType = r;
+              }
+              doCommand(&randomCmd);
+            }
             break;
       }
   }
