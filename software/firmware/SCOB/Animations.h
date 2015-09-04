@@ -49,6 +49,15 @@ ANIMATION turnRight {
     8, (byte *) &turnRightKeyframes, (unsigned long*)&turnRightDurations
 };
 
+const byte footTapKeyframes[2][NUM_JOINTS] = {
+  {0, -25, 5, 0},
+  {0 ,0 ,0, 0}
+};
+const unsigned long footTapDurations[2] = {400, 250};
+ANIMATION footTap {
+  2, (byte *) &footTapKeyframes, (unsigned long*)&footTapDurations
+};
+
 // Interactive state - used when adjusting joint parameters via serial interface
 byte interactiveKeyFrames[1][NUM_JOINTS] = {
   {0, 0, 0, 0}

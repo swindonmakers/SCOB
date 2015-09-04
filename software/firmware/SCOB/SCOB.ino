@@ -91,6 +91,8 @@ static void parseCommand(String c) {
         cmdType = CMD_PG;
     } else if (c.startsWith("POS")) {
         cmdType = CMD_POS;
+    } else if (c.startsWith("FT")) {
+        cmdType = CMD_FT;
     }
 
     // give up if command not recognised
@@ -167,6 +169,10 @@ static void doCommand(COMMAND *c)
             if (f1 < 0 || f1 > NUM_JOINTS-1) break;
             interactiveKeyFrames[0][(uint8_t)f1] = (byte)f2;
             updateInteractivePositions();
+            break;
+        case CMD_FT:
+            anim.setAnimation(footTap);
+            anim.setRepeatCount(f1);
             break;
     }
 }
