@@ -103,7 +103,7 @@ void ServoAnimator::nextFrame() {
     if (_animation ==0) return;
     _animFrame++;
     if (!moveToFrame(_animFrame)) {
-        if (_repeatCount>0) {
+        if (_repeatCount>1) {
             // restart
             _repeatCount--;
             moveToFrame(0);
