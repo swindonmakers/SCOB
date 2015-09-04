@@ -71,7 +71,7 @@ static void parseCommand(String c) {
 
     // check for urgent commands
     boolean doNow = false;
-    if (cmd[0] == '!') {
+    if (c[0] == '!') {
         doNow = true;
         c = c.substring(1);
     }
