@@ -24,7 +24,7 @@ void ServoAnimator::moveServosTo(const byte keyframe[], unsigned long dur) {
 
    _moveStartedAt = millis();
    _busy = true;
-   _moveDuration = dur;
+   _moveDuration = dur * (1.0/_speed);
    for (uint8_t i=0; i<_numServos; i++) {
        _servos[i].targetPos = _servos[i].center + keyframe[i];
 
@@ -48,6 +48,11 @@ void ServoAnimator::setAnimation(ANIMATION& animation, boolean reverse) {
 
 void ServoAnimator::setRepeatCount(uint8_t repeatCount) {
     _repeatCount = repeatCount;
+}
+
+void ServoAnimator::setSpeed(float speed) {
+    if (speed <= 0) return;
+    _speed = speed;
 }
 
 boolean ServoAnimator::isBusy() {

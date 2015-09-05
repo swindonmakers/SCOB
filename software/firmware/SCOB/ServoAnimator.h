@@ -47,6 +47,7 @@ private:
     uint8_t _animFrame = 0;
     uint8_t _repeatCount = 0;
     boolean _reverse = false; // set to true to reverse animation
+    float _speed = 1.0;  // multiplier applied to animation timings
 
 public:
 
@@ -56,6 +57,7 @@ public:
     void moveServosTo(const byte keyframe[], unsigned long dur);
     void setAnimation(ANIMATION& animation, boolean reverse = false);
     void setRepeatCount(uint8_t repeatCount);
+    void setSpeed(float speed);
 
     boolean isBusy();
 

@@ -32,7 +32,7 @@ uint8_t servoCenters[NUM_JOINTS] = {97, 92, 102, 75};
 
 #define CMD_PG 20  // ping - report sonar distance
 #define CMD_POS 21 // set position of servo x to y (relative to center)
-
+#define CMD_SP 22  // set speed multiplier 1.0 is nominal
 
 // Modes
 #define MODE_INTERACTIVE 0
