@@ -60,6 +60,7 @@ void loop() {
         }
         lastCommand = millis();
         mode = MODE_INTERACTIVE;
+        enableRandom = false; // turn off at first interactive command, turn back on with RND
     }
 
   if (enableRandom && cmdQ.isEmpty() && millis() - lastCommand > 5000) {
@@ -83,14 +84,11 @@ void loop() {
               int r = random(-1, 7);
               if (r == -1) {
                 // rest for a little while
-                // TODO: replace with wait command
-                lastCommand = millis();
-                randomCmd.cmdType = CMD_ST;
-                mode = MODE_INTERACTIVE;
+                pauseUntil = millis() + 5000;
               } else {
                 randomCmd.cmdType = r;
+                doCommand(&randomCmd);
               }
-              doCommand(&randomCmd);
             }
             break;
       }
@@ -135,6 +133,8 @@ static void parseCommand(String c) {
         cmdType = CMD_SC;
     } else if (c.startsWith("PF")) {
         cmdType = CMD_PF;
+    } else if (c.startsWith("RND")) {
+        mode = MODE_RANDOM;
     }
 
     // give up if command not recognised

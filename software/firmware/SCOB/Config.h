@@ -43,6 +43,8 @@ uint8_t servoCenters[NUM_JOINTS] = {90,90,90,90};
 #define CMD_SC 24 // servo center - set servo x center to y (abs)
 #define CMD_PF 25 // pause for x seconds
 
+#define CMD_RND 100 // switch to random movement mode
+
 // Modes
 #define MODE_INTERACTIVE 0
 #define MODE_RANDOM 1
