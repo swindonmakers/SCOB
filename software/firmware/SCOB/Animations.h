@@ -72,7 +72,7 @@ ANIMATION standTall {
 byte interactiveKeyFrames[1][NUM_JOINTS] = {
   {0, 0, 0, 0}
 };
-const unsigned long interactiveDurations[1] = {1000};
+unsigned long interactiveDurations[1] = {1000};
 ANIMATION interactive {
   1, (byte *) &interactiveKeyFrames, (unsigned long*)&interactiveDurations
 };

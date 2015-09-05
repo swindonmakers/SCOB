@@ -135,6 +135,8 @@ static void parseCommand(String c) {
         cmdType = CMD_PF;
     } else if (c.startsWith("RND")) {
         mode = MODE_RANDOM;
+    } else if (c.startsWith("TO")) {
+        cmdType = CMD_TO;
     }
 
     // give up if command not recognised
@@ -169,76 +171,97 @@ static void doCommand(COMMAND *c)
 {
     if (c == NULL) return;
 
-    // Parse out parameter values
-    int sp = c->cmd.indexOf(' ');
-    float f1 = 0;
-    float f2 = 0;
-    if (sp > -1) {
-        f1 = c->cmd.substring(0,sp).toFloat();
-        f2 = c->cmd.substring(sp+1).toFloat();
+    if (c->cmdType == CMD_TO) {
+        // 5 parameters to parse, all integers
+        // parse directly into interactive animation
+        uint8_t pn = 0;  // param number
+        uint8_t sp1 = 0; // start of next param
+        uint8_t sp2;
+        while(1) {
+            sp2 = c->cmd.indexOf(' ', sp1); // space following next param
+            if (pn == 4) {
+                interactiveDurations[0] = c->cmd.substring(sp1).toInt();
+                break;
+            } else {
+                interactiveKeyFrames[0][pn] = c->cmd.substring(sp1, sp2).toInt();
+                sp1 = sp2 + 1;
+                pn++;
+            }
+        }
+        updateInteractivePositions();
+
     } else {
-        f1 = c->cmd.toFloat();
-    }
 
-    // Handle each command type
-    switch(c->cmdType) {
-        case CMD_FD:
-            anim.setAnimation(walkForward);
-            anim.setRepeatCount(f1);
-            break;
-        case CMD_BK:
-            anim.setAnimation(walkForward, true);
-            anim.setRepeatCount(f1);
-            break;
-        case CMD_LT:
-            anim.setAnimation(turnLeft);
-            anim.setRepeatCount(f1);
-            break;
-        case CMD_RT:
-            anim.setAnimation(turnRight);
-            anim.setRepeatCount(f1);
-            break;
-        case CMD_ST:
-            anim.setAnimation(stand);
-            break;
-        case CMD_PG:
-            Serial.print(sonar.ping_cm());
-            Serial.println("cm");
-            break;
+        // Parse out parameter values
+        int sp = c->cmd.indexOf(' ');
+        float f1 = 0;
+        float f2 = 0;
+        if (sp > -1) {
+            f1 = c->cmd.substring(0,sp).toFloat();
+            f2 = c->cmd.substring(sp+1).toFloat();
+        } else {
+            f1 = c->cmd.toFloat();
+        }
 
-        case CMD_POS:
-            if (f1 < 0 || f1 > NUM_JOINTS-1) break;
-            interactiveKeyFrames[0][(uint8_t)f1] = (byte)f2;
-            updateInteractivePositions();
-            break;
-        case CMD_FT:
-            anim.setAnimation(footTap);
-            anim.setRepeatCount(f1);
-            break;
-        case CMD_TL:
-            anim.setAnimation(standTall);
-            anim.setRepeatCount(f1);
-            break;
-        case CMD_SP:
-            anim.setSpeed(f1);
-            break;
-        case CMD_SV:
-            saveConfig();
-            break;
-        case CMD_SC:
-            if (f1 < 0 || f1 > NUM_JOINTS-1) break;
-            servoCenters[(uint8_t)f1] = (uint8_t)f2;
-            anim.setServoCenter((uint8_t)f1, (uint8_t)f2);
-            anim.setAnimation(stand);
-            break;
-        case CMD_PF:
-            pauseUntil = millis() + (f1*1000);
-            break;
+        // Handle each command type
+        switch(c->cmdType) {
+            case CMD_FD:
+                anim.setAnimation(walkForward);
+                anim.setRepeatCount(f1);
+                break;
+            case CMD_BK:
+                anim.setAnimation(walkForward, true);
+                anim.setRepeatCount(f1);
+                break;
+            case CMD_LT:
+                anim.setAnimation(turnLeft);
+                anim.setRepeatCount(f1);
+                break;
+            case CMD_RT:
+                anim.setAnimation(turnRight);
+                anim.setRepeatCount(f1);
+                break;
+            case CMD_ST:
+                anim.setAnimation(stand);
+                break;
+            case CMD_PG:
+                Serial.print(sonar.ping_cm());
+                Serial.println("cm");
+                break;
+
+            case CMD_POS:
+                if (f1 < 0 || f1 > NUM_JOINTS-1) break;
+                interactiveKeyFrames[0][(uint8_t)f1] = (byte)f2;
+                updateInteractivePositions();
+                break;
+            case CMD_FT:
+                anim.setAnimation(footTap);
+                anim.setRepeatCount(f1);
+                break;
+            case CMD_TL:
+                anim.setAnimation(standTall);
+                anim.setRepeatCount(f1);
+                break;
+            case CMD_SP:
+                anim.setSpeed(f1);
+                break;
+            case CMD_SV:
+                saveConfig();
+                break;
+            case CMD_SC:
+                if (f1 < 0 || f1 > NUM_JOINTS-1) break;
+                servoCenters[(uint8_t)f1] = (uint8_t)f2;
+                anim.setServoCenter((uint8_t)f1, (uint8_t)f2);
+                anim.setAnimation(stand);
+                break;
+            case CMD_PF:
+                pauseUntil = millis() + (f1*1000);
+                break;
+        }
     }
 }
 
 void updateInteractivePositions() {
-    anim.stop();
     anim.setAnimation(interactive);
 
     // debug
