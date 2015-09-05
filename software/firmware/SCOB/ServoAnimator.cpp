@@ -19,6 +19,12 @@ void ServoAnimator::initServo(uint8_t num, uint8_t pin, uint8_t center) {
     s->servo->write(center);
 }
 
+void ServoAnimator::setServoCenter(uint8_t num, uint8_t center) {
+    if (num >= _numServos) return;
+    SERVO *s = &_servos[num];
+    s->center = center;
+}
+
 void ServoAnimator::moveServosTo(const byte keyframe[], unsigned long dur) {
    if (_busy) return;
 

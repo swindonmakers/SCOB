@@ -53,6 +53,7 @@ public:
 
     ServoAnimator (uint8_t numServos);
     void initServo(uint8_t num, uint8_t pin, uint8_t center);
+    void setServoCenter(uint8_t num, uint8_t center);
 
     void moveServosTo(const byte keyframe[], unsigned long dur);
     void setAnimation(ANIMATION& animation, boolean reverse = false);

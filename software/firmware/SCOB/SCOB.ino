@@ -1,3 +1,4 @@
+#include <EEPROM.h>
 #include <Servo.h>
 #include <NewPing.h>
 #include "ServoAnimator.h"
@@ -12,6 +13,7 @@ CommandQueue cmdQ(COMMAND_QUEUE_LENGTH);
 
 // mode
 uint8_t mode = MODE_INTERACTIVE;
+boolean enableRandom = true; // true to enable random wanders, false to disable
 long lastCommand;
 
 String cmd;  // cmd received over serial - builds up char at a time
@@ -21,6 +23,9 @@ COMMAND randomCmd;
 void setup() {
   Serial.begin(9600);
   Serial.println("SCOB");
+
+  // load servo centers from EEPROM
+  loadConfig();
 
   // init servos
   for (uint8_t i=0; i<NUM_JOINTS; i++) {
@@ -56,8 +61,9 @@ void loop() {
         mode = MODE_INTERACTIVE;
     }
 
-  if (ENABLE_RANDOM && millis() - lastCommand > 5000) {
+  if (enableRandom && millis() - lastCommand > 5000) {
     mode = MODE_RANDOM;
+    enableRandom = false;  // disable after first random walk
   }
 
   // keep animation going
@@ -76,6 +82,7 @@ void loop() {
               int r = random(-1, 7);
               if (r == -1) {
                 // rest for a little while
+                // TODO: replace with wait command
                 lastCommand = millis();
                 randomCmd.cmdType = CMD_ST;
                 mode = MODE_INTERACTIVE;
@@ -121,6 +128,10 @@ static void parseCommand(String c) {
         cmdType = CMD_TL;
     } else if (c.startsWith("SP")) {
         cmdType = CMD_SP;
+    } else if (c.startsWith("SV")) {
+        cmdType = CMD_SV;
+    } else if (c.startsWith("SC")) {
+        cmdType = CMD_SC;
     }
 
     // give up if command not recognised
@@ -185,7 +196,6 @@ static void doCommand(COMMAND *c)
             anim.setRepeatCount(f1);
             break;
         case CMD_ST:
-            anim.stop();
             anim.setAnimation(stand);
             break;
         case CMD_PG:
@@ -209,6 +219,15 @@ static void doCommand(COMMAND *c)
         case CMD_SP:
             anim.setSpeed(f1);
             break;
+        case CMD_SV:
+            saveConfig();
+            break;
+        case CMD_SC:
+            if (f1 < 0 || f1 > NUM_JOINTS-1) break;
+            servoCenters[(uint8_t)f1] = (uint8_t)f2;
+            anim.setServoCenter((uint8_t)f1, (uint8_t)f2);
+            anim.setAnimation(stand);
+            break;
     }
 }
 
@@ -222,4 +241,27 @@ void updateInteractivePositions() {
         Serial.print(interactiveKeyFrames[0][i]);
     }
     Serial.println();
+}
+
+void loadConfig() {
+    // read first byte, see if it equals our "magic" value
+    // if not, then we've never saved values to EEPROM, so just use defaults
+    uint8_t m = EEPROM.read(EEPROM_MAGIC_ADDR);
+    if (m == EEPROM_MAGIC) {
+        for (uint8_t i=0; i<NUM_JOINTS; i++) {
+            servoCenters[i] = EEPROM.read(EEPROM_CENTERS_ADDR + i);
+        }
+    }
+}
+
+void saveConfig() {
+    // update magic
+    EEPROM.update(EEPROM_MAGIC_ADDR, EEPROM_MAGIC);
+
+    // update centers
+    for (uint8_t i=0; i<NUM_JOINTS; i++) {
+        EEPROM.update(EEPROM_CENTERS_ADDR + i, servoCenters[i]);
+    }
+
+    Serial.println("SAVED");
 }

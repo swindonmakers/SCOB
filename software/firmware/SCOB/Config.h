@@ -1,3 +1,10 @@
+// EEPROM
+#define EEPROM_MAGIC_ADDR 0  // address of magic byte
+#define EEPROM_MAGIC 88
+#define EEPROM_CENTERS_ADDR 1   // start address for servo centers
+
+
+
 // Number of servo joints
 #define NUM_JOINTS 4
 
@@ -12,13 +19,12 @@
 // Other defines
 #define MAX_DISTANCE 100 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 #define COMMAND_QUEUE_LENGTH 15
-#define ENABLE_RANDOM 1 // 1 to enable random wanders, zero to disable
 
 // pin references
 uint8_t servoPins[NUM_JOINTS] = {LHIP_PIN, LANKLE_PIN, RANKLE_PIN, RHIP_PIN};
 
-// centers - calibrate these!  TODO: move to EEPROM with serial re-program
-uint8_t servoCenters[NUM_JOINTS] = {97, 92, 102, 75};
+// default centers - will be overwritten from EEPROM once calibrated
+uint8_t servoCenters[NUM_JOINTS] = {90,90,90,90};
 
 
 // Commands
@@ -33,6 +39,8 @@ uint8_t servoCenters[NUM_JOINTS] = {97, 92, 102, 75};
 #define CMD_PG 20  // ping - report sonar distance
 #define CMD_POS 21 // set position of servo x to y (relative to center)
 #define CMD_SP 22  // set speed multiplier 1.0 is nominal
+#define CMD_SV 23  // save config
+#define CMD_SC 24 // servo center - set servo x center to y (abs)
 
 // Modes
 #define MODE_INTERACTIVE 0
