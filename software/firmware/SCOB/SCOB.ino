@@ -14,7 +14,7 @@ CommandQueue cmdQ(COMMAND_QUEUE_LENGTH);
 // mode
 uint8_t mode = MODE_INTERACTIVE;
 boolean enableRandom = true; // true to enable random wanders, false to disable
-long lastCommand;
+long lastCommand, pauseUntil;
 
 String cmd;  // cmd received over serial - builds up char at a time
 
@@ -35,6 +35,7 @@ void setup() {
   //anim.moveServosTo((const byte*) walkForwardKeyframes, 1000);
   anim.setAnimation(stand);
   lastCommand = millis();
+  pauseUntil = lastCommand;
 }
 
 
@@ -61,7 +62,7 @@ void loop() {
         mode = MODE_INTERACTIVE;
     }
 
-  if (enableRandom && millis() - lastCommand > 5000) {
+  if (enableRandom && cmdQ.isEmpty() && millis() - lastCommand > 5000) {
     mode = MODE_RANDOM;
     enableRandom = false;  // disable after first random walk
   }
@@ -69,8 +70,8 @@ void loop() {
   // keep animation going
   anim.update();
 
-  // is current movement complete?
-  if (!anim.isBusy()) {
+  // is current movement complete?  and we're not pausing?
+  if (!anim.isBusy() && millis() > pauseUntil) {
       // work out what to do next
       switch(mode){
           case MODE_INTERACTIVE:
@@ -132,6 +133,8 @@ static void parseCommand(String c) {
         cmdType = CMD_SV;
     } else if (c.startsWith("SC")) {
         cmdType = CMD_SC;
+    } else if (c.startsWith("PF")) {
+        cmdType = CMD_PF;
     }
 
     // give up if command not recognised
@@ -227,6 +230,9 @@ static void doCommand(COMMAND *c)
             servoCenters[(uint8_t)f1] = (uint8_t)f2;
             anim.setServoCenter((uint8_t)f1, (uint8_t)f2);
             anim.setAnimation(stand);
+            break;
+        case CMD_PF:
+            pauseUntil = millis() + (f1*1000);
             break;
     }
 }

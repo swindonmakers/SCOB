@@ -41,6 +41,7 @@ uint8_t servoCenters[NUM_JOINTS] = {90,90,90,90};
 #define CMD_SP 22  // set speed multiplier 1.0 is nominal
 #define CMD_SV 23  // save config
 #define CMD_SC 24 // servo center - set servo x center to y (abs)
+#define CMD_PF 25 // pause for x seconds
 
 // Modes
 #define MODE_INTERACTIVE 0
