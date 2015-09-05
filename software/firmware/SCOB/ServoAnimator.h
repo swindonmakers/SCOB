@@ -45,8 +45,8 @@ private:
     ANIMATION * _animation;
 
     uint8_t _animFrame = 0;
-
     uint8_t _repeatCount = 0;
+    boolean _reverse = false; // set to true to reverse animation
 
 public:
 
@@ -54,7 +54,7 @@ public:
     void initServo(uint8_t num, uint8_t pin, uint8_t center);
 
     void moveServosTo(const byte keyframe[], unsigned long dur);
-    void setAnimation(ANIMATION& animation);
+    void setAnimation(ANIMATION& animation, boolean reverse = false);
     void setRepeatCount(uint8_t repeatCount);
 
     boolean isBusy();

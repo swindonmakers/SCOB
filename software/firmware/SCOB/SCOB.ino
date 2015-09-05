@@ -70,7 +70,7 @@ void loop() {
           case MODE_INTERACTIVE:
             if (!cmdQ.isEmpty()) doCommand(cmdQ.dequeue());
             break;
-            
+
           case MODE_RANDOM:
             if (cmdQ.isEmpty()) {
               int r = random(-1, 7);
@@ -171,7 +171,7 @@ static void doCommand(COMMAND *c)
             anim.setRepeatCount(f1);
             break;
         case CMD_BK:
-            anim.setAnimation(walkForward);
+            anim.setAnimation(walkForward, true);
             anim.setRepeatCount(f1);
             break;
         case CMD_LT:

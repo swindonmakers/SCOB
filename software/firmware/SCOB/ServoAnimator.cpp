@@ -39,10 +39,11 @@ void ServoAnimator::moveServosTo(const byte keyframe[], unsigned long dur) {
 
 }
 
-void ServoAnimator::setAnimation(ANIMATION& animation) {
+void ServoAnimator::setAnimation(ANIMATION& animation, boolean reverse) {
     _animation = &animation;
+    _reverse = reverse;
     setRepeatCount(0);
-    moveToFrame(0);
+    moveToFrame(_reverse ? _animation->numFrames-1 : 0);
 }
 
 void ServoAnimator::setRepeatCount(uint8_t repeatCount) {
@@ -101,12 +102,15 @@ boolean ServoAnimator::moveToFrame(uint8_t frame) {
 
 void ServoAnimator::nextFrame() {
     if (_animation ==0) return;
-    _animFrame++;
+    if (_reverse) {
+        _animFrame--;
+    } else
+        _animFrame++;
     if (!moveToFrame(_animFrame)) {
         if (_repeatCount>1) {
             // restart
             _repeatCount--;
-            moveToFrame(0);
+            moveToFrame(_reverse ? _animation->numFrames-1 : 0);
         }
     }
 }
