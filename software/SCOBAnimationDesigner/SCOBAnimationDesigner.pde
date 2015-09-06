@@ -112,6 +112,32 @@ void setup() {
   styleSlider("PlayBackProgress", 290, 20);
 
   
+  
+  // Joint sliders
+  
+  cp5.addSlider("LeftHip")
+     .setPosition(340,50)
+     .setValue(0)
+     ;
+  styleJointSlider("LeftHip", 200, 20);
+  
+  cp5.addSlider("RightHip")
+     .setPosition(560,50)
+     .setValue(0)
+     ;
+  styleJointSlider("RightHip", 200, 20);
+  
+  cp5.addSlider("LeftAnkle")
+     .setPosition(340,100)
+     .setValue(0)
+     ;
+  styleJointSlider("LeftAnkle", 200, 20);
+  
+  cp5.addSlider("RightAnkle")
+     .setPosition(560,100)
+     .setValue(0)
+     ;
+  styleJointSlider("RightAnkle", 200, 20);
 
 
   // Configure Serial Ports Dropdown
@@ -257,7 +283,7 @@ try {
   fill(0);
   for (int i=0; i<serialLog.size (); i++) {
     String s = serialLog.get(i);
-    text(s, 330, 20 + i*16);
+    text(s, 10, 350 + i*16);
   }
 
   // send cmds
@@ -378,6 +404,39 @@ void styleSlider(String s, int w, int h) {
      c.setColorActive(color(255,0,0, 255));
      c.setColorForeground(color(255,0,0, 255));
      
+   }
+}
+
+void styleJointSlider(String s, int w, int h) {
+   Slider c = (Slider)cp5.getController(s);
+  
+   if (c != null) {
+     c.setSize(w,h);
+     
+     c.setRange(-90,90);
+     c.setHandleSize(40);
+     //c.setNumberOfTickMarks(181);
+     c.setSliderMode(Slider.FLEXIBLE);
+     c.setDecimalPrecision(0);
+     
+     Label l = c.getValueLabel();
+     l.toUpperCase(false);
+     l.setFont(pf);
+     
+     l = c.getCaptionLabel();
+     l.toUpperCase(false);
+     l.setFont(pf);
+     l.align(ControlP5.LEFT, ControlP5.TOP_OUTSIDE);
+     //l.setPadding(10,8);
+     
+     c.setColorBackground(color(0,0,0, 255));
+     c.setColorLabel(color(255));
+     c.setColorActive(color(255,0,0, 255));
+     c.setColorForeground(color(255,0,0, 255));
+     c.setColorCaptionLabel(color(0));
+     
+     
+  
    }
 }
 
