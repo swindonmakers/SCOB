@@ -10,6 +10,10 @@ PFont f;
 Button connectBut;
 Slider progSlider;
 
+Slider LeftAnkle, LeftHip, RightHip, RightAnkle, ToDur;
+
+ListBox anim;
+
 DropdownList dlSerialPorts;
 StringList serialLog;
 Serial port;
@@ -56,6 +60,7 @@ void setup() {
   }
 
   cp5 = new ControlP5(this);
+  cp5.setControlFont(pf);
 
   // Connect button
   connectBut = cp5.addButton("Connect")
@@ -92,7 +97,7 @@ void setup() {
 
 
   Textfield newCommand = cp5.addTextfield("NewCommand")
-    .setPosition(0, 190)
+    .setPosition(0, 200)
     .setAutoClear(false);
    styleTextfield("NewCommand", 290, 30);
 
@@ -115,29 +120,57 @@ void setup() {
   
   // Joint sliders
   
-  cp5.addSlider("LeftHip")
+  LeftHip = cp5.addSlider("LeftHip")
      .setPosition(340,50)
      .setValue(0)
      ;
   styleJointSlider("LeftHip", 200, 20);
   
-  cp5.addSlider("RightHip")
+  RightHip = cp5.addSlider("RightHip")
      .setPosition(560,50)
      .setValue(0)
      ;
   styleJointSlider("RightHip", 200, 20);
   
-  cp5.addSlider("LeftAnkle")
+  LeftAnkle = cp5.addSlider("LeftAnkle")
      .setPosition(340,100)
      .setValue(0)
      ;
   styleJointSlider("LeftAnkle", 200, 20);
   
-  cp5.addSlider("RightAnkle")
+  RightAnkle = cp5.addSlider("RightAnkle")
      .setPosition(560,100)
      .setValue(0)
      ;
   styleJointSlider("RightAnkle", 200, 20);
+  
+  ToDur = cp5.addSlider("ToDur")
+     .setPosition(340,150)
+     ;
+  styleJointSlider("ToDur", 200, 20);
+  ToDur.setRange(100,5000)
+       .setValue(1000)
+       .setNumberOfTickMarks(50)
+       .showTickMarks(true)
+       .getCaptionLabel().align(ControlP5.LEFT, ControlP5.TOP_OUTSIDE);
+       
+  // To button
+  cp5.addButton("TO")
+    .setPosition(560, 130);
+  styleButton("TO",200,40);
+  
+  cp5.addButton("AddToAnim")
+    .setPosition(560, 180);
+  styleButton("AddToAnim",200,40);
+
+  anim = cp5.addListBox("Animation")
+         .setPosition(340, 260);
+  styleListbox(anim, 420, 200);
+
+  cp5.addButton("PlayAnim")
+    .setPosition(340, 480);
+  styleButton("PlayAnim",140,40);
+  
 
 
   // Configure Serial Ports Dropdown
@@ -190,7 +223,7 @@ public void SendCMD(String c) {
     serialLog.append(c + "\r\n");
     //appendTextToFile("serial.log",c + "\r\n");
     cts = false; // reset by receiving an ok
-    println("sending: "+c + "\r\n");
+    println("Sending: "+c);
     port.write(c + "\r\n");
     lastCmd = c;
     //cp5.get(Textfield.class, "LastCommand").setText(c);
@@ -198,7 +231,8 @@ public void SendCMD(String c) {
 }
 
 public void QueueCMD(String c) {
-   sendBuffer.append(c);
+  println("Queued: "+c); 
+  sendBuffer.append(c);
    
    int ns = sendBuffer.size();
    
@@ -261,6 +295,11 @@ void delay(int delay)
 void serialEvent(Serial p) {
   String s = p.readString();
   
+  // check for resend
+  if (s.length() >= 4 && s.substring(0,4).equals("BUSY")) {
+     resend = true;
+  }
+  
   if (s.length() > 1 && s.substring(0,2).equals("OK")) cts = true;
   serialLog.append(s);
   //appendTextToFile("serial.log",s);
@@ -287,7 +326,11 @@ try {
   }
 
   // send cmds
-  if (sendBuffer.size() > 0 && cts) {
+  if (resend) {
+    SendCMD(lastCmdRaw);
+    resend = false;
+    resendCount++;
+  } else if (sendBuffer.size() > 0 && cts) {
     String c = sendBuffer.get(0);
     sendBuffer.remove(0);
     lastLineNo += 1;
@@ -365,6 +408,32 @@ void styleDropdownList(DropdownList c, int w, int h) {
      c.setBarHeight(h);
      c.setItemHeight(25);
      c.toUpperCase(false);
+     
+     Label l = c.getValueLabel();
+     l.toUpperCase(false);
+     l.setFont(pf);
+     
+     l = c.getCaptionLabel();
+     l.toUpperCase(false);
+     l.setFont(pf);
+     //l.align(LEFT, CENTER);
+     //l.setPadding(10,8);
+     
+     c.setColorBackground(color(0,0,0, 255));
+     c.setColorLabel(color(255));
+     c.setColorActive(color(255,0,0, 180));
+     c.setColorForeground(color(255,0,0, 255));
+   }
+}
+
+void styleListbox(ListBox c, int w, int h) {
+  
+   if (c != null) {
+     c.setSize(w, h);
+     c.setBarHeight(25);
+     c.setItemHeight(25);
+     c.toUpperCase(false);
+     c.disableCollapse();
      
      Label l = c.getValueLabel();
      l.toUpperCase(false);
@@ -475,13 +544,14 @@ void styleTextfield(String s, int w, int h) {
      l = c.getCaptionLabel();
      l.toUpperCase(false);
      l.setFont(pf);
-     //l.align(LEFT, CENTER);
+     l.align(ControlP5.LEFT, ControlP5.TOP_OUTSIDE);
      //l.setPadding(10,8);
      
      c.setColorBackground(color(0,0,0, 255));
      c.setColorLabel(color(255));
      c.setColorActive(color(0,0,0, 255));
      c.setColorForeground(color(0,0,0, 255));
+     c.setColorCaptionLabel(color(0));
      
    }
 }
@@ -507,3 +577,28 @@ public void ST(int v) {
   QueueCMD("ST");
 }
 
+public void TO(int v) {
+  String c = "TO ";
+  c += int(LeftAnkle.getValue()) + " ";
+  c += int(LeftHip.getValue()) + " ";
+  c += int(RightHip.getValue()) + " ";
+  c += int(RightAnkle.getValue()) + " ";
+  c += int(ToDur.getValue());
+  QueueCMD(c);
+}
+
+public void AddToAnim(int v) {
+  String c = "TO ";
+  c += int(LeftAnkle.getValue()) + " ";
+  c += int(LeftHip.getValue()) + " ";
+  c += int(RightHip.getValue()) + " ";
+  c += int(RightAnkle.getValue()) + " ";
+  c += int(ToDur.getValue());
+  ListBoxItem lbi = anim.addItem(c, anim.getListBoxItems().length);
+}
+
+public void PlayAnim(int v) {
+  for (String[] s : anim.getListBoxItems()) {
+    QueueCMD(s[0]); 
+  }
+}
