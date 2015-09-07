@@ -171,7 +171,7 @@ void setup() {
 
   anim = cp5.addListBox("Animation")
          .setPosition(340, 260);
-  styleListbox(anim, 420, 200);
+  styleListbox(anim, 420, 225);
 
   cp5.addButton("PlayAnim")
     .setPosition(340, 480);
@@ -184,6 +184,16 @@ void setup() {
   cp5.addButton("RemoveStep")
     .setPosition(540, 480);
   styleButton("RemoveStep",90,40);
+  
+  Button promoteStep = cp5.addButton("PromoteStep")
+    .setPosition(640, 480);
+  styleButton("PromoteStep",50,40);
+  promoteStep.captionLabel().set(str(char(8657)));
+  
+  Button demoteStep = cp5.addButton("DemoteStep")
+    .setPosition(700, 480);
+  styleButton("DemoteStep",50,40);
+  demoteStep.captionLabel().set(str(char(8659)));
 
   // Configure Serial Ports Dropdown
   // -------------------------------
@@ -332,7 +342,7 @@ void draw() {
   // draw background for Animation listbox - crappy hack
   fill(240);
   stroke(255);
-  rect(340,260,420,180);
+  rect(340,260,420,205);
   
   
 try {
@@ -642,6 +652,50 @@ public void RemoveStep(int v) {
     anim.addItems(items);
     
     selectedStep = -1; 
+  }
+}
+
+public void PromoteStep(int v) {
+  if (selectedStep > 0) {
+    String[] items = new String[anim.getListBoxItems().length];
+    for (int i=0; i<anim.getListBoxItems().length; i++) {
+      items[i] = (anim.getItem(i).getText());
+    }
+    
+    // swap items
+    String tmp = items[selectedStep];
+    items[selectedStep] = items[--selectedStep];
+    items[selectedStep] = tmp;
+    
+    // update listbox
+    anim.clear();
+    anim.addItems(items);
+    
+    
+    // update selection
+    anim.getItem(selectedStep).setColorBackground(color(255,0,0));
+  }
+}
+
+public void DemoteStep(int v) {
+  if (selectedStep < anim.getListBoxItems().length-1) {
+    String[] items = new String[anim.getListBoxItems().length];
+    for (int i=0; i<anim.getListBoxItems().length; i++) {
+      items[i] = (anim.getItem(i).getText());
+    }
+    
+    // swap items
+    String tmp = items[selectedStep];
+    items[selectedStep] = items[++selectedStep];
+    items[selectedStep] = tmp;
+    
+    // update listbox
+    anim.clear();
+    anim.addItems(items);
+    
+    
+    // update selection
+    anim.getItem(selectedStep).setColorBackground(color(255,0,0));
   }
 }
 
