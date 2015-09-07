@@ -36,6 +36,8 @@ boolean resend = false;
 
 PFont pf = createFont("Arial", 15, true);
 
+int selectedStep = -1;
+
 void saveConfig() {
   // save connection string
   saveJSONObject(config, "config.json");
@@ -115,7 +117,7 @@ void setup() {
      .setRange(0,1)
      ;
   styleSlider("PlayBackProgress", 290, 20);
-
+  progSlider.getCaptionLabel().setVisible(false);
   
   
   // Joint sliders
@@ -169,9 +171,15 @@ void setup() {
 
   cp5.addButton("PlayAnim")
     .setPosition(340, 480);
-  styleButton("PlayAnim",140,40);
+  styleButton("PlayAnim",90,40);
   
-
+  cp5.addButton("ClearAnim")
+    .setPosition(440, 480);
+  styleButton("ClearAnim",90,40);
+  
+  cp5.addButton("RemoveStep")
+    .setPosition(540, 480);
+  styleButton("RemoveStep",90,40);
 
   // Configure Serial Ports Dropdown
   // -------------------------------
@@ -316,7 +324,13 @@ void keyPressed() {
 void draw() {
   background(255);
   textFont(f, 15);
-
+  
+  // draw background for Animation listbox - crappy hack
+  fill(240);
+  stroke(255);
+  rect(340,260,420,180);
+  
+  
 try {
   // Draw serialLog
   fill(0);
@@ -600,5 +614,46 @@ public void AddToAnim(int v) {
 public void PlayAnim(int v) {
   for (String[] s : anim.getListBoxItems()) {
     QueueCMD(s[0]); 
+  }
+}
+
+public void ClearAnim(int v) {
+  anim.clear(); 
+  selectedStep = -1;
+}
+
+public void RemoveStep(int v) {
+  if (selectedStep > -1) {
+    String[] items = new String[anim.getListBoxItems().length - 1];
+    int id = 0;
+    for (int i=0; i<anim.getListBoxItems().length; i++) {
+       if (i != selectedStep) {
+         items[id] = (anim.getItem(i).getText());
+         id++;
+       }
+    }
+    
+    anim.clear();
+    
+    anim.addItems(items);
+    
+    selectedStep = -1; 
+  }
+}
+
+void controlEvent(ControlEvent theEvent) {
+  if(theEvent.isGroup() && theEvent.name().equals("Animation")){
+    int step = (int)theEvent.group().value();
+    println(step);
+ 
+    // reset background on current selection
+    if (selectedStep > -1) {
+        println("clear old background");
+       anim.getItem(selectedStep).setColorBackground(color(0,0,0));
+    }    
+    
+    selectedStep = step;
+    println("set background");
+    anim.getItem(selectedStep).setColorBackground(color(255,0,0));
   }
 }
