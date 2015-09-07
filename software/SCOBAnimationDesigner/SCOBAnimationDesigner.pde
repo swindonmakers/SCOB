@@ -198,6 +198,11 @@ void setup() {
   cp5.addButton("CopyToClipboard")
     .setPosition(340, 530);
   styleButton("CopyToClipboard",190,40);
+  
+  Button CopyToClipboardAsCode = cp5.addButton("CopyToClipboardAsCode")
+    .setPosition(540, 530);
+  styleButton("CopyToClipboardAsCode",210,40);
+  CopyToClipboardAsCode.captionLabel().set("Copy to Clipboard As Code");
 
   // Configure Serial Ports Dropdown
   // -------------------------------
@@ -740,5 +745,38 @@ public void CopyToClipboard(int v) {
   for (String[] s : anim.getListBoxItems()) {
     clip += s[0] + "\r\n"; 
   }
+  cp.copyString(clip);
+}
+
+public void CopyToClipboardAsCode(int v) {
+  String lf = "\r\n";
+  String numFrames = str(anim.getListBoxItems().length);
+  
+  // start
+  String clip = "ANIMATION myAnim {" + lf;
+  clip += "  "+numFrames+"," + lf;
+  
+  // keyframes
+  clip += "  (byte *)new byte["+numFrames+"][NUM_JOINTS] {" + lf;
+  for (String[] s : anim.getListBoxItems()) {
+    String[] j = split(s[0], ' ');
+    clip += "    {"+j[1]+","+ j[2]+","+ j[3]+","+ j[4]+ "}" + lf; 
+  }
+  clip += "  }," + lf;
+  
+  // durations
+  clip += "  new unsigned long["+numFrames+"]{";
+  int i=0;
+  for (String[] s : anim.getListBoxItems()) {
+    String[] j = split(s[0], ' ');
+    if ( i > 0) clip += ",";
+    clip += j[5];
+    i++;
+  }
+  clip += "}" + lf;
+  
+  // wrapup
+  clip += "};" + lf;
+  
   cp.copyString(clip);
 }
