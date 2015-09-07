@@ -194,6 +194,10 @@ void setup() {
     .setPosition(700, 480);
   styleButton("DemoteStep",50,40);
   demoteStep.captionLabel().set(str(char(8659)));
+  
+  cp5.addButton("CopyToClipboard")
+    .setPosition(340, 530);
+  styleButton("CopyToClipboard",190,40);
 
   // Configure Serial Ports Dropdown
   // -------------------------------
@@ -729,4 +733,12 @@ public void ResetJoints(int v) {
   LeftAnkle.setValue(0);
   RightAnkle.setValue(0);
   RightHip.setValue(0);
+}
+
+public void CopyToClipboard(int v) {
+  String clip = "";
+  for (String[] s : anim.getListBoxItems()) {
+    clip += s[0] + "\r\n"; 
+  }
+  cp.copyString(clip);
 }
