@@ -48,4 +48,5 @@ uint8_t servoCenters[NUM_JOINTS] = {90,90,90,90};
 
 // Modes
 #define MODE_INTERACTIVE 0
-#define MODE_RANDOM 1
+#define MODE_RANDOM 1  // random movements
+#define MODE_WANDER 2  // wander around using sonar sensor to avoid stuff

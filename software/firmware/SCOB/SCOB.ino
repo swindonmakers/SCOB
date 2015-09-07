@@ -91,6 +91,10 @@ void loop() {
               }
             }
             break;
+
+        case MODE_WANDER:
+            doWander();
+            break;
       }
   }
 }
@@ -293,4 +297,16 @@ void saveConfig() {
     }
 
     Serial.println("SAVED");
+}
+
+void doWander() {
+    /*
+    Wander algorithm:
+    1) lookLeft, take sonar reading
+    2) lookRight, take sonar reading
+    3) stand, take sonar reading
+    4) work out farthest distance reading
+    5) turn to face farthest distance reading (if required)
+    6) walk forward x cycles - determined by sensor distance divided by stride of ~4cm
+    */
 }
