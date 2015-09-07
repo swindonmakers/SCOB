@@ -161,6 +161,10 @@ void setup() {
     .setPosition(560, 130);
   styleButton("TO",200,40);
   
+  cp5.addButton("ResetJoints")
+    .setPosition(340,180);
+  styleButton("ResetJoints",90,40);
+  
   cp5.addButton("AddToAnim")
     .setPosition(560, 180);
   styleButton("AddToAnim",200,40);
@@ -311,7 +315,7 @@ void serialEvent(Serial p) {
   if (s.length() > 1 && s.substring(0,2).equals("OK")) cts = true;
   serialLog.append(s);
   //appendTextToFile("serial.log",s);
-  while (serialLog.size () > 25) serialLog.remove(0);
+  while (serialLog.size () > 16) serialLog.remove(0);
 }
 
 
@@ -593,20 +597,20 @@ public void ST(int v) {
 
 public void TO(int v) {
   String c = "TO ";
-  c += int(LeftAnkle.getValue()) + " ";
   c += int(LeftHip.getValue()) + " ";
-  c += int(RightHip.getValue()) + " ";
+  c += int(LeftAnkle.getValue()) + " ";
   c += int(RightAnkle.getValue()) + " ";
+  c += int(RightHip.getValue()) + " ";
   c += int(ToDur.getValue());
   QueueCMD(c);
 }
 
 public void AddToAnim(int v) {
   String c = "TO ";
-  c += int(LeftAnkle.getValue()) + " ";
   c += int(LeftHip.getValue()) + " ";
-  c += int(RightHip.getValue()) + " ";
+  c += int(LeftAnkle.getValue()) + " ";
   c += int(RightAnkle.getValue()) + " ";
+  c += int(RightHip.getValue()) + " ";
   c += int(ToDur.getValue());
   ListBoxItem lbi = anim.addItem(c, anim.getListBoxItems().length);
 }
@@ -655,5 +659,20 @@ void controlEvent(ControlEvent theEvent) {
     selectedStep = step;
     println("set background");
     anim.getItem(selectedStep).setColorBackground(color(255,0,0));
+    
+    // extract values and apply to joint sliders
+    String[] params = split(anim.getItem(selectedStep).getText(), ' ');
+    LeftHip.setValue(int(params[1]));
+    LeftAnkle.setValue(int(params[2]));
+    RightAnkle.setValue(int(params[3]));
+    RightHip.setValue(int(params[4]));
+    ToDur.setValue(int(params[5]));
   }
+}
+
+public void ResetJoints(int v) {
+  LeftHip.setValue(0);
+  LeftAnkle.setValue(0);
+  RightAnkle.setValue(0);
+  RightHip.setValue(0);
 }
