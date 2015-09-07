@@ -76,3 +76,21 @@ unsigned long interactiveDurations[1] = {1000};
 ANIMATION interactive {
   1, (byte *) &interactiveKeyFrames, (unsigned long*)&interactiveDurations
 };
+
+ANIMATION lookLeft {
+  2,
+  (byte *)new byte[2][NUM_JOINTS] {
+    {0,0,0,0}
+    {30,-20,-20,0}
+  },
+  new unsigned long[2]{600,600}
+};
+
+ANIMATION lookRight {
+  2,
+  (byte *)new byte[2][NUM_JOINTS] {
+    {0,0,0,0}
+    {0,20,20,-30}
+  },
+  new unsigned long[2]{600,600}
+};
