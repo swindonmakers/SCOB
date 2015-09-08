@@ -32,7 +32,6 @@ void setup() {
       anim.initServo(i, servoPins[i], servoCenters[i]);
   }
 
-  //anim.moveServosTo((const byte*) walkForwardKeyframes, 1000);
   anim.setAnimation(stand);
   lastCommand = millis();
   pauseUntil = lastCommand;
@@ -309,4 +308,84 @@ void doWander() {
     5) turn to face farthest distance reading (if required)
     6) walk forward x cycles - determined by sensor distance divided by stride of ~4cm
     */
+
+    // state enum
+    typedef enum {
+        LOOKLEFT,
+        LOOKRIGHT,
+        LOOKFWD,
+        TURN,
+        WALK
+    } WANDER_STATE;
+
+    // internal state variables
+    static WANDER_STATE wanderState = LOOKLEFT;
+
+    static unsigned int
+        leftDist = MAX_DISTANCE,
+        rightDist = MAX_DISTANCE,
+        fwdDist = MAX_DISTANCE;
+
+    uint8_t numStrides = 1;
+
+    switch(wanderState) {
+        case LOOKLEFT:
+            Serial.println("lookLeft");
+            // start by turning to look left
+            anim.setAnimation(lookLeft);
+            anim.setRepeatCount(1);
+            wanderState = LOOKRIGHT;
+            break;
+        case LOOKRIGHT:
+            Serial.println("lookRight");
+            // now looking left, so take the left sonar reading
+            leftDist = sonar.ping_cm();
+
+            // and turn to look to the right
+            anim.setAnimation(lookRight);
+            anim.setRepeatCount(1);
+            wanderState = LOOKFWD;
+            break;
+        case LOOKFWD:
+            Serial.println("lookFwd");
+            // looking right, take right sonar reading
+            rightDist = sonar.ping_cm();
+
+            // turn to look forward
+            anim.setAnimation(stand);
+            anim.setRepeatCount(1);
+            wanderState = TURN;
+            break;
+        case TURN:
+            Serial.println("turn");
+            // looking forwards, take final sonar reading
+            fwdDist = sonar.ping_cm();
+
+            // turn left or right, if required
+            if (leftDist > rightDist && leftDist > fwdDist) {
+                numStrides = leftDist / STRIDE_LENGTH;
+                anim.setAnimation(turnLeft);
+                anim.setRepeatCount(1);
+            } else if (rightDist > leftDist && rightDist > fwdDist) {
+                numStrides = rightDist / STRIDE_LENGTH;
+                anim.setAnimation(turnRight);
+                anim.setRepeatCount(1);
+            } else {
+                numStrides = fwdDist / STRIDE_LENGTH;
+            }
+
+            if (numStrides > 5) numStrides = 5;
+            if (numStrides < 1) numStrides = 1;
+
+            wanderState = WALK;
+            break;
+        case WALK:
+            Serial.print("walk:");
+            Serial.println(numStrides);
+            // now turned to face correct direction, so walk forwards
+            anim.setAnimation(walkForward);
+            anim.setRepeatCount(numStrides);
+            wanderState = LOOKLEFT;
+            break;
+    }
 }

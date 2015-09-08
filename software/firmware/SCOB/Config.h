@@ -18,6 +18,8 @@
 
 // Other defines
 #define MAX_DISTANCE 100 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
+#define STRIDE_LENGTH 4  // walk forward stride is approx 4cm
+
 #define COMMAND_QUEUE_LENGTH 15
 
 // pin references
