@@ -152,6 +152,8 @@ static void parseCommand(String c) {
         mode = MODE_RANDOM;
     } else if (c.startsWith("TO")) {
         cmdType = CMD_TO;
+    } else if (c.startsWith("WANDER")) {
+        mode = MODE_WANDER;
     }
 
     // give up if command not recognised
