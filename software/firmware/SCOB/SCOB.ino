@@ -338,7 +338,7 @@ void doWander() {
         rightDist = MAX_DISTANCE,
         fwdDist = MAX_DISTANCE;
 
-    uint8_t numStrides = 1;
+    static uint8_t numStrides = 1;
 
     switch(wanderState) {
         case LOOKLEFT:
