@@ -374,7 +374,7 @@ void doWander() {
             fwdDist = sonar.ping_cm();
 
             // turn left or right, if required
-            if (leftDist > rightDist && leftDist > fwdDist) {
+            if ((leftDist > rightDist && leftDist > fwdDist) || (fwdDist < STRIDE_LENGTH)) {
                 numStrides = leftDist / STRIDE_LENGTH;
                 anim.setAnimation(turnLeft);
                 anim.setRepeatCount(1);
@@ -387,7 +387,6 @@ void doWander() {
             }
 
             if (numStrides > 5) numStrides = 5;
-            if (numStrides < 1) numStrides = 1;
 
             wanderState = WALK;
             break;
