@@ -327,7 +327,8 @@ void doWander() {
         LOOKRIGHT,
         LOOKFWD,
         TURN,
-        WALK
+        WALK,
+        BACKUP
     } WANDER_STATE;
 
     // internal state variables
@@ -373,22 +374,27 @@ void doWander() {
             // looking forwards, take final sonar reading
             fwdDist = sonar.ping_cm();
 
-            // turn left or right, if required
-            if ((leftDist > rightDist && leftDist > fwdDist) || (fwdDist < STRIDE_LENGTH)) {
-                numStrides = leftDist / STRIDE_LENGTH;
-                anim.setAnimation(turnLeft);
-                anim.setRepeatCount(1);
-            } else if (rightDist > leftDist && rightDist > fwdDist) {
-                numStrides = rightDist / STRIDE_LENGTH;
-                anim.setAnimation(turnRight);
-                anim.setRepeatCount(1);
+            // check if waaay too close to something
+            if (fwdDist < 2 * STRIDE_LENGTH) {
+                wanderState = BACKUP;
             } else {
-                numStrides = fwdDist / STRIDE_LENGTH;
+                // turn left or right, if required
+                if ((leftDist > rightDist && leftDist > fwdDist) || (fwdDist < STRIDE_LENGTH)) {
+                    numStrides = leftDist / STRIDE_LENGTH;
+                    anim.setAnimation(turnLeft);
+                    anim.setRepeatCount(1);
+                } else if (rightDist > leftDist && rightDist > fwdDist) {
+                    numStrides = rightDist / STRIDE_LENGTH;
+                    anim.setAnimation(turnRight);
+                    anim.setRepeatCount(1);
+                } else {
+                    numStrides = fwdDist / STRIDE_LENGTH;
+                }
+
+                if (numStrides > 5) numStrides = 5;
+
+                wanderState = WALK;
             }
-
-            if (numStrides > 5) numStrides = 5;
-
-            wanderState = WALK;
             break;
         case WALK:
             Serial.print("walk:");
@@ -396,6 +402,13 @@ void doWander() {
             // now turned to face correct direction, so walk forwards
             anim.setAnimation(walkForward);
             anim.setRepeatCount(numStrides);
+            wanderState = LOOKLEFT;
+            break;
+        case BACKUP:
+            Serial.println("backup");
+            // too close to something, backup a bit
+            anim.setAnimation(walkForward, true);
+            anim.setRepeatCount(2);
             wanderState = LOOKLEFT;
             break;
     }
