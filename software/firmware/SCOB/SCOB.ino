@@ -69,7 +69,7 @@ void loop() {
     }
 
   if (enableRandom && cmdQ.isEmpty() && millis() - lastCommand > 5000) {
-    mode = MODE_RANDOM;
+    mode = MODE_WANDER;
     enableRandom = false;  // disable after first random walk
   }
 
