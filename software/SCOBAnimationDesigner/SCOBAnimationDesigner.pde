@@ -758,15 +758,18 @@ public void CopyToClipboardAsCode(int v) {
   
   // keyframes
   clip += "  (byte *)new byte["+numFrames+"][NUM_JOINTS] {" + lf;
+  int i=0;
   for (String[] s : anim.getListBoxItems()) {
     String[] j = split(s[0], ' ');
-    clip += "    {"+j[1]+","+ j[2]+","+ j[3]+","+ j[4]+ "}" + lf; 
+    if (i > 0) clip += ","+lf;
+    clip += "    {"+j[1]+","+ j[2]+","+ j[3]+","+ j[4]+ "}"; 
+    i++;
   }
-  clip += "  }," + lf;
+  clip += lf + "  }," + lf;
   
   // durations
   clip += "  new unsigned long["+numFrames+"]{";
-  int i=0;
+  i=0;
   for (String[] s : anim.getListBoxItems()) {
     String[] j = split(s[0], ' ');
     if ( i > 0) clip += ",";
