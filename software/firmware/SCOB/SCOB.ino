@@ -49,6 +49,9 @@ void loop() {
         char c = toupper(Serial.read());
         if (c == '\r' || c == '\n') {  // if found a line end
             if (cmd != "") {  // check the command isn't blank
+                mode = MODE_INTERACTIVE;
+                enableRandom = false; // turn off at first interactive command, turn back on with RND
+              
                 if (cmdQ.isFull()) {
                     Serial.println("BUSY");
                 } else {
@@ -63,8 +66,6 @@ void loop() {
             cmd += c;  // append the character onto the command buffer
         }
         lastCommand = millis();
-        mode = MODE_INTERACTIVE;
-        enableRandom = false; // turn off at first interactive command, turn back on with RND
     }
 
   if (enableRandom && cmdQ.isEmpty() && millis() - lastCommand > 5000) {
