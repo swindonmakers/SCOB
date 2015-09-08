@@ -20,6 +20,10 @@ String cmd;  // cmd received over serial - builds up char at a time
 
 COMMAND randomCmd;
 
+unsigned int lastSonarReading = MAX_DISTANCE;
+unsigned int avgSonarReading = MAX_DISTANCE;  // averaged over several samples
+long sonarTimer;
+
 void setup() {
   Serial.begin(9600);
   Serial.println("SCOB");
@@ -34,6 +38,7 @@ void setup() {
 
   anim.setAnimation(stand);
   lastCommand = millis();
+  sonarTimer = millis();
   pauseUntil = lastCommand;
 }
 
@@ -69,6 +74,13 @@ void loop() {
 
   // keep animation going
   anim.update();
+
+  // take sonar readings
+  if (millis() - sonarTimer > SONAR_INTERVAL) {
+      lastSonarReading = sonar.ping_cm();
+      avgSonarReading = (3 * avgSonarReading + lastSonarReading) / 4;
+      sonarTimer = millis();
+  }
 
   // is current movement complete?  and we're not pausing?
   if (!anim.isBusy() && millis() > pauseUntil) {

@@ -22,6 +22,8 @@
 
 #define COMMAND_QUEUE_LENGTH 15
 
+#define SONAR_INTERVAL 200  // take a reading every 200 ms ish
+
 // pin references
 uint8_t servoPins[NUM_JOINTS] = {LHIP_PIN, LANKLE_PIN, RANKLE_PIN, RHIP_PIN};
 
