@@ -5,7 +5,7 @@ const byte standKeyFrames[1][NUM_JOINTS] = {
 };
 const unsigned long standDurations[1] = {1000};
 ANIMATION stand {
-  1, (byte *) &standKeyFrames, (unsigned long*)&standDurations
+  "ST", CMD_ST, 1, (byte *) &standKeyFrames, (unsigned long*)&standDurations
 };
 
 const byte walkForwardKeyframes[4][NUM_JOINTS] = {
@@ -16,7 +16,7 @@ const byte walkForwardKeyframes[4][NUM_JOINTS] = {
 };
 const unsigned long walkForwardDurations[4] = {700,700,700,700};
 ANIMATION walkForward {
-    4, (byte *) &walkForwardKeyframes, (unsigned long*)&walkForwardDurations
+  "FD", CMD_FD, 4, (byte *) &walkForwardKeyframes, (unsigned long*)&walkForwardDurations
 };
 
 const byte turnLeftKeyframes[8][NUM_JOINTS] = {
@@ -31,7 +31,7 @@ const byte turnLeftKeyframes[8][NUM_JOINTS] = {
 };
 const unsigned long turnLeftDurations[8] = {400,400,400,400,400,400,400,400};
 ANIMATION turnLeft {
-    8, (byte *) &turnLeftKeyframes, (unsigned long*)&turnLeftDurations
+  "LT", CMD_LT, 8, (byte *) &turnLeftKeyframes, (unsigned long*)&turnLeftDurations
 };
 
 const byte turnRightKeyframes[8][NUM_JOINTS] = {
@@ -46,7 +46,7 @@ const byte turnRightKeyframes[8][NUM_JOINTS] = {
 };
 const unsigned long turnRightDurations[8] = {400,400,400,400,400,400,400,400};
 ANIMATION turnRight {
-    8, (byte *) &turnRightKeyframes, (unsigned long*)&turnRightDurations
+  "RT", CMD_RT, 8, (byte *) &turnRightKeyframes, (unsigned long*)&turnRightDurations
 };
 
 const byte footTapKeyframes[2][NUM_JOINTS] = {
@@ -55,10 +55,12 @@ const byte footTapKeyframes[2][NUM_JOINTS] = {
 };
 const unsigned long footTapDurations[2] = {400, 250};
 ANIMATION footTap {
-  2, (byte *) &footTapKeyframes, (unsigned long*)&footTapDurations
+  "FT", CMD_FT, 2, (byte *) &footTapKeyframes, (unsigned long*)&footTapDurations
 };
 
 ANIMATION standTall {
+  "ST",
+  CMD_ST,
   1,
   (byte *)new byte[2][NUM_JOINTS]
   {
@@ -74,10 +76,12 @@ byte interactiveKeyFrames[1][NUM_JOINTS] = {
 };
 unsigned long interactiveDurations[1] = {1000};
 ANIMATION interactive {
-  1, (byte *) &interactiveKeyFrames, (unsigned long*)&interactiveDurations
+  "", 0xff, 1, (byte *) &interactiveKeyFrames, (unsigned long*)&interactiveDurations
 };
 
 ANIMATION lookLeft {
+  "LL",
+  CMD_LL,
   5,
   (byte *)new byte[5][NUM_JOINTS] {
     {0,0,0,0},
@@ -91,6 +95,8 @@ ANIMATION lookLeft {
 
 
 ANIMATION lookRight {
+  "LR",
+  CMD_LR,
   5,
   (byte *)new byte[5][NUM_JOINTS] {
     {0,0,0,0},
@@ -103,6 +109,8 @@ ANIMATION lookRight {
 };
 
 ANIMATION sideShuffle {
+  "SS",
+  CMD_SS,
   2,
   (byte *)new byte[2][NUM_JOINTS] {
     {0,20,20,0},
@@ -130,7 +138,7 @@ ANIMATION wiggleIt {
   new unsigned long[8]{200,200,200,200,200,200,200,200}
 };
 
-
-
-
 */
+
+ANIMATION anims[9] = { stand, walkForward, turnLeft, turnRight, footTap, standTall, lookLeft, lookRight, sideShuffle };
+

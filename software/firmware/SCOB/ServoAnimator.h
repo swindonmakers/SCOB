@@ -13,6 +13,8 @@
 #include "SimpleBezier.h"
 
 struct ANIMATION {
+    char cmd[3];
+    uint8_t cmdType;
     uint8_t numFrames;
     byte *frames;
     unsigned long *durations;
