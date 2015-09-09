@@ -78,19 +78,26 @@ ANIMATION interactive {
 };
 
 ANIMATION lookLeft {
-  2,
-  (byte *)new byte[2][NUM_JOINTS] {
+  5,
+  (byte *)new byte[5][NUM_JOINTS] {
     {0,0,0,0},
-    {30,-20,-20,0}
+    {0,-20,-20,0},
+    {45,-20,-20,0},
+    {0,-20,-20,0},
+    {0,0,0,0}
   },
-  new unsigned long[2]{600,600}
+  new unsigned long[5]{600,600,1000,600,600}
 };
 
+
 ANIMATION lookRight {
-  2,
-  (byte *)new byte[2][NUM_JOINTS] {
+  5,
+  (byte *)new byte[5][NUM_JOINTS] {
     {0,0,0,0},
-    {0,20,20,-30}
+    {0,20,20,0},
+    {0,20,20,-45},
+    {0,20,20,0},
+    {0,0,0,0}
   },
-  new unsigned long[2]{600,600}
+  new unsigned long[5]{600,600,1000,600,600}
 };

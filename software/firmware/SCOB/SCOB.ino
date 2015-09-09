@@ -376,13 +376,19 @@ void doWander() {
             Serial.println("turn");
             // looking forwards, take final sonar reading
             fwdDist = sonar.ping_cm();
+            Serial.print('L');
+            Serial.println(leftDist);
+            Serial.print('F');
+            Serial.println(fwdDist);
+            Serial.print('R');
+            Serial.println(rightDist);
 
             // check if waaay too close to something
-            if (fwdDist < 2 * STRIDE_LENGTH) {
+            if (fwdDist < 6) {
                 wanderState = BACKUP;
             } else {
                 // turn left or right, if required
-                if ((leftDist > rightDist && leftDist > fwdDist) || (fwdDist < STRIDE_LENGTH)) {
+                if ((leftDist > rightDist && leftDist > fwdDist)) {
                     numStrides = leftDist / STRIDE_LENGTH;
                     anim.setAnimation(turnLeft);
                     anim.setRepeatCount(1);
