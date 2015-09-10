@@ -58,9 +58,9 @@ ANIMATION footTap {
   "FT", CMD_FT, 2, (byte *) &footTapKeyframes, (unsigned long*)&footTapDurations
 };
 
-ANIMATION standTall {
-  "ST",
-  CMD_ST,
+ANIMATION tipToes {
+  "TT",
+  CMD_TT,
   1,
   (byte *)new byte[2][NUM_JOINTS]
   {
@@ -120,7 +120,6 @@ ANIMATION sideShuffle {
 };
 
 
-
 /*
 
 ANIMATION wiggleIt {
@@ -140,5 +139,4 @@ ANIMATION wiggleIt {
 
 */
 
-ANIMATION anims[9] = { stand, walkForward, turnLeft, turnRight, footTap, standTall, lookLeft, lookRight, sideShuffle };
-
+ANIMATION anims[9] = { stand, walkForward, turnLeft, turnRight, footTap, tipToes, lookLeft, lookRight, sideShuffle };

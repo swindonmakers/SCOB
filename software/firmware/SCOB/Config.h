@@ -40,7 +40,7 @@ uint8_t servoCenters[NUM_JOINTS] = {90,90,90,90};
 #define CMD_RT 3  // turn right
 #define CMD_ST 4  // stop
 #define CMD_FT 5  // tap foot
-#define CMD_TL 6  // stand tall (balerina)
+#define CMD_TT 6  // tip toes (balerina)
 #define CMD_LL 7  // look left
 #define CMD_LR 8  // look right
 #define CMD_SS 9  // side shuffle
