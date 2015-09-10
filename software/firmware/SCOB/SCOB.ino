@@ -51,7 +51,7 @@ void loop() {
             if (cmd != "") {  // check the command isn't blank
                 mode = MODE_INTERACTIVE;
                 enableRandom = false; // turn off at first interactive command, turn back on with RND
-              
+
                 if (cmdQ.isFull()) {
                     Serial.println("BUSY");
                 } else {
@@ -155,6 +155,8 @@ static void parseCommand(String c) {
         cmdType = CMD_TO;
     } else if (c.startsWith("WANDER")) {
         mode = MODE_WANDER;
+    } else if (c.startsWith("SS")) {
+        cmdType = CMD_SS;
     }
 
     // give up if command not recognised
@@ -274,6 +276,10 @@ static void doCommand(COMMAND *c)
                 break;
             case CMD_PF:
                 pauseUntil = millis() + (f1*1000);
+                break;
+            case CMD_SS:
+                anim.setAnimation(sideShuffle);
+                anim.setRepeatCount(f1);
                 break;
         }
     }

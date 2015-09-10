@@ -101,3 +101,36 @@ ANIMATION lookRight {
   },
   new unsigned long[5]{600,600,1000,600,600}
 };
+
+ANIMATION sideShuffle {
+  2,
+  (byte *)new byte[2][NUM_JOINTS] {
+    {0,20,20,0},
+    {0,-30,-30,0}
+  },
+  new unsigned long[2]{200,200}
+};
+
+
+
+/*
+
+ANIMATION wiggleIt {
+  8,
+  (byte *)new byte[8][NUM_JOINTS] {
+    {30,0,0,30},
+    {-31,0,0,-30},
+    {30,0,0,30},
+    {-31,0,0,-30},
+    {30,0,0,30},
+    {-31,0,0,-30},
+    {30,0,0,30},
+    {-31,0,0,-30}
+  },
+  new unsigned long[8]{200,200,200,200,200,200,200,200}
+};
+
+
+
+
+*/
