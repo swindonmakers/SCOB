@@ -93,14 +93,19 @@ void loop() {
 
           case MODE_RANDOM:
             if (cmdQ.isEmpty()) {
-              int r = random(-1, LAST_ANIM_CMD + 1);
-              if (r == -1) {
+              int r = random(-10, LAST_ANIM_CMD + 1);
+              if (r == -10) {
                 // rest for a little while
                 pauseUntil = millis() + 5000;
+                randomCmd.cmdType = CMD_ST;
+              } else if (r < -5) {
+                randomCmd.cmdType = CMD_FD;
+              } else if (r < 0) { 
+                randomCmd.cmdType = CMD_BK; 
               } else {
                 randomCmd.cmdType = r;
-                doCommand(&randomCmd);
               }
+              doCommand(&randomCmd);
             }
             break;
 
