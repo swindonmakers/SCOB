@@ -101,7 +101,7 @@ void loop() {
 
           case MODE_RANDOM:
             if (cmdQ.isEmpty()) {
-              int r = random(-10, LAST_ANIM_CMD + 1);
+              int r = random(-10, MAX_ANIM_CMD + 1);
               if (r == -10) {
                 // rest for a little while
                 pauseUntil = millis() + 5000;
@@ -229,7 +229,7 @@ static void doCommand(COMMAND *c)
         }
 
         // Handle each command type
-        if (c->cmdType <= LAST_ANIM_CMD) {
+        if (c->cmdType <= MAX_ANIM_CMD) {
           for (int i = 0; i < sizeof(anims) / sizeof(anims[0]); i++) {
             if (anims[i].cmdType == c->cmdType) {
               anim.setAnimation(anims[i]);

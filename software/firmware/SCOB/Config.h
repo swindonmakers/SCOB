@@ -32,7 +32,7 @@ uint8_t servoCenters[NUM_JOINTS] = {90,90,90,90};
 
 
 // Commands
-#define LAST_ANIM_CMD 8 // First command that isn't tied to an animation
+#define MAX_ANIM_CMD 9 // First command that isn't tied to an animation
 
 #define CMD_FD 0  // forward
 #define CMD_BK 1  // backward

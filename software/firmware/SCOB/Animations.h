@@ -139,4 +139,4 @@ ANIMATION wiggleIt {
 
 */
 
-ANIMATION anims[9] = { stand, walkForward, turnLeft, turnRight, footTap, tipToes, lookLeft, lookRight, sideShuffle };
+ANIMATION anims[MAX_ANIM_CMD] = { stand, walkForward, turnLeft, turnRight, footTap, tipToes, lookLeft, lookRight, sideShuffle };
