@@ -259,9 +259,17 @@ static void doCommand(COMMAND *c)
                   break;
               case CMD_SC:
                   if (f1 < 0 || f1 > NUM_JOINTS-1) break;
-                  servoCenters[(uint8_t)f1] = (uint8_t)f2;
-                  anim.setServoCenter((uint8_t)f1, (uint8_t)f2);
-                  anim.setAnimation(stand);
+                  if (c->cmd == "") {
+                    for (int i = 0; i < NUM_JOINTS; i++) {
+                      Serial.print(servoCenters[i]);
+                      Serial.print(",");
+                    }
+                    Serial.println();
+                  } else {
+                    servoCenters[(uint8_t)f1] = (uint8_t)f2;
+                    anim.setServoCenter((uint8_t)f1, (uint8_t)f2);
+                    anim.setAnimation(stand);
+                  }
                   break;
               case CMD_PF:
                   pauseUntil = millis() + (f1*1000);
