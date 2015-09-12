@@ -42,6 +42,14 @@ void setup() {
   pauseUntil = lastCommand;
 }
 
+// Read sonar distance, correct for the fact that "inifite" distance is reported as zero
+unsigned int sonarDist() {
+  unsigned int dist;
+  dist = sonar.ping_cm();
+  if (dist == 0)
+    dist = MAX_DISTANCE;
+  return dist;  
+}
 
 void loop() {
     // Parse Logo commands from Serial
@@ -78,7 +86,7 @@ void loop() {
 
   // take sonar readings
   if (millis() - sonarTimer > SONAR_INTERVAL) {
-      lastSonarReading = sonar.ping_cm();
+      lastSonarReading = sonarDist();
       avgSonarReading = (3 * avgSonarReading + lastSonarReading) / 4;
       sonarTimer = millis();
   }
@@ -235,7 +243,7 @@ static void doCommand(COMMAND *c)
                   anim.setRepeatCount(f1);
                   break;
               case CMD_PG:
-                  Serial.print(sonar.ping_cm());
+                  Serial.print(sonarDist());
                   Serial.println("cm");
                   break;
               case CMD_POS:
@@ -339,7 +347,7 @@ void doWander() {
         case LOOKRIGHT:
             Serial.println("lookRight");
             // now looking left, so take the left sonar reading
-            leftDist = sonar.ping_cm();
+            leftDist = sonarDist();
 
             // and turn to look to the right
             anim.setAnimation(lookRight);
@@ -349,7 +357,7 @@ void doWander() {
         case LOOKFWD:
             Serial.println("lookFwd");
             // looking right, take right sonar reading
-            rightDist = sonar.ping_cm();
+            rightDist = sonarDist();
 
             // turn to look forward
             anim.setAnimation(stand);
@@ -359,7 +367,8 @@ void doWander() {
         case TURN:
             Serial.println("turn");
             // looking forwards, take final sonar reading
-            fwdDist = sonar.ping_cm();
+            fwdDist = sonarDist();
+            
             Serial.print('L');
             Serial.println(leftDist);
             Serial.print('F');
