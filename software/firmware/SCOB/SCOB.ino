@@ -196,6 +196,7 @@ static void doCommand(COMMAND *c)
 {
     if (c == NULL) return;
 
+    // Special case for TO because it has more than two parameters
     if (c->cmdType == CMD_TO) {
         // 5 parameters to parse, all integers
         // parse directly into interactive animation
@@ -214,68 +215,69 @@ static void doCommand(COMMAND *c)
             }
         }
         updateInteractivePositions();
+        return;
+    }
 
+    // Parse out parameter values
+    int sp = c->cmd.indexOf(' ');
+    float f1 = 0;
+    float f2 = 0;
+    if (sp > -1) {
+        f1 = c->cmd.substring(0,sp).toFloat();
+        f2 = c->cmd.substring(sp+1).toFloat();
     } else {
+        f1 = c->cmd.toFloat();
+    }
 
-        // Parse out parameter values
-        int sp = c->cmd.indexOf(' ');
-        float f1 = 0;
-        float f2 = 0;
-        if (sp > -1) {
-            f1 = c->cmd.substring(0,sp).toFloat();
-            f2 = c->cmd.substring(sp+1).toFloat();
-        } else {
-            f1 = c->cmd.toFloat();
+    // Handle the animation commands that can be "auto" processed
+    if (c->cmdType <= MAX_ANIM_CMD) {
+      for (int i = 0; i < sizeof(anims) / sizeof(anims[0]); i++) {
+        if (anims[i].cmdType == c->cmdType) {
+          anim.setAnimation(anims[i]);
+          anim.setRepeatCount(f1);
+          return;
         }
-
-        // Handle each command type
-        if (c->cmdType <= MAX_ANIM_CMD) {
-          for (int i = 0; i < sizeof(anims) / sizeof(anims[0]); i++) {
-            if (anims[i].cmdType == c->cmdType) {
-              anim.setAnimation(anims[i]);
-              anim.setRepeatCount(f1);
+      }
+    }
+    
+    // Handle all the other commands that can't be dealt with by the "auto" process
+    switch(c->cmdType) {
+        case CMD_BK:
+            anim.setAnimation(walkForward, true);
+            anim.setRepeatCount(f1);
+            break;
+        case CMD_PG:
+            Serial.print(sonarDist());
+            Serial.println("cm");
+            break;
+        case CMD_POS:
+            if (f1 < 0 || f1 > NUM_JOINTS-1) break;
+            interactiveKeyFrames[0][(uint8_t)f1] = (byte)f2;
+            updateInteractivePositions();
+            break;
+        case CMD_SP:
+            anim.setSpeed(f1);
+            break;
+        case CMD_SV:
+            saveConfig();
+            break;
+        case CMD_SC:
+            if (f1 < 0 || f1 > NUM_JOINTS-1) break;
+            if (c->cmd == "") {
+              for (int i = 0; i < NUM_JOINTS; i++) {
+                Serial.print(servoCenters[i]);
+                Serial.print(",");
+              }
+              Serial.println();
+            } else {
+              servoCenters[(uint8_t)f1] = (uint8_t)f2;
+              anim.setServoCenter((uint8_t)f1, (uint8_t)f2);
+              anim.setAnimation(stand);
             }
-          }
-        } else {
-          switch(c->cmdType) {
-              case CMD_BK:
-                  anim.setAnimation(walkForward, true);
-                  anim.setRepeatCount(f1);
-                  break;
-              case CMD_PG:
-                  Serial.print(sonarDist());
-                  Serial.println("cm");
-                  break;
-              case CMD_POS:
-                  if (f1 < 0 || f1 > NUM_JOINTS-1) break;
-                  interactiveKeyFrames[0][(uint8_t)f1] = (byte)f2;
-                  updateInteractivePositions();
-                  break;
-              case CMD_SP:
-                  anim.setSpeed(f1);
-                  break;
-              case CMD_SV:
-                  saveConfig();
-                  break;
-              case CMD_SC:
-                  if (f1 < 0 || f1 > NUM_JOINTS-1) break;
-                  if (c->cmd == "") {
-                    for (int i = 0; i < NUM_JOINTS; i++) {
-                      Serial.print(servoCenters[i]);
-                      Serial.print(",");
-                    }
-                    Serial.println();
-                  } else {
-                    servoCenters[(uint8_t)f1] = (uint8_t)f2;
-                    anim.setServoCenter((uint8_t)f1, (uint8_t)f2);
-                    anim.setAnimation(stand);
-                  }
-                  break;
-              case CMD_PF:
-                  pauseUntil = millis() + (f1*1000);
-                  break;
-          }
-        }
+            break;
+        case CMD_PF:
+            pauseUntil = millis() + (f1*1000);
+            break;
     }
 }
 
