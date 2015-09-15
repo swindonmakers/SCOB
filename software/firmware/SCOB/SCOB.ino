@@ -14,7 +14,8 @@ CommandQueue cmdQ(COMMAND_QUEUE_LENGTH);
 // mode
 uint8_t mode = MODE_INTERACTIVE;
 boolean enableRandom = true; // true to enable random wanders, false to disable
-long lastCommand, pauseUntil;
+boolean enableCollisionHandling = true;
+unsigned long lastCommand, pauseUntil;
 
 String cmd;  // cmd received over serial - builds up char at a time
 
@@ -22,7 +23,7 @@ COMMAND randomCmd;
 
 unsigned int lastSonarReading = MAX_DISTANCE;
 unsigned int avgSonarReading = MAX_DISTANCE;  // averaged over several samples
-long sonarTimer;
+unsigned long sonarTimer;
 
 void setup() {
   Serial.begin(9600);
@@ -59,6 +60,7 @@ void loop() {
             if (cmd != "") {  // check the command isn't blank
                 mode = MODE_INTERACTIVE;
                 enableRandom = false; // turn off at first interactive command, turn back on with RND
+                enableCollisionHandling = true;
 
                 if (cmdQ.isFull()) {
                     Serial.println("BUSY");
@@ -79,16 +81,28 @@ void loop() {
   if (enableRandom && cmdQ.isEmpty() && millis() - lastCommand > 5000) {
     mode = MODE_WANDER;
     enableRandom = false;  // disable after first random walk
+    enableCollisionHandling = true;
   }
 
   // keep animation going
   anim.update();
 
   // take sonar readings
-  if (millis() - sonarTimer > SONAR_INTERVAL) {
+  if (millis() > sonarTimer) {
       lastSonarReading = sonarDist();
       avgSonarReading = (3 * avgSonarReading + lastSonarReading) / 4;
-      sonarTimer = millis();
+      sonarTimer = millis() + SONAR_INTERVAL;
+      //Serial.println(avgSonarReading);
+
+      if (enableCollisionHandling && avgSonarReading < 2*STRIDE_LENGTH) {
+        // aargh, something is in my face!!!
+        Serial.println(F("Aargh, get out of my face!"));
+        anim.stop();  // stop whatever we're doing
+        // avoid taking another sonar reading until we've have time to start backing up
+        sonarTimer += 2000;
+        // start backing up
+        anim.setAnimation(walkForward, true);
+      }
   }
 
   // is current movement complete?  and we're not pausing?
@@ -357,6 +371,7 @@ void doWander() {
     switch(wanderState) {
         case LOOKLEFT:
             Serial.println("lookLeft");
+            enableCollisionHandling = false;  // turn off during looking, turning and reversing
             // start by turning to look left
             anim.setAnimation(lookLeft);
             anim.setRepeatCount(1);
@@ -421,6 +436,7 @@ void doWander() {
         case WALK:
             Serial.print("walk:");
             Serial.println(numStrides);
+            enableCollisionHandling = true; // turn on for normal walking
             // now turned to face correct direction, so walk forwards
             anim.setAnimation(walkForward);
             anim.setRepeatCount(numStrides);
