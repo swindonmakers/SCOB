@@ -38,7 +38,7 @@ void setup() {
 
   anim.setAnimation(stand);
   lastCommand = millis();
-  sonarTimer = millis();
+  sonarTimer = lastCommand;
   pauseUntil = lastCommand;
 }
 
@@ -100,21 +100,7 @@ void loop() {
             break;
 
           case MODE_RANDOM:
-            if (cmdQ.isEmpty()) {
-              int r = random(-10, MAX_ANIM_CMD + 1);
-              if (r == -10) {
-                // rest for a little while
-                pauseUntil = millis() + 5000;
-                randomCmd.cmdType = CMD_ST;
-              } else if (r < -5) {
-                randomCmd.cmdType = CMD_FD;
-              } else if (r < 0) { 
-                randomCmd.cmdType = CMD_BK; 
-              } else {
-                randomCmd.cmdType = r;
-              }
-              doCommand(&randomCmd);
-            }
+            doRandom();
             break;
 
         case MODE_WANDER:
@@ -315,6 +301,27 @@ void saveConfig() {
     Serial.println("SAVED");
 }
 
+void doRandom() {
+  if (cmdQ.isEmpty()) {
+    int r = random(-10, MAX_ANIM_CMD + 1);
+    if (r == -10) {
+      // rest for a little while - so we can easily tell the random is over!
+      pauseUntil = millis() + 2000;
+      //randomCmd.cmdType = CMD_ST;
+
+      // starting wandering
+      mode = MODE_WANDER;
+    } else if (r < -5) {
+      randomCmd.cmdType = CMD_FD;
+    } else if (r < 0) { 
+      randomCmd.cmdType = CMD_BK; 
+    } else {
+      randomCmd.cmdType = r;
+    }
+    doCommand(&randomCmd);
+  }
+}
+
 void doWander() {
     /*
     Wander algorithm:
@@ -345,6 +352,7 @@ void doWander() {
         fwdDist = MAX_DISTANCE;
 
     static uint8_t numStrides = 1;
+    static uint8_t cycles = 0;
 
     switch(wanderState) {
         case LOOKLEFT:
@@ -403,7 +411,9 @@ void doWander() {
                     numStrides = fwdDist / STRIDE_LENGTH;
                 }
 
-                if (numStrides > 5) numStrides = 5;
+                if (numStrides > 5) {
+                  numStrides = 5;
+                }
 
                 wanderState = WALK;
             }
@@ -415,6 +425,15 @@ void doWander() {
             anim.setAnimation(walkForward);
             anim.setRepeatCount(numStrides);
             wanderState = LOOKLEFT;
+
+            // been wandering for a while and miles from anything? then lets do something random! :)
+            if (cycles > 2 && numStrides == 5) {
+              mode = MODE_RANDOM;
+              cycles = 0;
+            } else {
+              cycles++;
+            }
+            
             break;
         case BACKUP:
             Serial.println("backup");
