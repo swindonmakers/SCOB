@@ -1,6 +1,17 @@
 # SCOB
 # Printing Guide
 
+### FlexyArm
+
+Metric | Value 
+--- | --- 
+Quantity | 2
+STL | [FlexyArm](../printedparts/stl/FlexyArm.stl)
+
+![](../printedparts/images/FlexyArm_view.png)
+
+
+
 ### Foot
 
 Metric | Value 
@@ -79,7 +90,7 @@ Approx Plastic Cost | 0.02 GBP
 
 Metric | Value 
 --- | --- 
-Total Parts | 6
+Total Parts | 8
 Total Plastic (Kg) | 0.09KG
 Total Plastic (cm3) | 73.7cm3
 Approx Plastic Cost | 1.38 GBP

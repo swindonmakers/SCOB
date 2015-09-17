@@ -1,7 +1,7 @@
 [
     {
         "cut": [],
-        "hash": "97705f680484fadc26a6deeafdeb6830",
+        "hash": "7a5b5cc05444f25f3bccc78b2ef7a9b7",
         "vitamins": [
             {
                 "hash": "7bb239147204653977f54edf8f85cea7",
@@ -151,8 +151,8 @@
                             25
                         ],
                         "dist": 140,
-                        "title": "view",
                         "filepath": "../vitamins/images/ArduinoProMiniPinsontopincserialpins_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             0,
@@ -182,8 +182,8 @@
                             33
                         ],
                         "dist": 280,
-                        "title": "view",
                         "filepath": "../vitamins/images/AABattery_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             6.9,
@@ -213,8 +213,8 @@
                             33
                         ],
                         "dist": 280,
-                        "title": "view",
                         "filepath": "../vitamins/images/BatteryPack_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             6.9,
@@ -238,7 +238,7 @@
         "assemblies": [
             {
                 "cut": [],
-                "hash": "a87b51f01ee0da97d9624d0a77ab4eb0",
+                "hash": "7daf35beefbecc73f86b80a3f18c6e7c",
                 "vitamins": [
                     {
                         "title": "HCSR04 Ultrasonic Sensor",
@@ -374,6 +374,14 @@
                         "qty": 1,
                         "call": "Hat_STL()",
                         "file": "printedparts/Hat.scad"
+                    },
+                    {
+                        "markdown": [],
+                        "title": "FlexyArm",
+                        "views": [],
+                        "qty": 2,
+                        "call": "FlexyArm_STL()",
+                        "file": "printedparts/FlexyArm.scad"
                     }
                 ],
                 "file": "assemblies/Final.scad",
@@ -579,6 +587,33 @@
                                 ],
                                 "dist": 500,
                                 "filepath": "../assemblies/SCOB/Final_step8_view.png",
+                                "title": "view",
+                                "caption": "view",
+                                "translate": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "type": "view",
+                                "size": [
+                                    400,
+                                    300
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "desc": "Attach arms",
+                        "num": 9,
+                        "views": [
+                            {
+                                "rotate": [
+                                    55,
+                                    0,
+                                    25
+                                ],
+                                "dist": 500,
+                                "filepath": "../assemblies/SCOB/Final_step9_view.png",
                                 "title": "view",
                                 "caption": "view",
                                 "translate": [
@@ -810,7 +845,7 @@
             },
             {
                 "markdown": [],
-                "hash": "538aa312fbfb4cfb72184a81d6cb36c4",
+                "hash": "cfcc36ca47ff5304f3ced32da78b0cd2",
                 "plasticWeight": 0.001625,
                 "title": "Left Leg",
                 "aabb": [
@@ -904,7 +939,7 @@
             },
             {
                 "markdown": [],
-                "hash": "353eb84cef7846cdf40f66e242c2307b",
+                "hash": "bd09ee5f2496f6590004842df3a7ce13",
                 "plasticWeight": 0.001625,
                 "title": "Right Leg",
                 "aabb": [
@@ -974,8 +1009,8 @@
                             130
                         ],
                         "dist": 400,
-                        "title": "view",
                         "filepath": "../printedparts/images/Hat_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             0,
@@ -995,6 +1030,51 @@
                 "plasticVolume": 19.4,
                 "call": "Hat_STL()",
                 "file": "printedparts/Hat.scad"
+            },
+            {
+                "markdown": [],
+                "hash": "570cda47dcf3f09069958b127f8da284",
+                "title": "FlexyArm",
+                "aabb": [
+                    [
+                        -5.0,
+                        -14.9981,
+                        0.0
+                    ],
+                    [
+                        51.0,
+                        14.9981,
+                        5.05
+                    ]
+                ],
+                "views": [
+                    {
+                        "rotate": [
+                            37.5,
+                            0,
+                            16
+                        ],
+                        "dist": 140,
+                        "title": "view",
+                        "filepath": "../printedparts/images/FlexyArm_view.png",
+                        "caption": "view",
+                        "translate": [
+                            18,
+                            4,
+                            0
+                        ],
+                        "type": "view",
+                        "size": [
+                            400,
+                            300
+                        ]
+                    }
+                ],
+                "qty": 2,
+                "volume": 2597.9305989860923,
+                "area": 2126.523180869438,
+                "call": "FlexyArm_STL()",
+                "file": "printedparts/FlexyArm.scad"
             }
         ],
         "file": "SCOB.scad",
@@ -1393,6 +1473,7 @@
                                             25
                                         ],
                                         "dist": 140,
+                                        "filepath": "../vitamins/images/ArduinoProMiniPinsontopincserialpins_view.png",
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
@@ -1448,6 +1529,7 @@
                                             33
                                         ],
                                         "dist": 280,
+                                        "filepath": "../vitamins/images/AABattery_view.png",
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
@@ -1560,6 +1642,7 @@
                                             33
                                         ],
                                         "dist": 280,
+                                        "filepath": "../vitamins/images/BatteryPack_view.png",
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
@@ -1963,6 +2046,7 @@
                                             130
                                         ],
                                         "dist": 400,
+                                        "filepath": "../printedparts/images/Hat_view.png",
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
@@ -1982,6 +2066,89 @@
                             }
                         ],
                         "desc": "Add a hat"
+                    },
+                    {
+                        "num": 9,
+                        "type": "step",
+                        "children": [
+                            {
+                                "rotate": [
+                                    55,
+                                    0,
+                                    25
+                                ],
+                                "dist": 500,
+                                "title": "view",
+                                "caption": "view",
+                                "translate": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "type": "view",
+                                "size": [
+                                    400,
+                                    300
+                                ]
+                            },
+                            {
+                                "call": "FlexyArm_STL()",
+                                "type": "printed",
+                                "children": [
+                                    {
+                                        "rotate": [
+                                            37.5,
+                                            0,
+                                            16
+                                        ],
+                                        "dist": 140,
+                                        "title": "view",
+                                        "caption": "view",
+                                        "translate": [
+                                            18,
+                                            4,
+                                            0
+                                        ],
+                                        "type": "view",
+                                        "size": [
+                                            400,
+                                            300
+                                        ]
+                                    }
+                                ],
+                                "file": "printedparts/FlexyArm.scad",
+                                "title": "FlexyArm"
+                            },
+                            {
+                                "call": "FlexyArm_STL()",
+                                "type": "printed",
+                                "children": [
+                                    {
+                                        "rotate": [
+                                            37.5,
+                                            0,
+                                            16
+                                        ],
+                                        "dist": 140,
+                                        "title": "view",
+                                        "caption": "view",
+                                        "translate": [
+                                            18,
+                                            4,
+                                            0
+                                        ],
+                                        "type": "view",
+                                        "size": [
+                                            400,
+                                            300
+                                        ]
+                                    }
+                                ],
+                                "file": "printedparts/FlexyArm.scad",
+                                "title": "FlexyArm"
+                            }
+                        ],
+                        "desc": "Attach arms"
                     }
                 ],
                 "file": "assemblies/Final.scad",
@@ -2054,6 +2221,10 @@
             {
                 "type": "file",
                 "file": "printedparts/Hat.scad"
+            },
+            {
+                "type": "file",
+                "file": "printedparts/FlexyArm.scad"
             }
         ],
         "type": "filelist"

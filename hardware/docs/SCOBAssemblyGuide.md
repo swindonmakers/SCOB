@@ -23,6 +23,7 @@ Qty | Vitamin | Image
 
 Qty | Part Name | Image
 --- | --- | ---
+2 | [FlexyArm](../printedparts/stl/FlexyArm.stl) | ![](../printedparts/images/FlexyArm_view.png) | 
 2 | [Foot](../printedparts/stl/Foot.stl) | ![](../printedparts/images/Foot_view.png) | 
 1 | [Hat](../printedparts/stl/Hat.stl) | ![](../printedparts/images/Hat_view.png) | 
 1 | [Head](../printedparts/stl/Head.stl) | ![](../printedparts/images/Head_view.png) | 
@@ -97,6 +98,7 @@ Qty | Vitamin | Image
 
 Qty | Part Name | Image
 --- | --- | ---
+2 | [FlexyArm](../printedparts/stl/FlexyArm.stl) | ![](../printedparts/images/FlexyArm_view.png) | 
 1 | [Hat](../printedparts/stl/Hat.stl) | ![](../printedparts/images/Hat_view.png) | 
 1 | [Head](../printedparts/stl/Head.stl) | ![](../printedparts/images/Head_view.png) | 
 1 | [Left Leg](../printedparts/stl/LeftLeg.stl) | ![](../printedparts/images/LeftLeg_view.png) | 
@@ -127,5 +129,7 @@ Qty | Name
 ![](../assemblies/SCOB/Final_step7_view.png)
 8. Add a hat
 ![](../assemblies/SCOB/Final_step8_view.png)
+9. Attach arms
+![](../assemblies/SCOB/Final_step9_view.png)
 
 
