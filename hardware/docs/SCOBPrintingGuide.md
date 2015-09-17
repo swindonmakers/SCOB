@@ -7,6 +7,9 @@ Metric | Value
 --- | --- 
 Quantity | 2
 STL | [FlexyArm](../printedparts/stl/FlexyArm.stl)
+Plastic (Kg) | 0.01
+Plastic (cm3) | 4.4
+Approx Plastic Cost | 0.08 GBP
 
 ![](../printedparts/images/FlexyArm_view.png)
 
@@ -91,8 +94,8 @@ Approx Plastic Cost | 0.02 GBP
 Metric | Value 
 --- | --- 
 Total Parts | 8
-Total Plastic (Kg) | 0.09KG
-Total Plastic (cm3) | 73.7cm3
-Approx Plastic Cost | 1.38 GBP
+Total Plastic (Kg) | 0.1KG
+Total Plastic (cm3) | 78.1cm3
+Approx Plastic Cost | 1.46 GBP
 
 

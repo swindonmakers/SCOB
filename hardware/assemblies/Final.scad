@@ -3,7 +3,7 @@ Head_Con_Arduino = [[0,0,38], [0,0,-1], 180,0,0];
 
 Head_Con_BatteryPack = [[-8.5,-Head_Depth/2 + 3,24], [0,-1,0], 0,0,0];
 
-module FinalAssembly () {
+module FinalAssembly (zombie=false) {
 
     assembly("assemblies/Final.scad", "Final", str("FinalAssembly()")) {
 
@@ -97,15 +97,24 @@ module FinalAssembly () {
             attach(Head_Con_Hat, Hat_Con_Def, ExplodeSpacing = 50)
                 Hat_STL();
         }
-		
+
 		step(9, "Attach arms") {
 			view();
-			
-			attach(rollConnector(Head_Con_LeftArm, -90), FlexyArm_Con_Def) 
-				FlexyArm_STL();
-			
-			attach(rollConnector(Head_Con_RightArm, 90), FlexyArm_Con_Def) 
-				FlexyArm_STL();
+
+            if (zombie) {
+                attach(rollConnector(Head_Con_LeftArm, 180), FlexyArm_Con_Def)
+    				ZombieArm_STL();
+
+    			attach(rollConnector(Head_Con_RightArm, 0), FlexyArm_Con_Def)
+    				ZombieArm_STL();
+            } else {
+                attach(rollConnector(Head_Con_LeftArm, -90), FlexyArm_Con_Def)
+    				FlexyArm_STL();
+
+    			attach(rollConnector(Head_Con_RightArm, 90), FlexyArm_Con_Def)
+    				FlexyArm_STL();
+            }
+
 		}
 
     }

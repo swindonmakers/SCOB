@@ -53,7 +53,7 @@ module FlexyArm_Model()
 	}
 }
 
-module FlexyArmHand() 
+module FlexyArmHand()
 {
 	hull() {
 		circle(d=wrist_dia);
@@ -63,7 +63,7 @@ module FlexyArmHand()
 
 	hull() {
 		circle(d=wrist_dia);
-		translate([finger_len_long, 0, 0])
+		translate([finger_len_long * 0.85, 0, 0])
 			circle(d=finger_dia);
 	}
 
