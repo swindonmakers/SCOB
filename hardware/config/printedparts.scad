@@ -1,6 +1,7 @@
 // Printed Parts
 //
 // Order alphabetically - printed parts should not have inter-dependencies!
+include <../printedparts/FlexyArm.scad>
 include <../printedparts/Head.scad>
 include <../printedparts/LeftLeg.scad>
 include <../printedparts/RightLeg.scad>

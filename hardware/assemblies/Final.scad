@@ -97,6 +97,16 @@ module FinalAssembly () {
             attach(Head_Con_Hat, Hat_Con_Def, ExplodeSpacing = 50)
                 Hat_STL();
         }
+		
+		step(9, "Attach arms") {
+			view();
+			
+			attach(rollConnector(Head_Con_LeftArm, -90), FlexyArm_Con_Def) 
+				FlexyArm_STL();
+			
+			attach(rollConnector(Head_Con_RightArm, 90), FlexyArm_Con_Def) 
+				FlexyArm_STL();
+		}
 
     }
 }
