@@ -1,5 +1,5 @@
 
-Head_Con_Arduino = [[0,0,180], [0,0,-1], 90,0,0];
+Head_Con_Arduino = [[0,0,38], [0,0,-1], 180,0,0];
 
 Head_Con_BatteryPack = [[-8.5,-Head_Depth/2 + 3,24], [0,-1,0], 0,0,0];
 
@@ -51,7 +51,7 @@ module FinalAssembly () {
             view();
 
             attach(Head_Con_Arduino, ArduinoPro_Con_Center)
-                ArduinoPro(headerpins=1, serialpins=1);
+                ArduinoPro(headerpins=2, serialpins=1);
         }
 
 
@@ -94,7 +94,7 @@ module FinalAssembly () {
         step(8, "Add a hat") {
             view();
 
-            attach(Head_Con_Hat, Hat_Con_Def)
+            attach(Head_Con_Hat, Hat_Con_Def, ExplodeSpacing = 50)
                 Hat_STL();
         }
 

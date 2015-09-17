@@ -1,7 +1,7 @@
 [
     {
         "cut": [],
-        "hash": "157dd05388c749db7291cfc7516ab78d",
+        "hash": "97705f680484fadc26a6deeafdeb6830",
         "vitamins": [
             {
                 "hash": "7bb239147204653977f54edf8f85cea7",
@@ -141,8 +141,8 @@
                 "file": "vitamins/MiniToggleSwitch.scad"
             },
             {
-                "hash": "fd46a5a6cc49b802b578c70bcbc08643",
-                "title": "Arduino Pro Mini Pins underneath, inc serial pins",
+                "hash": "77aa70604d90c34dfc9e973d0ec1d99e",
+                "title": "Arduino Pro Mini Pins on top, inc serial pins",
                 "views": [
                     {
                         "rotate": [
@@ -151,8 +151,8 @@
                             25
                         ],
                         "dist": 140,
-                        "filepath": "../vitamins/images/ArduinoProMiniPinsunderneathincserialpins_view.png",
                         "title": "view",
+                        "filepath": "../vitamins/images/ArduinoProMiniPinsontopincserialpins_view.png",
                         "caption": "view",
                         "translate": [
                             0,
@@ -168,12 +168,12 @@
                 ],
                 "qty": 1,
                 "parts": [],
-                "call": "ArduinoPro(type=ArduinoPro_Mini, headerpins=1,serialpins=1)",
+                "call": "ArduinoPro(type=ArduinoPro_Mini, headerpins=2,serialpins=1)",
                 "file": "vitamins/ArduinoPro.scad"
             },
             {
-                "hash": "b23c4811ee3f7abaf1a3e0d2b2485ed7",
-                "title": "AAA Battery",
+                "hash": "9edcf39cc4a01aa0830b24f8875e8b8b",
+                "title": "AA Battery",
                 "views": [
                     {
                         "rotate": [
@@ -182,8 +182,8 @@
                             33
                         ],
                         "dist": 280,
-                        "filepath": "../vitamins/images/AAABattery_view.png",
                         "title": "view",
+                        "filepath": "../vitamins/images/AABattery_view.png",
                         "caption": "view",
                         "translate": [
                             6.9,
@@ -199,15 +199,46 @@
                 ],
                 "qty": 4,
                 "parts": [],
-                "call": "Battery(Battery_AAA)",
+                "call": "Battery(Battery_AA)",
                 "file": "vitamins/Battery.scad"
+            },
+            {
+                "hash": "e8bbe3455cbded20ae80d8db80ce0449",
+                "title": "Battery Pack",
+                "views": [
+                    {
+                        "rotate": [
+                            72,
+                            0,
+                            33
+                        ],
+                        "dist": 280,
+                        "title": "view",
+                        "filepath": "../vitamins/images/BatteryPack_view.png",
+                        "caption": "view",
+                        "translate": [
+                            6.9,
+                            13.6,
+                            10.3
+                        ],
+                        "type": "view",
+                        "size": [
+                            400,
+                            300
+                        ]
+                    }
+                ],
+                "qty": 1,
+                "parts": [],
+                "call": "BatteryPack()",
+                "file": "vitamins/BatteryPack.scad"
             }
         ],
         "title": "SCOB",
         "assemblies": [
             {
                 "cut": [],
-                "hash": "e4e99e1947a809ab9bbcb1543ed2eda6",
+                "hash": "a87b51f01ee0da97d9624d0a77ab4eb0",
                 "vitamins": [
                     {
                         "title": "HCSR04 Ultrasonic Sensor",
@@ -255,20 +286,28 @@
                         "file": "vitamins/MiniToggleSwitch.scad"
                     },
                     {
-                        "title": "Arduino Pro Mini Pins underneath, inc serial pins",
+                        "title": "Arduino Pro Mini Pins on top, inc serial pins",
                         "views": [],
                         "qty": 1,
                         "parts": [],
-                        "call": "ArduinoPro(type=ArduinoPro_Mini, headerpins=1,serialpins=1)",
+                        "call": "ArduinoPro(type=ArduinoPro_Mini, headerpins=2,serialpins=1)",
                         "file": "vitamins/ArduinoPro.scad"
                     },
                     {
-                        "title": "AAA Battery",
+                        "title": "AA Battery",
                         "views": [],
                         "qty": 4,
                         "parts": [],
-                        "call": "Battery(Battery_AAA)",
+                        "call": "Battery(Battery_AA)",
                         "file": "vitamins/Battery.scad"
+                    },
+                    {
+                        "title": "Battery Pack",
+                        "views": [],
+                        "qty": 1,
+                        "parts": [],
+                        "call": "BatteryPack()",
+                        "file": "vitamins/BatteryPack.scad"
                     }
                 ],
                 "views": [],
@@ -327,6 +366,14 @@
                         "qty": 1,
                         "call": "RightLeg_STL()",
                         "file": "printedparts/RightLeg.scad"
+                    },
+                    {
+                        "markdown": [],
+                        "title": "Hat",
+                        "views": [],
+                        "qty": 1,
+                        "call": "Hat_STL()",
+                        "file": "printedparts/Hat.scad"
                     }
                 ],
                 "file": "assemblies/Final.scad",
@@ -519,6 +566,33 @@
                                 ]
                             }
                         ]
+                    },
+                    {
+                        "desc": "Add a hat",
+                        "num": 8,
+                        "views": [
+                            {
+                                "rotate": [
+                                    55,
+                                    0,
+                                    25
+                                ],
+                                "dist": 500,
+                                "filepath": "../assemblies/SCOB/Final_step8_view.png",
+                                "title": "view",
+                                "caption": "view",
+                                "translate": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "type": "view",
+                                "size": [
+                                    400,
+                                    300
+                                ]
+                            }
+                        ]
                     }
                 ],
                 "level": 0
@@ -689,7 +763,7 @@
         "printed": [
             {
                 "markdown": [],
-                "hash": "9d3257d0e3f1dba37a5230b2d6e884df",
+                "hash": "4ac292fcbd8f7beb38b92355a766b5c0",
                 "plasticWeight": 0.048375,
                 "title": "Head",
                 "aabb": [
@@ -874,6 +948,53 @@
                 "plasticVolume": 1.3,
                 "call": "RightLeg_STL()",
                 "file": "printedparts/RightLeg.scad"
+            },
+            {
+                "markdown": [],
+                "hash": "0e0020e786e718578460465cb8c525b1",
+                "plasticWeight": 0.02425,
+                "title": "Hat",
+                "aabb": [
+                    [
+                        -32.5,
+                        -33.0,
+                        -38.0
+                    ],
+                    [
+                        32.5,
+                        32.5,
+                        12.0
+                    ]
+                ],
+                "views": [
+                    {
+                        "rotate": [
+                            72,
+                            0,
+                            130
+                        ],
+                        "dist": 400,
+                        "title": "view",
+                        "filepath": "../printedparts/images/Hat_view.png",
+                        "caption": "view",
+                        "translate": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "type": "view",
+                        "size": [
+                            400,
+                            300
+                        ]
+                    }
+                ],
+                "qty": 1,
+                "volume": 18487.006501312662,
+                "area": 16391.04978125371,
+                "plasticVolume": 19.4,
+                "call": "Hat_STL()",
+                "file": "printedparts/Hat.scad"
             }
         ],
         "file": "SCOB.scad",
@@ -1262,7 +1383,7 @@
                                 ]
                             },
                             {
-                                "call": "ArduinoPro(type=ArduinoPro_Mini, headerpins=1,serialpins=1)",
+                                "call": "ArduinoPro(type=ArduinoPro_Mini, headerpins=2,serialpins=1)",
                                 "type": "vitamin",
                                 "children": [
                                     {
@@ -1272,7 +1393,6 @@
                                             25
                                         ],
                                         "dist": 140,
-                                        "filepath": "../vitamins/images/ArduinoProMiniPinsunderneathincserialpins_view.png",
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
@@ -1288,7 +1408,7 @@
                                     }
                                 ],
                                 "file": "vitamins/ArduinoPro.scad",
-                                "title": "Arduino Pro Mini Pins underneath, inc serial pins"
+                                "title": "Arduino Pro Mini Pins on top, inc serial pins"
                             }
                         ],
                         "desc": "Shove in an Arduino"
@@ -1318,7 +1438,7 @@
                                 ]
                             },
                             {
-                                "call": "Battery(Battery_AAA)",
+                                "call": "Battery(Battery_AA)",
                                 "type": "vitamin",
                                 "children": [
                                     {
@@ -1328,7 +1448,6 @@
                                             33
                                         ],
                                         "dist": 280,
-                                        "filepath": "../vitamins/images/AAABattery_view.png",
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
@@ -1344,10 +1463,10 @@
                                     }
                                 ],
                                 "file": "vitamins/Battery.scad",
-                                "title": "AAA Battery"
+                                "title": "AA Battery"
                             },
                             {
-                                "call": "Battery(Battery_AAA)",
+                                "call": "Battery(Battery_AA)",
                                 "type": "vitamin",
                                 "children": [
                                     {
@@ -1372,10 +1491,10 @@
                                     }
                                 ],
                                 "file": "vitamins/Battery.scad",
-                                "title": "AAA Battery"
+                                "title": "AA Battery"
                             },
                             {
-                                "call": "Battery(Battery_AAA)",
+                                "call": "Battery(Battery_AA)",
                                 "type": "vitamin",
                                 "children": [
                                     {
@@ -1400,10 +1519,10 @@
                                     }
                                 ],
                                 "file": "vitamins/Battery.scad",
-                                "title": "AAA Battery"
+                                "title": "AA Battery"
                             },
                             {
-                                "call": "Battery(Battery_AAA)",
+                                "call": "Battery(Battery_AA)",
                                 "type": "vitamin",
                                 "children": [
                                     {
@@ -1428,7 +1547,35 @@
                                     }
                                 ],
                                 "file": "vitamins/Battery.scad",
-                                "title": "AAA Battery"
+                                "title": "AA Battery"
+                            },
+                            {
+                                "call": "BatteryPack()",
+                                "type": "vitamin",
+                                "children": [
+                                    {
+                                        "rotate": [
+                                            72,
+                                            0,
+                                            33
+                                        ],
+                                        "dist": 280,
+                                        "title": "view",
+                                        "caption": "view",
+                                        "translate": [
+                                            6.9,
+                                            13.6,
+                                            10.3
+                                        ],
+                                        "type": "view",
+                                        "size": [
+                                            400,
+                                            300
+                                        ]
+                                    }
+                                ],
+                                "file": "vitamins/BatteryPack.scad",
+                                "title": "Battery Pack"
                             }
                         ],
                         "desc": "Followed by a battery pack"
@@ -1780,6 +1927,61 @@
                             }
                         ],
                         "desc": "Attach the legs"
+                    },
+                    {
+                        "num": 8,
+                        "type": "step",
+                        "children": [
+                            {
+                                "rotate": [
+                                    55,
+                                    0,
+                                    25
+                                ],
+                                "dist": 500,
+                                "title": "view",
+                                "caption": "view",
+                                "translate": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "type": "view",
+                                "size": [
+                                    400,
+                                    300
+                                ]
+                            },
+                            {
+                                "call": "Hat_STL()",
+                                "type": "printed",
+                                "children": [
+                                    {
+                                        "rotate": [
+                                            72,
+                                            0,
+                                            130
+                                        ],
+                                        "dist": 400,
+                                        "title": "view",
+                                        "caption": "view",
+                                        "translate": [
+                                            0,
+                                            0,
+                                            0
+                                        ],
+                                        "type": "view",
+                                        "size": [
+                                            400,
+                                            300
+                                        ]
+                                    }
+                                ],
+                                "file": "printedparts/Hat.scad",
+                                "title": "Hat"
+                            }
+                        ],
+                        "desc": "Add a hat"
                     }
                 ],
                 "file": "assemblies/Final.scad",
@@ -1827,6 +2029,10 @@
             },
             {
                 "type": "file",
+                "file": "vitamins/BatteryPack.scad"
+            },
+            {
+                "type": "file",
                 "file": "printedparts/LeftLeg.scad"
             },
             {
@@ -1844,6 +2050,10 @@
             {
                 "type": "file",
                 "file": "assemblies/RightLeg.scad"
+            },
+            {
+                "type": "file",
+                "file": "printedparts/Hat.scad"
             }
         ],
         "type": "filelist"

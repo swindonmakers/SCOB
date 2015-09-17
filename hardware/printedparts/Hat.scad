@@ -36,19 +36,26 @@ module Hat_Model()
 
     tol = 0.3; // fitting tolerance
 
+    inset = 16/2;  // amount the top surface of the hat is inset on each side
+
+    font = "Liberation Sans";
+
     // model
-    render()
+    //render()
     difference() {
         union() {
             // top
             hull () {
-                translate([-w/2+5, -d/2+5, 10])
-                    roundedCube([w-10,d-10,dw], 5);
+                translate([-w/2+inset, -d/2+inset, 10])
+                    roundedCube([w-2*inset,d-2*inset,dw], 5);
 
                 translate([-w/2, -d/2, 0])
                     roundedCube([w,d,dw], 5);
             }
 
+            // inner locating rim
+            translate([-w/2 + dw + tol, -d/2 + dw, -dw])
+                roundedCube([w - 2*dw - 2*tol, d - 2*dw - tol, 2*dw], 6);
 
             // upper back wall
             translate([-w/2+5 + tol, -d/2, -h/2 + dw])
@@ -57,6 +64,21 @@ module Hat_Model()
             // lower back wall
             translate([-w/2+5 + tol, -d/2, -h + 30 + dw])
                 roundedRectY([w-10 - 2*tol,dw,h-30], 5);
+
+            // emboss some text
+            translate([-19.5, -d/2 + 0.5, -h/3])
+                rotate([90,0,0])
+                linear_extrude(1)
+                text("SCOB", size=10, font=font);
+        }
+
+        // hollow out the top
+        hull () {
+            translate([-w/2+inset, -d/2+inset, 10 - dw])
+                roundedCube([w-2*inset,d-2*inset,dw], 5);
+
+                translate([-w/2 + 2*dw + tol, -d/2 + 2*dw + tol, -dw-eta])
+                    roundedCube([w - 4*dw - 2*tol, d - 4*dw - 2*tol, dw], 6);
         }
     }
 }

@@ -1,19 +1,33 @@
 # SCOB
 # Sourcing Guide
 
-### 1x Arduino Pro Mini Pins underneath, inc serial pins
+### 1x Arduino Pro Mini Pins on top, inc serial pins
 
-No sources found
+Unit Cost | Source | Notes 
+--- | --- | --- 
+3 | [link](http://www.aliexpress.com/item/CP2102-Module-Pro-Mini-Module-Atmega328-3-3V-8M-For-Arduinoi-Compatible-With-Nano-Free-Shipping/2002847394.html) | Use 3.3v version for wider compatibility and longer battery life
 
-![](../vitamins/images/ArduinoProMiniPinsunderneathincserialpins_view.png) 
+![](../vitamins/images/ArduinoProMiniPinsontopincserialpins_view.png) 
 
 
 
-### 4x AAA Battery
+### 4x AA Battery
 
-No sources found
+Unit Cost | Source | Notes 
+--- | --- | --- 
+0.35 | All over the place | Use rechargeables to save cost
 
-![](../vitamins/images/AAABattery_view.png) 
+![](../vitamins/images/AABattery_view.png) 
+
+
+
+### 1x Battery Pack
+
+Unit Cost | Source | Notes 
+--- | --- | --- 
+0.49 | [link](http://www.aliexpress.com/item/Black-Color-2-2-AA-Battery-1-5V-Holder-Storage-Boxes-for-DIY-Experiment-Test-Cascade/1981330624.html) | Any 4xAA pack should work fine, or use 2S LIPO, NIMH, NICAD, etc
+
+![](../vitamins/images/BatteryPack_view.png) 
 
 
 
@@ -60,7 +74,7 @@ No sources found
 
 Metric | Value 
 --- | --- 
-Total Vitamins | 15
-Total Cost (cheapest) | 0.56 GBP
+Total Vitamins | 16
+Total Cost (cheapest) | 5.45 GBP
 
 

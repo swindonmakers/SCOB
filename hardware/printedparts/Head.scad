@@ -17,8 +17,8 @@ Head_Con_Mouth = [[0, Head_Depth/2, 20], [0,-1,0], 0,0,0];
 Head_Con_Nose = [[0, Head_Depth/2, 30], [0,-1,0], 0,0,0];
 Head_Con_LeftArm = [[-Head_Width/2, 0, 20], [1,0,0], 0,0,0];
 Head_Con_LeftEar = [[-Head_Width/2, 0, 40], [1,0,0], 0,0,0];
-Head_Con_RightArm = [[Head_Width/2, 0, 40], [-1,0,0], 0,0,0];
-Head_Con_RightEar = [[Head_Width/2, 0, 20], [-1,0,0], 0,0,0];
+Head_Con_RightArm = [[Head_Width/2, 0, 20], [-1,0,0], 0,0,0];
+Head_Con_RightEar = [[Head_Width/2, 0, 40], [-1,0,0], 0,0,0];
 
 module Head_STL() {
 

@@ -11,8 +11,9 @@ Make sure you have all of the following parts before you begin.
 
 Qty | Vitamin | Image
 --- | --- | ---
-1 | [Arduino Pro Mini Pins underneath, inc serial pins]() | ![](../vitamins/images/ArduinoProMiniPinsunderneathincserialpins_view.png) | 
-4 | [AAA Battery]() | ![](../vitamins/images/AAABattery_view.png) | 
+1 | [Arduino Pro Mini Pins on top, inc serial pins]() | ![](../vitamins/images/ArduinoProMiniPinsontopincserialpins_view.png) | 
+4 | [AA Battery]() | ![](../vitamins/images/AABattery_view.png) | 
+1 | [Battery Pack]() | ![](../vitamins/images/BatteryPack_view.png) | 
 1 | [HCSR04 Ultrasonic Sensor]() | ![](../vitamins/images/HCSR04UltrasonicSensor_view.png) | 
 4 | [9g Micro Servo]() | ![](../vitamins/images/9gMicroServo_view.png) | 
 1 | [SPST6A Mini Toggle Switch]() | ![](../vitamins/images/SPST6AMiniToggleSwitch_view.png) | 
@@ -23,6 +24,7 @@ Qty | Vitamin | Image
 Qty | Part Name | Image
 --- | --- | ---
 2 | [Foot](../printedparts/stl/Foot.stl) | ![](../printedparts/images/Foot_view.png) | 
+1 | [Hat](../printedparts/stl/Hat.stl) | ![](../printedparts/images/Hat_view.png) | 
 1 | [Head](../printedparts/stl/Head.stl) | ![](../printedparts/images/Head_view.png) | 
 1 | [Left Leg](../printedparts/stl/LeftLeg.stl) | ![](../printedparts/images/LeftLeg_view.png) | 
 1 | [Right Leg](../printedparts/stl/RightLeg.stl) | ![](../printedparts/images/RightLeg_view.png) | 
@@ -30,7 +32,7 @@ Qty | Part Name | Image
 
 **Plastic Required**
 
-54.3cm3, 0.07KG,  approx: 0.88 GBP
+73.7cm3, 0.09KG,  approx: 1.2 GBP
 
 
 # Assembly Instructions
@@ -83,8 +85,9 @@ Qty | Part Name | Image
 
 Qty | Vitamin | Image
 --- | --- | ---
-1 | [Arduino Pro Mini Pins underneath, inc serial pins]() | ![](../vitamins/images/ArduinoProMiniPinsunderneathincserialpins_view.png) | 
-4 | [AAA Battery]() | ![](../vitamins/images/AAABattery_view.png) | 
+1 | [Arduino Pro Mini Pins on top, inc serial pins]() | ![](../vitamins/images/ArduinoProMiniPinsontopincserialpins_view.png) | 
+4 | [AA Battery]() | ![](../vitamins/images/AABattery_view.png) | 
+1 | [Battery Pack]() | ![](../vitamins/images/BatteryPack_view.png) | 
 1 | [HCSR04 Ultrasonic Sensor]() | ![](../vitamins/images/HCSR04UltrasonicSensor_view.png) | 
 2 | [9g Micro Servo]() | ![](../vitamins/images/9gMicroServo_view.png) | 
 1 | [SPST6A Mini Toggle Switch]() | ![](../vitamins/images/SPST6AMiniToggleSwitch_view.png) | 
@@ -94,6 +97,7 @@ Qty | Vitamin | Image
 
 Qty | Part Name | Image
 --- | --- | ---
+1 | [Hat](../printedparts/stl/Hat.stl) | ![](../printedparts/images/Hat_view.png) | 
 1 | [Head](../printedparts/stl/Head.stl) | ![](../printedparts/images/Head_view.png) | 
 1 | [Left Leg](../printedparts/stl/LeftLeg.stl) | ![](../printedparts/images/LeftLeg_view.png) | 
 1 | [Right Leg](../printedparts/stl/RightLeg.stl) | ![](../printedparts/images/RightLeg_view.png) | 
@@ -121,5 +125,7 @@ Qty | Name
 ![](../assemblies/SCOB/Final_step6_view.png)
 7. Attach the legs
 ![](../assemblies/SCOB/Final_step7_view.png)
+8. Add a hat
+![](../assemblies/SCOB/Final_step8_view.png)
 
 
