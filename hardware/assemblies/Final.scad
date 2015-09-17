@@ -1,5 +1,7 @@
 
+Head_Con_Arduino = [[0,0,180], [0,0,-1], 90,0,0];
 
+Head_Con_BatteryPack = [[-8.5,-Head_Depth/2 + 3,24], [0,-1,0], 0,0,0];
 
 module FinalAssembly () {
 
@@ -57,11 +59,7 @@ module FinalAssembly () {
             view();
 
             attach(Head_Con_BatteryPack,DefConDown)
-                {
-                    for (i=[0:3])
-                        translate([i*11 - 16.5,0,0])
-                        Battery(type=Battery_AAA);
-                }
+                 BatteryPack(BP=BatteryPack_AA_4_SQ, showBatteries=true);
         }
 
         step(7, "Attach the legs") {
@@ -91,6 +89,13 @@ module FinalAssembly () {
                         RightLegAssembly();
                 }
             }
+        }
+
+        step(8, "Add a hat") {
+            view();
+
+            attach(Head_Con_Hat, Hat_Con_Def)
+                Hat_STL();
         }
 
     }

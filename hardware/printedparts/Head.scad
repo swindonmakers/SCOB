@@ -2,17 +2,15 @@
 
 Head_Con_Def = [[0,0,0], [0,0,-1], 0,0,0];
 
-Head_Con_SensorTX = [[13,Head_Depth/2-dw-4,45], [0,1,0], 180,0,0];
-Head_Con_SensorRX = [[-13,Head_Depth/2-dw-4,45], [0,1,0], 180,0,0];
+Head_Con_SensorTX = [[-13,Head_Depth/2-dw-1,45], [0,1,0], 0,0,0];
+Head_Con_SensorRX = [[13,Head_Depth/2-dw-1,45], [0,1,0], 0,0,0];
 
-Head_Con_LeftServo = [[-Head_ServoSpacing/2, -MicroServo_FixingSpacing/2,-2], [0,0,1], -90,0,0];
-Head_Con_RightServo = [[Head_ServoSpacing/2, -MicroServo_FixingSpacing/2,-2], [0,0,1], -90,0,0];
+Head_Con_LeftServo = [[-Head_ServoSpacing/2, -MicroServo_FixingSpacing/2 + Head_ServoOffsetY,-2], [0,0,1], -90,0,0];
+Head_Con_RightServo = [[Head_ServoSpacing/2, -MicroServo_FixingSpacing/2 + Head_ServoOffsetY,-2], [0,0,1], -90,0,0];
 
-Head_Con_PowerSwitch = [[0,-Head_Depth/2 + dw, 10], [0,-1,0], 0,0,0];
+Head_Con_PowerSwitch = [[-Head_Width/2 + 11,-Head_Depth/2 + dw, 10], [0,-1,0], 90,0,0];
 
-Head_Con_Arduino = [[0,0,30], [0,0,-1], 90,0,0];
-
-Head_Con_BatteryPack = [[0,-Head_Depth/2 + 10,20], [0,0,-1], 0,0,0];
+Head_Con_Hat = [[0, 0, Head_Height - dw], [0,0,-1], 0,0,0];
 
 // Pin fixings
 Head_Con_Mouth = [[0, Head_Depth/2, 20], [0,-1,0], 0,0,0];
@@ -99,12 +97,12 @@ module Head_Model()
         attach(Head_Con_RightEar, DefConUp)
             cylinder(r=PinDiameter/2, h=10, center=true);
 
-        // cable ways - front + back
-        translate([-8, d/2 - 10, -2])
-            cube([16,6,10]);
+        // cable ways - left / right
+        translate([-Head_Width/2 + 10 - 6, -d/2 + 12, -2])
+            cube([12,6,10]);
 
-        translate([-8, -d/2 + 4, -2])
-            cube([16,6,10]);
+        translate([Head_Width/2 - 10 - 6, -d/2 + 12, -2])
+            cube([12,6,10]);
 
         // power switch
         attach(Head_Con_PowerSwitch, DefConUp)

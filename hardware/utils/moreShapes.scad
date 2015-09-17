@@ -225,6 +225,12 @@ module chamferedCube(size, chamfer, center=false) {
 		chamferedSquare(size, chamfer, center=center);
 }
 
+module chamferedCubeY(size, chamfer, center=false) {
+	// Y-axis aligned chamferedCube
+	translate([0,0,center?0:size[2]]) rotate([-90,0,0])
+		chamferedCube([size[0],size[2],size[1]], chamfer, center);
+}
+
 
 // Extended rotational extrude, allows control of start/end angle
 

@@ -30,7 +30,8 @@ PinDiameter = 7;
 
 // Head outer dimensions
 Head_Width = 65;
-Head_Depth = 60;
+Head_Depth = 65;
 Head_Height = 70;
 
 Head_ServoSpacing = 45;
+Head_ServoOffsetY = 5;  // front/back offset from centreline of head

@@ -14,7 +14,7 @@ module Hat_STL() {
             connector(Hat_Con_Def);
         }
 
-        color(Level3PlasticColor) {
+        color(Level2PlasticColor) {
             if (UseSTL) {
                 import(str(STLPath, "Hat.stl"));
             } else {
@@ -28,13 +28,35 @@ module Hat_STL() {
 module Hat_Model()
 {
     // local vars
+    w  = Head_Width;
+    d = Head_Depth;
+    h = Head_Height;
+
+    $fn=32;
+
+    tol = 0.3; // fitting tolerance
 
     // model
+    render()
     difference() {
         union() {
-            cube([10,10,10]);
+            // top
+            hull () {
+                translate([-w/2+5, -d/2+5, 10])
+                    roundedCube([w-10,d-10,dw], 5);
+
+                translate([-w/2, -d/2, 0])
+                    roundedCube([w,d,dw], 5);
+            }
+
+
+            // upper back wall
+            translate([-w/2+5 + tol, -d/2, -h/2 + dw])
+                cube([w-10 - 2*tol,dw,h/2]);
+
+            // lower back wall
+            translate([-w/2+5 + tol, -d/2, -h + 30 + dw])
+                roundedRectY([w-10 - 2*tol,dw,h-30], 5);
         }
-
-
     }
 }
