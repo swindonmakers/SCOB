@@ -32,8 +32,8 @@ NeoPixel_Types = [
 	NeoPixel_Strip16
 ];
 
-// Vitamin Catalogue]
-module NeoPixel_Catalog() 
+// Vitamin Catalogue
+module NeoPixel_Catalogue() 
 {
 	for (t = NeoPixel_Types)
 		NeoPixel(t);
@@ -49,7 +49,7 @@ module NeoPixel(type=NeoPixel_Single)
 {
 	ts = NeoPixel_TypeSuffix(type);
 	
-	vitamin("vitamins/NeoPixels.scad", str("NeoPixel ", ts), str("NeoPixel(NeoPixel_", ts, ")")) {
+	vitamin("vitamins/NeoPixel.scad", str("NeoPixel ", ts), str("NeoPixel(NeoPixel_", ts, ")")) {
 		view(t=[6.9, 13.6, 10.3], r=[72,0,33], d=280);
 		
 		if (DebugCoordinateFrames) frame();
