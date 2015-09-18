@@ -116,6 +116,12 @@ module FinalAssembly (zombie=true) {
             }
 
 		}
-
+		
+		step(10, "Attach mouth") {
+			view();
+			
+			attach(rollConnector(Head_Con_Mouth, 180), NeoPixelMouthAssembly_Con)
+				NeoPixelMouthAssembly();
+		}
     }
 }

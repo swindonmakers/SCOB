@@ -9,3 +9,4 @@ include <../printedparts/Foot.scad>
 include <../printedparts/Hat.scad>
 include <../printedparts/PinTack.scad>
 include <../printedparts/ZombieArm.scad>
+include <../printedparts/NeoPixelMouth.scad>

@@ -9,3 +9,4 @@
 include <../assemblies/Final.scad>
 include <../assemblies/LeftLeg.scad>
 include <../assemblies/RightLeg.scad>
+include <../assemblies/NeoPixelMouth.scad>
