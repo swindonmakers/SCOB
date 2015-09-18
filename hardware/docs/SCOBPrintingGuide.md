@@ -57,6 +57,17 @@ Approx Plastic Cost | 0.02 GBP
 
 
 
+### NeoPixelMouth
+
+Metric | Value 
+--- | --- 
+Quantity | 1
+STL | [NeoPixelMouth](../printedparts/stl/NeoPixelMouth.stl)
+
+![](../printedparts/images/NeoPixelMouth_view.png)
+
+
+
 ### Right Leg
 
 Metric | Value 
@@ -93,7 +104,7 @@ Approx Plastic Cost | 0.11 GBP
 
 Metric | Value 
 --- | --- 
-Total Parts | 8
+Total Parts | 9
 Total Plastic (Kg) | 0.1KG
 Total Plastic (cm3) | 79.5cm3
 Approx Plastic Cost | 1.49 GBP

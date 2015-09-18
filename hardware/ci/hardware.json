@@ -1,7 +1,7 @@
 [
     {
         "cut": [],
-        "hash": "19eda9656b272a53879d1ba6d8a4de65",
+        "hash": "112455a047b6a74b0e14e1433fccfa90",
         "vitamins": [
             {
                 "hash": "7bb239147204653977f54edf8f85cea7",
@@ -232,13 +232,44 @@
                 "parts": [],
                 "call": "BatteryPack()",
                 "file": "vitamins/BatteryPack.scad"
+            },
+            {
+                "hash": "182e271d7d4ef64eb517b6be6ac45de5",
+                "title": "NeoPixel Strip8",
+                "views": [
+                    {
+                        "rotate": [
+                            72,
+                            0,
+                            33
+                        ],
+                        "dist": 280,
+                        "title": "view",
+                        "filepath": "../vitamins/images/NeoPixelStrip8_view.png",
+                        "caption": "view",
+                        "translate": [
+                            6.9,
+                            13.6,
+                            10.3
+                        ],
+                        "type": "view",
+                        "size": [
+                            400,
+                            300
+                        ]
+                    }
+                ],
+                "qty": 1,
+                "parts": [],
+                "call": "NeoPixel(NeoPixel_Strip8)",
+                "file": "vitamins/NeoPixel.scad"
             }
         ],
         "title": "SCOB",
         "assemblies": [
             {
                 "cut": [],
-                "hash": "349415fa435bad8eb91198e5fb7320d6",
+                "hash": "2eb9ad0dfb5f4d66551e5205653e09b6",
                 "vitamins": [
                     {
                         "title": "HCSR04 Ultrasonic Sensor",
@@ -335,6 +366,19 @@
                         "call": "RightLegAssembly()",
                         "printed": [],
                         "file": "assemblies/RightLeg.scad",
+                        "steps": [],
+                        "level": 1
+                    },
+                    {
+                        "cut": [],
+                        "vitamins": [],
+                        "views": [],
+                        "assemblies": [],
+                        "title": "Neo Pixel Mouth",
+                        "qty": 1,
+                        "call": "NeoPixelMouthAssembly()",
+                        "printed": [],
+                        "file": "assemblies/NeoPixelMouthAssembly.scad",
                         "steps": [],
                         "level": 1
                     }
@@ -628,6 +672,33 @@
                                 ]
                             }
                         ]
+                    },
+                    {
+                        "desc": "Attach mouth",
+                        "num": 10,
+                        "views": [
+                            {
+                                "rotate": [
+                                    55,
+                                    0,
+                                    25
+                                ],
+                                "dist": 500,
+                                "filepath": "../assemblies/SCOB/Final_step10_view.png",
+                                "title": "view",
+                                "caption": "view",
+                                "translate": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "type": "view",
+                                "size": [
+                                    400,
+                                    300
+                                ]
+                            }
+                        ]
                     }
                 ],
                 "level": 0
@@ -776,6 +847,64 @@
                                 ],
                                 "dist": 200,
                                 "filepath": "../assemblies/SCOB/RightLeg_step1_view.png",
+                                "title": "view",
+                                "caption": "view",
+                                "translate": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "type": "view",
+                                "size": [
+                                    400,
+                                    300
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "level": 2
+            },
+            {
+                "cut": [],
+                "vitamins": [
+                    {
+                        "title": "NeoPixel Strip8",
+                        "views": [],
+                        "qty": 1,
+                        "parts": [],
+                        "call": "NeoPixel(NeoPixel_Strip8)",
+                        "file": "vitamins/NeoPixel.scad"
+                    }
+                ],
+                "views": [],
+                "assemblies": [],
+                "title": "Neo Pixel Mouth",
+                "qty": 1,
+                "call": "NeoPixelMouthAssembly()",
+                "printed": [
+                    {
+                        "markdown": [],
+                        "title": "NeoPixelMouth",
+                        "views": [],
+                        "qty": 1,
+                        "call": "NeoPixelMouth_STL()",
+                        "file": "printedparts/NeoPixelMouth.scad"
+                    }
+                ],
+                "file": "assemblies/NeoPixelMouthAssembly.scad",
+                "steps": [
+                    {
+                        "desc": "Insert Neo Pixel Strip",
+                        "num": 1,
+                        "views": [
+                            {
+                                "rotate": [
+                                    52,
+                                    0,
+                                    218
+                                ],
+                                "dist": 200,
                                 "title": "view",
                                 "caption": "view",
                                 "translate": [
@@ -1077,6 +1206,51 @@
                 "plasticVolume": 2.9,
                 "call": "ZombieArm_STL()",
                 "file": "printedparts/ZombieArm.scad"
+            },
+            {
+                "markdown": [],
+                "hash": "2543f648c0523688f81c0e69b347fab0",
+                "title": "NeoPixelMouth",
+                "aabb": [
+                    [
+                        -27.75,
+                        -7.34999,
+                        -5.0
+                    ],
+                    [
+                        27.75,
+                        5.375,
+                        7.15
+                    ]
+                ],
+                "views": [
+                    {
+                        "rotate": [
+                            37.5,
+                            0,
+                            16
+                        ],
+                        "dist": 140,
+                        "title": "view",
+                        "filepath": "../printedparts/images/NeoPixelMouth_view.png",
+                        "caption": "view",
+                        "translate": [
+                            18,
+                            4,
+                            0
+                        ],
+                        "type": "view",
+                        "size": [
+                            400,
+                            300
+                        ]
+                    }
+                ],
+                "qty": 1,
+                "volume": 2232.869418497442,
+                "area": 3486.316474805513,
+                "call": "NeoPixelMouth_STL()",
+                "file": "printedparts/NeoPixelMouth.scad"
             }
         ],
         "file": "SCOB.scad",
@@ -2152,6 +2326,124 @@
                             }
                         ],
                         "desc": "Attach arms"
+                    },
+                    {
+                        "num": 10,
+                        "type": "step",
+                        "children": [
+                            {
+                                "rotate": [
+                                    55,
+                                    0,
+                                    25
+                                ],
+                                "dist": 500,
+                                "title": "view",
+                                "caption": "view",
+                                "translate": [
+                                    0,
+                                    0,
+                                    0
+                                ],
+                                "type": "view",
+                                "size": [
+                                    400,
+                                    300
+                                ]
+                            },
+                            {
+                                "call": "NeoPixelMouthAssembly()",
+                                "type": "assembly",
+                                "children": [
+                                    {
+                                        "call": "NeoPixelMouth_STL()",
+                                        "type": "printed",
+                                        "children": [
+                                            {
+                                                "rotate": [
+                                                    37.5,
+                                                    0,
+                                                    16
+                                                ],
+                                                "dist": 140,
+                                                "title": "view",
+                                                "caption": "view",
+                                                "translate": [
+                                                    18,
+                                                    4,
+                                                    0
+                                                ],
+                                                "type": "view",
+                                                "size": [
+                                                    400,
+                                                    300
+                                                ]
+                                            }
+                                        ],
+                                        "file": "printedparts/NeoPixelMouth.scad",
+                                        "title": "NeoPixelMouth"
+                                    },
+                                    {
+                                        "num": 1,
+                                        "type": "step",
+                                        "children": [
+                                            {
+                                                "rotate": [
+                                                    52,
+                                                    0,
+                                                    218
+                                                ],
+                                                "dist": 200,
+                                                "title": "view",
+                                                "caption": "view",
+                                                "translate": [
+                                                    0,
+                                                    0,
+                                                    0
+                                                ],
+                                                "type": "view",
+                                                "size": [
+                                                    400,
+                                                    300
+                                                ]
+                                            },
+                                            {
+                                                "call": "NeoPixel(NeoPixel_Strip8)",
+                                                "type": "vitamin",
+                                                "children": [
+                                                    {
+                                                        "rotate": [
+                                                            72,
+                                                            0,
+                                                            33
+                                                        ],
+                                                        "dist": 280,
+                                                        "title": "view",
+                                                        "caption": "view",
+                                                        "translate": [
+                                                            6.9,
+                                                            13.6,
+                                                            10.3
+                                                        ],
+                                                        "type": "view",
+                                                        "size": [
+                                                            400,
+                                                            300
+                                                        ]
+                                                    }
+                                                ],
+                                                "file": "vitamins/NeoPixel.scad",
+                                                "title": "NeoPixel Strip8"
+                                            }
+                                        ],
+                                        "desc": "Insert Neo Pixel Strip"
+                                    }
+                                ],
+                                "file": "assemblies/NeoPixelMouthAssembly.scad",
+                                "title": "Neo Pixel Mouth"
+                            }
+                        ],
+                        "desc": "Attach mouth"
                     }
                 ],
                 "file": "assemblies/Final.scad",
@@ -2338,6 +2630,18 @@
             {
                 "type": "file",
                 "file": "printedparts/ZombieArm.scad"
+            },
+            {
+                "type": "file",
+                "file": "assemblies/NeoPixelMouthAssembly.scad"
+            },
+            {
+                "type": "file",
+                "file": "printedparts/NeoPixelMouth.scad"
+            },
+            {
+                "type": "file",
+                "file": "vitamins/NeoPixel.scad"
             },
             {
                 "type": "file",

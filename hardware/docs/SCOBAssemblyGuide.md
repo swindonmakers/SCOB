@@ -17,6 +17,7 @@ Qty | Vitamin | Image
 1 | [HCSR04 Ultrasonic Sensor]() | ![](../vitamins/images/HCSR04UltrasonicSensor_view.png) | 
 4 | [9g Micro Servo]() | ![](../vitamins/images/9gMicroServo_view.png) | 
 1 | [SPST6A Mini Toggle Switch]() | ![](../vitamins/images/SPST6AMiniToggleSwitch_view.png) | 
+1 | [NeoPixel Strip8]() | ![](../vitamins/images/NeoPixelStrip8_view.png) | 
 4 | [Servo Horn]() | ![](../vitamins/images/ServoHorn_view.png) | 
 
 ### Printed Parts
@@ -27,6 +28,7 @@ Qty | Part Name | Image
 1 | [Hat](../printedparts/stl/Hat.stl) | ![](../printedparts/images/Hat_view.png) | 
 1 | [Head](../printedparts/stl/Head.stl) | ![](../printedparts/images/Head_view.png) | 
 1 | [Left Leg](../printedparts/stl/LeftLeg.stl) | ![](../printedparts/images/LeftLeg_view.png) | 
+1 | [NeoPixelMouth](../printedparts/stl/NeoPixelMouth.stl) | ![](../printedparts/images/NeoPixelMouth_view.png) | 
 1 | [Right Leg](../printedparts/stl/RightLeg.stl) | ![](../printedparts/images/RightLeg_view.png) | 
 2 | [Zombie Arm](../printedparts/stl/ZombieArm.stl) | ![](../printedparts/images/ZombieArm_view.png) | 
 
@@ -80,6 +82,26 @@ Qty | Part Name | Image
 ![](../assemblies/SCOB/RightLeg_step1_view.png)
 
 
+## Neo Pixel Mouth
+
+### Vitamins
+
+Qty | Vitamin | Image
+--- | --- | ---
+1 | [NeoPixel Strip8]() | ![](../vitamins/images/NeoPixelStrip8_view.png) | 
+
+### Printed Parts
+
+Qty | Part Name | Image
+--- | --- | ---
+1 | [NeoPixelMouth](../printedparts/stl/NeoPixelMouth.stl) | ![](../printedparts/images/NeoPixelMouth_view.png) | 
+
+### Assembly Steps
+
+1. Insert Neo Pixel Strip
+![](../assemblies/SCOB/NeoPixelMouth_step1_view.png)
+
+
 ## Final
 
 ### Vitamins
@@ -110,6 +132,7 @@ Qty | Name
 --- | --- 
 1 | Left Leg
 1 | Right Leg
+1 | Neo Pixel Mouth
 
 ### Assembly Steps
 
@@ -131,5 +154,7 @@ Qty | Name
 ![](../assemblies/SCOB/Final_step8_view.png)
 9. Attach arms
 ![](../assemblies/SCOB/Final_step9_view.png)
+10. Attach mouth
+![](../assemblies/SCOB/Final_step10_view.png)
 
 

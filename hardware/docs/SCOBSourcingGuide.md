@@ -57,6 +57,14 @@ Unit Cost | Source | Notes
 
 
 
+### 1x NeoPixel Strip8
+
+No sources found
+
+![](../vitamins/images/NeoPixelStrip8_view.png) 
+
+
+
 ### 4x Servo Horn
 
 No sources found
@@ -74,7 +82,7 @@ No sources found
 
 Metric | Value 
 --- | --- 
-Total Vitamins | 16
+Total Vitamins | 17
 Total Cost (cheapest) | 5.45 GBP
 
 
