@@ -11,11 +11,11 @@ Make sure you have all of the following parts before you begin.
 
 Qty | Part Name | Image
 --- | --- | ---
-1 | [Zombie Arm](../printedparts/stl/ZombieArm.stl) | ![](../printedparts/images/ZombieArm_view.png) | 
+1 | [FlexyArm](../printedparts/stl/FlexyArm.stl) | ![](../printedparts/images/FlexyArm_view.png) | 
 
 
 **Plastic Required**
 
-2.9cm3, 0.0KG,  approx: 0.05 GBP
+2.2cm3, 0.0KG,  approx: 0.04 GBP
 
 

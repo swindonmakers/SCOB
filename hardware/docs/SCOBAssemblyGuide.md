@@ -23,17 +23,17 @@ Qty | Vitamin | Image
 
 Qty | Part Name | Image
 --- | --- | ---
-2 | [FlexyArm](../printedparts/stl/FlexyArm.stl) | ![](../printedparts/images/FlexyArm_view.png) | 
 2 | [Foot](../printedparts/stl/Foot.stl) | ![](../printedparts/images/Foot_view.png) | 
 1 | [Hat](../printedparts/stl/Hat.stl) | ![](../printedparts/images/Hat_view.png) | 
 1 | [Head](../printedparts/stl/Head.stl) | ![](../printedparts/images/Head_view.png) | 
 1 | [Left Leg](../printedparts/stl/LeftLeg.stl) | ![](../printedparts/images/LeftLeg_view.png) | 
 1 | [Right Leg](../printedparts/stl/RightLeg.stl) | ![](../printedparts/images/RightLeg_view.png) | 
+2 | [Zombie Arm](../printedparts/stl/ZombieArm.stl) | ![](../printedparts/images/ZombieArm_view.png) | 
 
 
 **Plastic Required**
 
-78.1cm3, 0.1KG,  approx: 1.27 GBP
+79.5cm3, 0.1KG,  approx: 1.29 GBP
 
 
 # Assembly Instructions
@@ -98,11 +98,11 @@ Qty | Vitamin | Image
 
 Qty | Part Name | Image
 --- | --- | ---
-2 | [FlexyArm](../printedparts/stl/FlexyArm.stl) | ![](../printedparts/images/FlexyArm_view.png) | 
 1 | [Hat](../printedparts/stl/Hat.stl) | ![](../printedparts/images/Hat_view.png) | 
 1 | [Head](../printedparts/stl/Head.stl) | ![](../printedparts/images/Head_view.png) | 
 1 | [Left Leg](../printedparts/stl/LeftLeg.stl) | ![](../printedparts/images/LeftLeg_view.png) | 
 1 | [Right Leg](../printedparts/stl/RightLeg.stl) | ![](../printedparts/images/RightLeg_view.png) | 
+2 | [Zombie Arm](../printedparts/stl/ZombieArm.stl) | ![](../printedparts/images/ZombieArm_view.png) | 
 
 ### Sub-Assemblies
 

@@ -80,5 +80,11 @@ module Hat_Model()
                 translate([-w/2 + 2*dw + tol, -d/2 + 2*dw + tol, -dw-eta])
                     roundedCube([w - 4*dw - 2*tol, d - 4*dw - 2*tol, dw], 6);
         }
+
+        // finger notch in back panel
+        translate([0, -d/2, -h + 30 - dw])
+            scale([1,1,0.8])
+            rotate([90,0,0])
+            cylinder(r=10, h=10, center=true);
     }
 }

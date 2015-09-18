@@ -1,7 +1,7 @@
 [
     {
         "cut": [],
-        "hash": "80d499b92580470363cee39ea5cc9e93",
+        "hash": "1608c3aadc95cd28d63535e8e8d92239",
         "vitamins": [
             {
                 "hash": "7bb239147204653977f54edf8f85cea7",
@@ -238,7 +238,7 @@
         "assemblies": [
             {
                 "cut": [],
-                "hash": "04781c9ee287bec25776ec2e8f311264",
+                "hash": "1845f27cacdd2a1e59847604b3c8e728",
                 "vitamins": [
                     {
                         "title": "HCSR04 Ultrasonic Sensor",
@@ -377,11 +377,11 @@
                     },
                     {
                         "markdown": [],
-                        "title": "FlexyArm",
+                        "title": "Zombie Arm",
                         "views": [],
                         "qty": 2,
-                        "call": "FlexyArm_STL()",
-                        "file": "printedparts/FlexyArm.scad"
+                        "call": "ZombieArm_STL()",
+                        "file": "printedparts/ZombieArm.scad"
                     }
                 ],
                 "file": "assemblies/Final.scad",
@@ -986,7 +986,7 @@
             },
             {
                 "markdown": [],
-                "hash": "0e0020e786e718578460465cb8c525b1",
+                "hash": "ac6dfb5642c26780c5db97e46a6f4fc1",
                 "plasticWeight": 0.02425,
                 "title": "Hat",
                 "aabb": [
@@ -1033,35 +1033,23 @@
             },
             {
                 "markdown": [],
-                "hash": "d42f91cbbfecfc6ef0c26c25100805fa",
-                "plasticWeight": 0.00275,
-                "title": "FlexyArm",
-                "aabb": [
-                    [
-                        -5.0,
-                        -14.9981,
-                        0.0
-                    ],
-                    [
-                        51.0,
-                        14.9981,
-                        5.05
-                    ]
-                ],
+                "hash": "659cc92136eab181f41e78073b839cc7",
+                "plasticWeight": 0.003625,
+                "title": "Zombie Arm",
                 "views": [
                     {
                         "rotate": [
-                            37.5,
+                            72,
                             0,
-                            16
+                            130
                         ],
-                        "dist": 140,
-                        "filepath": "../printedparts/images/FlexyArm_view.png",
+                        "dist": 400,
                         "title": "view",
+                        "filepath": "../printedparts/images/ZombieArm_view.png",
                         "caption": "view",
                         "translate": [
-                            18,
-                            4,
+                            0,
+                            0,
                             0
                         ],
                         "type": "view",
@@ -1072,11 +1060,9 @@
                     }
                 ],
                 "qty": 2,
-                "volume": 2597.9305989860923,
-                "area": 2126.523180869438,
-                "plasticVolume": 2.2,
-                "call": "FlexyArm_STL()",
-                "file": "printedparts/FlexyArm.scad"
+                "plasticVolume": 2.9,
+                "call": "ZombieArm_STL()",
+                "file": "printedparts/ZombieArm.scad"
             }
         ],
         "file": "SCOB.scad",
@@ -2094,22 +2080,21 @@
                                 ]
                             },
                             {
-                                "call": "FlexyArm_STL()",
+                                "call": "ZombieArm_STL()",
                                 "type": "printed",
                                 "children": [
                                     {
                                         "rotate": [
-                                            37.5,
+                                            72,
                                             0,
-                                            16
+                                            130
                                         ],
-                                        "dist": 140,
-                                        "filepath": "../printedparts/images/FlexyArm_view.png",
+                                        "dist": 400,
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
-                                            18,
-                                            4,
+                                            0,
+                                            0,
                                             0
                                         ],
                                         "type": "view",
@@ -2119,25 +2104,25 @@
                                         ]
                                     }
                                 ],
-                                "file": "printedparts/FlexyArm.scad",
-                                "title": "FlexyArm"
+                                "file": "printedparts/ZombieArm.scad",
+                                "title": "Zombie Arm"
                             },
                             {
-                                "call": "FlexyArm_STL()",
+                                "call": "ZombieArm_STL()",
                                 "type": "printed",
                                 "children": [
                                     {
                                         "rotate": [
-                                            37.5,
+                                            72,
                                             0,
-                                            16
+                                            130
                                         ],
-                                        "dist": 140,
+                                        "dist": 400,
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
-                                            18,
-                                            4,
+                                            0,
+                                            0,
                                             0
                                         ],
                                         "type": "view",
@@ -2147,8 +2132,8 @@
                                         ]
                                     }
                                 ],
-                                "file": "printedparts/FlexyArm.scad",
-                                "title": "FlexyArm"
+                                "file": "printedparts/ZombieArm.scad",
+                                "title": "Zombie Arm"
                             }
                         ],
                         "desc": "Attach arms"
@@ -2161,42 +2146,30 @@
     },
     {
         "cut": [],
-        "hash": "ccefa516c8229ed0ef23e47d4402dfb0",
+        "hash": "ac608af7cf8ec0ce09f1cb5963660249",
         "vitamins": [],
         "title": "SCOB Extras",
         "assemblies": [],
         "printed": [
             {
                 "markdown": [],
-                "hash": "659cc92136eab181f41e78073b839cc7",
-                "plasticWeight": 0.003625,
-                "title": "Zombie Arm",
-                "aabb": [
-                    [
-                        -5.0,
-                        -5.0,
-                        0.0
-                    ],
-                    [
-                        39.9981,
-                        47.7,
-                        5.05
-                    ]
-                ],
+                "hash": "d42f91cbbfecfc6ef0c26c25100805fa",
+                "plasticWeight": 0.00275,
+                "title": "FlexyArm",
                 "views": [
                     {
                         "rotate": [
-                            72,
+                            37.5,
                             0,
-                            130
+                            16
                         ],
-                        "dist": 400,
-                        "filepath": "../printedparts/images/ZombieArm_view.png",
+                        "dist": 140,
                         "title": "view",
+                        "filepath": "../printedparts/images/FlexyArm_view.png",
                         "caption": "view",
                         "translate": [
-                            0,
-                            0,
+                            18,
+                            4,
                             0
                         ],
                         "type": "view",
@@ -2207,11 +2180,9 @@
                     }
                 ],
                 "qty": 1,
-                "volume": 3333.8460980700434,
-                "area": 2584.1889254812295,
-                "plasticVolume": 2.9,
-                "call": "ZombieArm_STL()",
-                "file": "printedparts/ZombieArm.scad"
+                "plasticVolume": 2.2,
+                "call": "FlexyArm_STL()",
+                "file": "printedparts/FlexyArm.scad"
             }
         ],
         "file": "SCOBExtras.scad",
@@ -2239,22 +2210,21 @@
                 ]
             },
             {
-                "call": "ZombieArm_STL()",
+                "call": "FlexyArm_STL()",
                 "type": "printed",
                 "children": [
                     {
                         "rotate": [
-                            72,
+                            37.5,
                             0,
-                            130
+                            16
                         ],
-                        "dist": 400,
-                        "filepath": "../printedparts/images/ZombieArm_view.png",
+                        "dist": 140,
                         "title": "view",
                         "caption": "view",
                         "translate": [
-                            0,
-                            0,
+                            18,
+                            4,
                             0
                         ],
                         "type": "view",
@@ -2264,8 +2234,8 @@
                         ]
                     }
                 ],
-                "file": "printedparts/ZombieArm.scad",
-                "title": "Zombie Arm"
+                "file": "printedparts/FlexyArm.scad",
+                "title": "FlexyArm"
             }
         ]
     },
@@ -2337,7 +2307,7 @@
             },
             {
                 "type": "file",
-                "file": "printedparts/FlexyArm.scad"
+                "file": "printedparts/ZombieArm.scad"
             },
             {
                 "type": "file",
@@ -2345,7 +2315,7 @@
             },
             {
                 "type": "file",
-                "file": "printedparts/ZombieArm.scad"
+                "file": "printedparts/FlexyArm.scad"
             }
         ],
         "type": "filelist"

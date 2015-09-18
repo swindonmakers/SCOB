@@ -1,20 +1,6 @@
 # SCOB
 # Printing Guide
 
-### FlexyArm
-
-Metric | Value 
---- | --- 
-Quantity | 2
-STL | [FlexyArm](../printedparts/stl/FlexyArm.stl)
-Plastic (Kg) | 0.01
-Plastic (cm3) | 4.4
-Approx Plastic Cost | 0.08 GBP
-
-![](../printedparts/images/FlexyArm_view.png)
-
-
-
 ### Foot
 
 Metric | Value 
@@ -85,6 +71,20 @@ Approx Plastic Cost | 0.02 GBP
 
 
 
+### Zombie Arm
+
+Metric | Value 
+--- | --- 
+Quantity | 2
+STL | [Zombie Arm](../printedparts/stl/ZombieArm.stl)
+Plastic (Kg) | 0.01
+Plastic (cm3) | 5.8
+Approx Plastic Cost | 0.11 GBP
+
+![](../printedparts/images/ZombieArm_view.png)
+
+
+
 
 
 ## Summary
@@ -95,7 +95,7 @@ Metric | Value
 --- | --- 
 Total Parts | 8
 Total Plastic (Kg) | 0.1KG
-Total Plastic (cm3) | 78.1cm3
-Approx Plastic Cost | 1.46 GBP
+Total Plastic (cm3) | 79.5cm3
+Approx Plastic Cost | 1.49 GBP
 
 
