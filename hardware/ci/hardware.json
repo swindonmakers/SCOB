@@ -1,7 +1,7 @@
 [
     {
         "cut": [],
-        "hash": "1608c3aadc95cd28d63535e8e8d92239",
+        "hash": "19eda9656b272a53879d1ba6d8a4de65",
         "vitamins": [
             {
                 "hash": "7bb239147204653977f54edf8f85cea7",
@@ -238,7 +238,7 @@
         "assemblies": [
             {
                 "cut": [],
-                "hash": "1845f27cacdd2a1e59847604b3c8e728",
+                "hash": "349415fa435bad8eb91198e5fb7320d6",
                 "vitamins": [
                     {
                         "title": "HCSR04 Ultrasonic Sensor",
@@ -845,7 +845,7 @@
             },
             {
                 "markdown": [],
-                "hash": "538aa312fbfb4cfb72184a81d6cb36c4",
+                "hash": "cfcc36ca47ff5304f3ced32da78b0cd2",
                 "plasticWeight": 0.001625,
                 "title": "Left Leg",
                 "aabb": [
@@ -939,7 +939,7 @@
             },
             {
                 "markdown": [],
-                "hash": "353eb84cef7846cdf40f66e242c2307b",
+                "hash": "bd09ee5f2496f6590004842df3a7ce13",
                 "plasticWeight": 0.001625,
                 "title": "Right Leg",
                 "aabb": [
@@ -1033,9 +1033,21 @@
             },
             {
                 "markdown": [],
-                "hash": "659cc92136eab181f41e78073b839cc7",
+                "hash": "56986c4ca8e1c33f07f1809c60e19c64",
                 "plasticWeight": 0.003625,
                 "title": "Zombie Arm",
+                "aabb": [
+                    [
+                        -5.0,
+                        -5.0,
+                        0.0
+                    ],
+                    [
+                        39.9981,
+                        47.7,
+                        5.05
+                    ]
+                ],
                 "views": [
                     {
                         "rotate": [
@@ -1044,8 +1056,8 @@
                             130
                         ],
                         "dist": 400,
-                        "title": "view",
                         "filepath": "../printedparts/images/ZombieArm_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             0,
@@ -1060,6 +1072,8 @@
                     }
                 ],
                 "qty": 2,
+                "volume": 3333.8460952676946,
+                "area": 2584.1889027355446,
                 "plasticVolume": 2.9,
                 "call": "ZombieArm_STL()",
                 "file": "printedparts/ZombieArm.scad"
@@ -2090,6 +2104,7 @@
                                             130
                                         ],
                                         "dist": 400,
+                                        "filepath": "../printedparts/images/ZombieArm_view.png",
                                         "title": "view",
                                         "caption": "view",
                                         "translate": [
@@ -2146,16 +2161,28 @@
     },
     {
         "cut": [],
-        "hash": "ac608af7cf8ec0ce09f1cb5963660249",
+        "hash": "a99ece096a13f4a1be3970d06513cd36",
         "vitamins": [],
         "title": "SCOB Extras",
         "assemblies": [],
         "printed": [
             {
                 "markdown": [],
-                "hash": "d42f91cbbfecfc6ef0c26c25100805fa",
+                "hash": "e92060dc51f6f4d3cab0978af31d2933",
                 "plasticWeight": 0.00275,
                 "title": "FlexyArm",
+                "aabb": [
+                    [
+                        -5.0,
+                        -14.9981,
+                        0.0
+                    ],
+                    [
+                        47.7,
+                        14.9981,
+                        5.05
+                    ]
+                ],
                 "views": [
                     {
                         "rotate": [
@@ -2164,8 +2191,8 @@
                             16
                         ],
                         "dist": 140,
-                        "title": "view",
                         "filepath": "../printedparts/images/FlexyArm_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             18,
@@ -2180,6 +2207,8 @@
                     }
                 ],
                 "qty": 1,
+                "volume": 2513.1080418680936,
+                "area": 2051.802382876219,
                 "plasticVolume": 2.2,
                 "call": "FlexyArm_STL()",
                 "file": "printedparts/FlexyArm.scad"
@@ -2220,6 +2249,7 @@
                             16
                         ],
                         "dist": 140,
+                        "filepath": "../printedparts/images/FlexyArm_view.png",
                         "title": "view",
                         "caption": "view",
                         "translate": [

@@ -16,6 +16,7 @@
  * [MicroServo.scad ](#microservoscad)
  * [MicroSwitch.scad ](#microswitchscad)
  * [MiniToggleSwitch.scad ](#minitoggleswitchscad)
+ * [NeoPixel.scad ](#neopixelscad)
  * [Pen.scad ](#penscad)
  * [ServoHorn.scad ](#servohornscad)
  * [TerminalBlock.scad ](#terminalblockscad)
@@ -122,6 +123,14 @@ MicroSwitch | `MicroSwitch()` | ![MicroSwitch](../vitamins/images/MicroSwitch_vi
 Title | Call | Image
 --- | --- | ---
 SPST6A Mini Toggle Switch | `MiniToggleSwitch(MiniToggleSwitch_SPST6A)` | ![SPST6A Mini Toggle Switch](../vitamins/images/SPST6AMiniToggleSwitch_view.png)
+
+## NeoPixel.scad
+
+Title | Call | Image
+--- | --- | ---
+NeoPixel Single | `NeoPixel(NeoPixel_Single)` | ![NeoPixel Single](../vitamins/images/NeoPixelSingle_view.png)
+NeoPixel Strip8 | `NeoPixel(NeoPixel_Strip8)` | ![NeoPixel Strip8](../vitamins/images/NeoPixelStrip8_view.png)
+NeoPixel Strip16 | `NeoPixel(NeoPixel_Strip16)` | ![NeoPixel Strip16](../vitamins/images/NeoPixelStrip16_view.png)
 
 ## Pen.scad
 
