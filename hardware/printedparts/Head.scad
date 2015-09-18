@@ -78,7 +78,9 @@ module Head_Model()
             cylinder(r=HCSR04UltrasonicSensor_CanOD/2 + 0.5, h=50);
 
         // mouth fixing
-        attach(Head_Con_Mouth, DefConUp)
+        for (i=[-1:1])
+            translate([i*10,0,0])
+            attach(Head_Con_Mouth, DefConUp)
             cylinder(r=PinDiameter/2, h=10, center=true);
 
         // nose fixing

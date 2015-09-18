@@ -1,7 +1,7 @@
 [
     {
         "cut": [],
-        "hash": "a33e03ce85c4894194668f03dff530e4",
+        "hash": "80d499b92580470363cee39ea5cc9e93",
         "vitamins": [
             {
                 "hash": "7bb239147204653977f54edf8f85cea7",
@@ -238,7 +238,7 @@
         "assemblies": [
             {
                 "cut": [],
-                "hash": "37f460ae57cd984be1830877a278b201",
+                "hash": "04781c9ee287bec25776ec2e8f311264",
                 "vitamins": [
                     {
                         "title": "HCSR04 Ultrasonic Sensor",
@@ -798,7 +798,7 @@
         "printed": [
             {
                 "markdown": [],
-                "hash": "4ac292fcbd8f7beb38b92355a766b5c0",
+                "hash": "aa73de01aa90b87033340ddbf98e6c27",
                 "plasticWeight": 0.048375,
                 "title": "Head",
                 "aabb": [
@@ -2161,7 +2161,7 @@
     },
     {
         "cut": [],
-        "hash": "1c32c41fefc5f9f10c8c16cbab79fdef",
+        "hash": "ccefa516c8229ed0ef23e47d4402dfb0",
         "vitamins": [],
         "title": "SCOB Extras",
         "assemblies": [],
@@ -2191,8 +2191,8 @@
                             130
                         ],
                         "dist": 400,
-                        "title": "view",
                         "filepath": "../printedparts/images/ZombieArm_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             0,
@@ -2249,6 +2249,7 @@
                             130
                         ],
                         "dist": 400,
+                        "filepath": "../printedparts/images/ZombieArm_view.png",
                         "title": "view",
                         "caption": "view",
                         "translate": [
