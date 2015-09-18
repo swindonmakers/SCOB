@@ -3,7 +3,7 @@ Head_Con_Arduino = [[0,0,38], [0,0,-1], 180,0,0];
 
 Head_Con_BatteryPack = [[-8.5,-Head_Depth/2 + 3,24], [0,-1,0], 0,0,0];
 
-module FinalAssembly (zombie=false) {
+module FinalAssembly (zombie=true) {
 
     assembly("assemblies/Final.scad", "Final", str("FinalAssembly()")) {
 

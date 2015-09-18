@@ -14,6 +14,6 @@ machine("SCOBExtras.scad","SCOB Extras") {
 
     markup(section="introduction", markup="Optional extras for SCOB");
 
-    //Top level assembly
-    ZombieArm_STL();
+
+    FlexyArm_STL();
 }
