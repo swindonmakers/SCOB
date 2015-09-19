@@ -5,6 +5,7 @@
 #include "Config.h"
 #include "Animations.h"
 #include <CommandQueue.h>
+#include "FastLED.h"
 
 // Objects
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
@@ -25,9 +26,21 @@ unsigned int lastSonarReading = MAX_DISTANCE;
 unsigned int avgSonarReading = MAX_DISTANCE;  // averaged over several samples
 unsigned long sonarTimer;
 
+// Fast LED Neopixel
+#define NUM_LEDS 8
+#define DATA_PIN 12
+CRGB leds[NUM_LEDS];
+int ledn = 0;
+int ledi = 0;
+unsigned long lastLedUpdate;
+
 void setup() {
   Serial.begin(9600);
   Serial.println("SCOB");
+  randomSeed(analogRead(0));
+  
+  // Setup Neopixel library
+  FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
 
   // load servo centers from EEPROM
   loadConfig();
@@ -41,6 +54,7 @@ void setup() {
   lastCommand = millis();
   sonarTimer = lastCommand;
   pauseUntil = lastCommand;
+  lastLedUpdate = lastCommand;
 }
 
 // Read sonar distance, correct for the fact that "inifite" distance is reported as zero
@@ -86,6 +100,20 @@ void loop() {
 
   // keep animation going
   anim.update();
+
+  // keep leds updating
+  if (millis() - lastLedUpdate > 100) {
+    lastLedUpdate = millis();
+    FastLED.clear();
+    leds[abs((ledn%14) - 7)] = CHSV(ledi, 255, 255);
+    ledn++;
+    ledi++;
+    if (ledi == 256) {
+      ledi = 0;
+      ledn = 0;
+    }
+    FastLED.show();
+  }
 
   // take sonar readings
   if (millis() > sonarTimer) {
