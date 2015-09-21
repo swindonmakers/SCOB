@@ -10,7 +10,7 @@
 #endif
 
 #include <Servo.h>
-#include "SimpleBezier.h"
+#include <SimpleBezier.h>
 
 struct ANIMATION {
     char cmd[3];

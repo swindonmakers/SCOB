@@ -1,7 +1,8 @@
 #include <EEPROM.h>
 #include <Servo.h>
 #include <NewPing.h>
-#include "ServoAnimator.h"
+#include <SimpleBezier.h>
+#include <ServoAnimator.h>
 #include "Config.h"
 #include "Animations.h"
 #include <CommandQueue.h>
