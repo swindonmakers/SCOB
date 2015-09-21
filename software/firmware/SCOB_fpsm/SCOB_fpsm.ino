@@ -1,6 +1,12 @@
 /*
   This is an attempt write a "function pointer state machine" based on the article
   here : http://hackaday.com/2015/09/04/embed-with-elliot-practical-state-machines/
+  
+  The state machine works perfectly well and is quite elegant if you hold SCOB off
+  the floor and move your hand backwards and forwards in front of the sonar sensor.
+  However because the sonar senor moves all over the place as SCOB moves around 
+  on the floow the distance readins are all over the shop and so the states don't
+  really work very well...
 */
 
 #include <EEPROM.h>
