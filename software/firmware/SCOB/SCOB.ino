@@ -6,7 +6,8 @@
 #include "Config.h"
 #include "Animations.h"
 #include <CommandQueue.h>
-#include "FastLED.h"
+#include <FastLED.h>
+#include <ScobEeprom.h>
 
 // Objects
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
@@ -44,7 +45,7 @@ void setup() {
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
 
   // load servo centers from EEPROM
-  loadConfig();
+  ScobEeprom::loadConfig(NUM_JOINTS, servoCenters);
 
   // init servos
   for (uint8_t i=0; i<NUM_JOINTS; i++) {
@@ -288,7 +289,7 @@ static void doCommand(COMMAND *c)
             anim.setSpeed(f1);
             break;
         case CMD_SV:
-            saveConfig();
+            ScobEeprom::saveConfig(NUM_JOINTS, servoCenters);
             break;
         case CMD_SC:
             if (f1 < 0 || f1 > NUM_JOINTS-1) break;
@@ -319,29 +320,6 @@ void updateInteractivePositions() {
         Serial.print(interactiveKeyFrames[0][i]);
     }
     Serial.println();
-}
-
-void loadConfig() {
-    // read first byte, see if it equals our "magic" value
-    // if not, then we've never saved values to EEPROM, so just use defaults
-    uint8_t m = EEPROM.read(EEPROM_MAGIC_ADDR);
-    if (m == EEPROM_MAGIC) {
-        for (uint8_t i=0; i<NUM_JOINTS; i++) {
-            servoCenters[i] = EEPROM.read(EEPROM_CENTERS_ADDR + i);
-        }
-    }
-}
-
-void saveConfig() {
-    // update magic
-    EEPROM.update(EEPROM_MAGIC_ADDR, EEPROM_MAGIC);
-
-    // update centers
-    for (uint8_t i=0; i<NUM_JOINTS; i++) {
-        EEPROM.update(EEPROM_CENTERS_ADDR + i, servoCenters[i]);
-    }
-
-    Serial.println("SAVED");
 }
 
 void doRandom() {

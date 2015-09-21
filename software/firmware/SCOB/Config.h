@@ -1,9 +1,3 @@
-// EEPROM
-#define EEPROM_MAGIC_ADDR 0  // address of magic byte
-#define EEPROM_MAGIC 88
-#define EEPROM_CENTERS_ADDR 1   // start address for servo centers
-
-
 
 // Number of servo joints
 #define NUM_JOINTS 4
