@@ -70,10 +70,10 @@ void loop() {
   state.activity();
 }
 
-#define DIST_TOO_CLOSE         5
-#define DIST_CLOSE_ENOUGH     10
-#define DIST_INTERESTING      25
-#define DIST_NOTHING_TO_SEE   50
+#define DIST_TOO_CLOSE        10
+#define DIST_CLOSE_ENOUGH     12
+#define DIST_INTERESTING      20
+#define DIST_NOTHING_TO_SEE   40
 
 // Randomly move around until we detect something
 void activity_explore()
@@ -106,36 +106,54 @@ void activity_explore()
 
 void activity_advance()
 {
+  static int movesMade;
+  
   // Make some moves
   if (!anim.isBusy()) {
     anim.setSpeed(1);
     anim.setAnimation(walkForward);
+    movesMade++;
   }
   
   // Check state and possibly take action
-  if (state.range > DIST_TOO_CLOSE && state.range < DIST_CLOSE_ENOUGH) {
-    Serial.println("Found you!");
-    anim.stop();
-    state.activity = activity_explore;
-  } else if (state.range > DIST_NOTHING_TO_SEE) {
-    Serial.println("Where'd you go?");
-    anim.stop();
-    state.activity = activity_explore;
+  if (movesMade > 1) {
+    if (state.range > DIST_TOO_CLOSE && state.range < DIST_CLOSE_ENOUGH) {
+      Serial.println("Found you!");
+      anim.stop();
+      movesMade = 0;
+      state.activity = activity_explore;
+    } else if (state.range > DIST_NOTHING_TO_SEE) {
+      Serial.println("Where'd you go?");
+      anim.stop();
+      movesMade = 0;
+      state.activity = activity_explore;
+    } else if (state.range < DIST_TOO_CLOSE) {
+      Serial.println("Whoa, too close!");
+      anim.stop();
+      movesMade = 0;
+      state.activity = activity_retreat;
+    }
   }
 }
 
 void activity_retreat()
 {
+  static int movesMade;
+  
   // Make some moves
   if (!anim.isBusy()) {
     anim.setSpeed(2);
     anim.setAnimation(walkForward, true); // reverse!
+    movesMade++;
   }
   
   // Check state and possible take action
-  if (state.range > DIST_NOTHING_TO_SEE) {
-    Serial.println("Safe now");
-    anim.stop();
-    state.activity = activity_explore;
+  if (movesMade > 4) {
+    if (state.range > DIST_NOTHING_TO_SEE) {
+      Serial.println("Safe now");
+      anim.stop();
+      movesMade = 0;
+      state.activity = activity_explore;
+    }
   }
 }
