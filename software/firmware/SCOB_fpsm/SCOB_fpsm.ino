@@ -12,6 +12,7 @@
 #include <EEPROM.h>
 #include <Servo.h>
 #include <HC_SR04.h>
+#include <FastLED.h>
 
 #include <SimpleBezier.h>
 #include <ServoAnimator.h>
@@ -19,14 +20,24 @@
 
 #include "Config.h"
 #include "Animations.h"
+#include "Sequences.h"
 
 ServoAnimator anim(NUM_JOINTS);
 HC_SR04 sonar(TRIGGER_PIN, ECHO_PIN, ECHO_INT);
+
+CRGB leds[NUM_LEDS];   // The pixels
+CRGB (&refleds)[NUM_LEDS] = leds; // refleds is a reference to the pixels
+StartUpSequence seqStart(refleds);
+ScannerSequence seqScanner(refleds);
+RetreatSequence seqRetreat(refleds);
+AdvanceSequence seqAdvance(refleds);
+unsigned long sequenceTimer;
 
 struct ScobState
 {
   unsigned int range;
   void (*activity)(void);
+  Sequence *mouthAnim;
 };
 
 ScobState state;
@@ -50,14 +61,33 @@ void setup() {
   // init state
   state.range = 100;
   state.activity = activity_explore;
+  state.mouthAnim = &seqScanner;
   
   // inital pose
   anim.setAnimation(stand);
+  
+  // Setup Neopixel library
+  FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
+  FastLED.clear();
+  FastLED.show();
+
+  // Show startup LEDS
+  seqStart.runSync();
+  // Start main mouth animation
+  state.mouthAnim->init();
+  FastLED.show();
 }
 
 void loop() {
   // keep animations running
   anim.update();
+  
+  // run LED animations
+  if (millis() - sequenceTimer > state.mouthAnim->delayMs) {
+    state.mouthAnim->next();
+    FastLED.show();
+    sequenceTimer = millis();
+  }
   
   // keep sonar state updated
   if (sonar.isFinished()) {
@@ -74,6 +104,15 @@ void loop() {
 #define DIST_CLOSE_ENOUGH     12
 #define DIST_INTERESTING      20
 #define DIST_NOTHING_TO_SEE   40
+
+void do_explore()
+{
+  anim.stop();
+  state.activity = activity_explore;
+  state.mouthAnim = &seqScanner;
+  state.mouthAnim->init();
+  FastLED.show();
+}
 
 // Randomly move around until we detect something
 void activity_explore()
@@ -95,13 +134,20 @@ void activity_explore()
   // Check state and possibly take action
   if (state.range > DIST_INTERESTING && state.range < DIST_NOTHING_TO_SEE) {
     Serial.println("That looks interesting...");
-    anim.stop();
-    state.activity = activity_advance;
+    do_advance();
   } else if (state.range < DIST_TOO_CLOSE) {
     Serial.println("Whoa, too close!");
-    anim.stop();
-    state.activity = activity_retreat;
+    do_retreat();
   }
+}
+
+void do_advance()
+{
+  anim.stop();
+  state.activity = activity_advance;
+  state.mouthAnim = &seqAdvance;
+  state.mouthAnim->init();
+  FastLED.show();
 }
 
 void activity_advance()
@@ -119,21 +165,26 @@ void activity_advance()
   if (movesMade > 1) {
     if (state.range > DIST_TOO_CLOSE && state.range < DIST_CLOSE_ENOUGH) {
       Serial.println("Found you!");
-      anim.stop();
       movesMade = 0;
-      state.activity = activity_explore;
+      do_explore();
     } else if (state.range > DIST_NOTHING_TO_SEE) {
       Serial.println("Where'd you go?");
-      anim.stop();
       movesMade = 0;
-      state.activity = activity_explore;
+      do_explore();
     } else if (state.range < DIST_TOO_CLOSE) {
       Serial.println("Whoa, too close!");
-      anim.stop();
       movesMade = 0;
-      state.activity = activity_retreat;
+      do_retreat();
     }
   }
+}
+
+void do_retreat()
+{
+  state.activity = activity_retreat;
+  state.mouthAnim = &seqRetreat;
+  state.mouthAnim->init();
+  FastLED.show();
 }
 
 void activity_retreat()
@@ -151,9 +202,8 @@ void activity_retreat()
   if (movesMade > 4) {
     if (state.range > DIST_NOTHING_TO_SEE) {
       Serial.println("Safe now");
-      anim.stop();
       movesMade = 0;
-      state.activity = activity_explore;
+      do_explore();
     }
   }
 }

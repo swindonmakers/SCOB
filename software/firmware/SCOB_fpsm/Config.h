@@ -1,3 +1,5 @@
+#ifndef CONFIG_H
+#define CONFIG_H
 
 // Number of servo joints
 #define NUM_JOINTS 4
@@ -11,6 +13,9 @@
 #define LANKLE_PIN   6
 #define RANKLE_PIN   5
 #define RHIP_PIN     4
+
+// Fast LED Neopixel
+#define DATA_PIN 12
 
 // pin references
 uint8_t servoPins[NUM_JOINTS] = {LHIP_PIN, LANKLE_PIN, RANKLE_PIN, RHIP_PIN};
@@ -32,3 +37,4 @@ uint8_t servoCenters[NUM_JOINTS] = {90,90,90,90};
 #define CMD_LL 7  // look left
 #define CMD_LR 8  // look right
 
+#endif
