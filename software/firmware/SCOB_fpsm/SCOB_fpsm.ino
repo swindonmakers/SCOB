@@ -120,14 +120,17 @@ void activity_explore()
   // Make some moves
   if (!anim.isBusy()) {
     int r = random(-10, MAX_ANIM_CMD);
-    Serial.println("Randomness");
+    Serial.print("Randomness:");
     anim.setSpeed(1);
     if (r < -5) {
       anim.setAnimation(walkForward);
+      Serial.println("FD");
     } else if (r < 0) {
       anim.setAnimation(walkForward, true);
+      Serial.println("BK");
     } else {
       anim.setAnimation(anims[r]);
+      Serial.println(anims[r].cmd);
     }
   }
   
@@ -171,17 +174,19 @@ void activity_advance()
       Serial.println("Where'd you go?");
       movesMade = 0;
       do_explore();
-    } else if (state.range < DIST_TOO_CLOSE) {
-      Serial.println("Whoa, too close!");
-      movesMade = 0;
-      do_retreat();
     }
+  } 
+  if (state.range < DIST_TOO_CLOSE) {
+    Serial.println("Whoa, too close!");
+    movesMade = 0;
+    do_retreat();
   }
 }
 
 void do_retreat()
 {
   state.activity = activity_retreat;
+  anim.stop();
   state.mouthAnim = &seqRetreat;
   state.mouthAnim->init();
   FastLED.show();
