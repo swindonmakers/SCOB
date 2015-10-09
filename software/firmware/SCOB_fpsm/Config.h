@@ -25,7 +25,7 @@ uint8_t servoCenters[NUM_JOINTS] = {90,90,90,90};
 
 
 // Commands
-#define MAX_ANIM_CMD 8
+#define MAX_ANIM_CMD 9
 
 #define CMD_FD 0  // forward
 #define CMD_BK 1  // backward
@@ -36,5 +36,6 @@ uint8_t servoCenters[NUM_JOINTS] = {90,90,90,90};
 #define CMD_TT 6  // tip toes (balerina)
 #define CMD_LL 7  // look left
 #define CMD_LR 8  // look right
+#define CMD_TF 9  // Tap foot
 
 #endif
