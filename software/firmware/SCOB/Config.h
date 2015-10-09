@@ -26,7 +26,7 @@ uint8_t servoCenters[NUM_JOINTS] = {90,90,90,90};
 
 
 // Commands
-#define MAX_ANIM_CMD 9 // First command that isn't tied to an animation
+#define MAX_ANIM_CMD 10 // First command that isn't tied to an animation
 
 #define CMD_FD 0  // forward
 #define CMD_BK 1  // backward
@@ -38,6 +38,7 @@ uint8_t servoCenters[NUM_JOINTS] = {90,90,90,90};
 #define CMD_LL 7  // look left
 #define CMD_LR 8  // look right
 #define CMD_SS 9  // side shuffle
+#define CMD_TF 10 // tap foot 3 times
 
 #define CMD_PG 20  // ping - report sonar distance
 #define CMD_POS 21 // set position of servo x to y (relative to center)

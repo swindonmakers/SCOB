@@ -120,6 +120,22 @@ ANIMATION sideShuffle {
 };
 
 
+ANIMATION tapFoot {
+  "TF",
+  CMD_TF,
+  7,
+  (byte *)new byte[7][NUM_JOINTS] {
+    {0, -20, -20, 0},
+    {0, -20, -55, 0},
+    {0, -20, 0, 0},
+    {0, -20, -55, 0},
+    {0, -20, 0, 0},
+    {0, -20, -55, 0},
+    {0, 0, 0, 0}
+  },
+  new unsigned long[7]{1000, 200, 700, 200, 700, 200, 700}
+};
+
 /*
 
 ANIMATION wiggleIt {
@@ -139,4 +155,4 @@ ANIMATION wiggleIt {
 
 */
 
-ANIMATION anims[MAX_ANIM_CMD] = { stand, walkForward, turnLeft, turnRight, footTap, tipToes, lookLeft, lookRight, sideShuffle };
+ANIMATION anims[MAX_ANIM_CMD] = { stand, walkForward, turnLeft, turnRight, footTap, tipToes, lookLeft, lookRight, sideShuffle, tapFoot };
