@@ -23,6 +23,7 @@ uint8_t servoPins[NUM_JOINTS] = {LHIP_PIN, LANKLE_PIN, RANKLE_PIN, RHIP_PIN};
 // default centers - will be overwritten from EEPROM once calibrated
 uint8_t servoCenters[NUM_JOINTS] = {90,90,90,90};
 
+#define COMMAND_QUEUE_LENGTH 15
 
 // Commands
 #define MAX_ANIM_CMD 9

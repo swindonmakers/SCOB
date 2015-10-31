@@ -17,6 +17,7 @@
 #include <SimpleBezier.h>
 #include <ServoAnimator.h>
 #include <ScobEeprom.h>
+#include <CommandQueue.h>
 
 #include "Config.h"
 #include "Animations.h"
@@ -32,6 +33,9 @@ ScannerSequence seqScanner(refleds);
 RetreatSequence seqRetreat(refleds);
 AdvanceSequence seqAdvance(refleds);
 unsigned long sequenceTimer;
+
+CommandQueue cmdQ(COMMAND_QUEUE_LENGTH);
+String cmd;  // cmd received over serial - builds up char at a time
 
 struct ScobState
 {
@@ -96,8 +100,136 @@ void loop() {
     sonar.start();
   }
   
+  // Parse Logo commands from Serial
+  if (Serial.available()) {
+    char c = toupper(Serial.read());
+    if (c == '\r' || c == '\n') {  // if found a line end
+      if (cmd != "") {  // check the command isn't blank
+        if (cmdQ.isFull()) {
+          Serial.println("BUSY");
+        } else {
+          parseCommand(cmd);
+          Serial.println("OK:" + cmd);
+          do_commandMode();
+        }
+        
+        // reset the command buffer
+        cmd = "";
+      }
+    } else {
+      cmd += c;  // append the character onto the command buffer
+    }
+  }
+  
   // continue with current activity
   state.activity();
+}
+
+static void parseCommand(String c) {
+    // parse and queue/insert
+    uint8_t cmdType = 0xff;
+
+    // check for urgent commands
+    boolean doNow = false;
+    if (c[0] == '!') {
+        doNow = true;
+        c = c.substring(1);
+    }
+
+    // parse the command type
+    for (int i = 0; i < sizeof(anims) / sizeof(anims[0]); i++)
+      if (c.startsWith(anims[i].cmd))
+        cmdType = anims[i].cmdType;
+
+    if (cmdType != 0xff) {
+      // already matches an animation
+    } else if (c.startsWith("BK")) {
+        cmdType = CMD_BK;
+    }
+
+    // give up if command not recognised
+    if (cmdType == 0xff) return;
+
+    // lose the command name, keep the parameters
+    int sp = c.indexOf(' ');
+    if (sp > -1) {
+        c = c.substring(sp+1);
+    } else {
+        c = "";
+    }
+
+    // insert/queue the command
+    if (doNow) {
+        anim.stop();  // stop the bot
+        cmdQ.insert(c, cmdType);  // insert the new command at the head of the command queue
+    } else {
+        cmdQ.enqueue(c, cmdType);
+    }
+}
+
+static void doCommand(COMMAND *c)
+{
+    if (c == NULL) return;
+
+    // Parse out parameter values
+    int sp = c->cmd.indexOf(' ');
+    float f1 = 0;
+    float f2 = 0;
+    if (sp > -1) {
+        f1 = c->cmd.substring(0,sp).toFloat();
+        f2 = c->cmd.substring(sp+1).toFloat();
+    } else {
+        f1 = c->cmd.toFloat();
+    }
+
+    // Handle the animation commands that can be "auto" processed
+    if (c->cmdType <= MAX_ANIM_CMD) {
+      for (int i = 0; i < sizeof(anims) / sizeof(anims[0]); i++) {
+        if (anims[i].cmdType == c->cmdType) {
+          anim.setAnimation(anims[i]);
+          anim.setRepeatCount(f1);
+          return;
+        }
+      }
+    }
+    
+    // Handle all the other commands that can't be dealt with by the "auto" process
+    switch(c->cmdType) {
+        case CMD_BK:
+            anim.setAnimation(walkForward, true);
+            anim.setRepeatCount(f1);
+            break;
+    }
+}
+
+void do_commandMode()
+{
+  if (state.activity != activity_commandMode) {
+    anim.stop();
+    state.activity = activity_commandMode;
+    state.mouthAnim = &seqScanner;
+    state.mouthAnim->init();
+    FastLED.show();
+  }
+}
+
+void activity_commandMode() {
+  static unsigned long lastCommandEnd = 0;
+  
+  // Do commands
+  if (!anim.isBusy()) {
+    if (lastCommandEnd == 0) lastCommandEnd = millis();
+    
+    if (!cmdQ.isEmpty()) {
+      // next command
+      doCommand(cmdQ.dequeue());
+      lastCommandEnd = 0;
+    }
+    else if (millis() - lastCommandEnd > 5000) {
+      // exit command mode after 5s of no more commands
+      do_explore();
+    }
+  }
 }
 
 #define DIST_TOO_CLOSE        10
