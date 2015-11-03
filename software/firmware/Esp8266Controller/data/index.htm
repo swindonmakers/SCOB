@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
+    <title>Scob</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="header-fixed">Scob: <span id="state">ready!</span></div>
+    <div class="content">
+        <button onclick="l('ST');">Stand</button><br/>
+        <button onclick="l('LL');">Look Left</button>
+        <button onclick="l('LR');">Look Right</button><br />
+        <hr />
+        Repeat: <input type="number" id="rep" value="1" /> <br />
+        <button onclick="l('FD', elv('rep'));">Forward</button>
+        <button onclick="l('BK', elv('rep'));">Backward</button><br />
+        <button onclick="l('LT', elv('rep'));">Left</button>
+        <button onclick="l('RT', elv('rep'));">Right</button><br />
+        <hr />
+        <button onclick="l('TT');">Tiptoes</button>
+        <button onclick="l('TF');">Tap Foot</button>
+        <button onclick="l('FT');">Impatient</button>
+    </div>
+    <script type="text/javascript">
+        function el(id) { return document.getElementById(id); }
+        function elv(id) { return el(id).value; }
+        function l(cmd, p1, p2) {
+            var xhReq = new XMLHttpRequest();
+            var uri = '/cmd?action=' + cmd;
+            if (p1) { uri += '&p1=' + encodeURIComponent(p1); }
+            if (p2) { uri += '&p2=' + encodeURIComponent(p2); }
+            xhReq.open('GET', uri, true);
+            try {
+                xhReq.send();
+                xhReq.onload = function () {
+                    el('state').innerText = this.responseText;
+                }
+            } catch (ex) {
+                el('state').innerText = 'send error';
+            }
+        };
+    </script>
+</body>
+</html>
