@@ -25,6 +25,8 @@
 
 ServoAnimator anim(NUM_JOINTS);
 HC_SR04 sonar(TRIGGER_PIN, ECHO_PIN, ECHO_INT);
+unsigned long nextSonarPing = 0;
+#define SONAR_DELAY 500
 
 CRGB leds[NUM_LEDS];   // The pixels
 CRGB (&refleds)[NUM_LEDS] = leds; // refleds is a reference to the pixels
@@ -60,7 +62,6 @@ void setup() {
   
   // init sonar
   sonar.begin();
-  sonar.start();
   
   // init state
   state.range = 100;
@@ -94,10 +95,12 @@ void loop() {
   }
   
   // keep sonar state updated
-  if (sonar.isFinished()) {
-    state.range = (3 * state.range + sonar.getRange()) / 4;
+  if (nextSonarPing < millis()) {
     //Serial.println(state.range);
     sonar.start();
+    nextSonarPing = millis() + SONAR_DELAY;
+  } else if (sonar.isFinished()) {
+    state.range = (3 * state.range + sonar.getRange()) / 4;
   }
   
   // Parse Logo commands from Serial
