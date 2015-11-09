@@ -1,7 +1,7 @@
 [
     {
         "cut": [],
-        "hash": "112455a047b6a74b0e14e1433fccfa90",
+        "hash": "0ad4d26ec876243d810b2762341e84a4",
         "vitamins": [
             {
                 "hash": "7bb239147204653977f54edf8f85cea7",
@@ -244,8 +244,8 @@
                             33
                         ],
                         "dist": 280,
-                        "title": "view",
                         "filepath": "../vitamins/images/NeoPixelStrip8_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             6.9,
@@ -378,7 +378,7 @@
                         "qty": 1,
                         "call": "NeoPixelMouthAssembly()",
                         "printed": [],
-                        "file": "assemblies/NeoPixelMouthAssembly.scad",
+                        "file": "assemblies/NeoPixelMouth.scad",
                         "steps": [],
                         "level": 1
                     }
@@ -867,6 +867,7 @@
             },
             {
                 "cut": [],
+                "hash": "62c34e4923e9a48c6aec57f19d5f0726",
                 "vitamins": [
                     {
                         "title": "NeoPixel Strip8",
@@ -892,7 +893,7 @@
                         "file": "printedparts/NeoPixelMouth.scad"
                     }
                 ],
-                "file": "assemblies/NeoPixelMouthAssembly.scad",
+                "file": "assemblies/NeoPixelMouth.scad",
                 "steps": [
                     {
                         "desc": "Insert Neo Pixel Strip",
@@ -905,6 +906,7 @@
                                     218
                                 ],
                                 "dist": 200,
+                                "filepath": "../assemblies/SCOB/NeoPixelMouth_step1_view.png",
                                 "title": "view",
                                 "caption": "view",
                                 "translate": [
@@ -1231,8 +1233,8 @@
                             16
                         ],
                         "dist": 140,
-                        "title": "view",
                         "filepath": "../printedparts/images/NeoPixelMouth_view.png",
+                        "title": "view",
                         "caption": "view",
                         "translate": [
                             18,
@@ -2366,6 +2368,7 @@
                                                     16
                                                 ],
                                                 "dist": 140,
+                                                "filepath": "../printedparts/images/NeoPixelMouth_view.png",
                                                 "title": "view",
                                                 "caption": "view",
                                                 "translate": [
@@ -2418,6 +2421,7 @@
                                                             33
                                                         ],
                                                         "dist": 280,
+                                                        "filepath": "../vitamins/images/NeoPixelStrip8_view.png",
                                                         "title": "view",
                                                         "caption": "view",
                                                         "translate": [
@@ -2439,7 +2443,7 @@
                                         "desc": "Insert Neo Pixel Strip"
                                     }
                                 ],
-                                "file": "assemblies/NeoPixelMouthAssembly.scad",
+                                "file": "assemblies/NeoPixelMouth.scad",
                                 "title": "Neo Pixel Mouth"
                             }
                         ],
@@ -2633,7 +2637,7 @@
             },
             {
                 "type": "file",
-                "file": "assemblies/NeoPixelMouthAssembly.scad"
+                "file": "assemblies/NeoPixelMouth.scad"
             },
             {
                 "type": "file",
