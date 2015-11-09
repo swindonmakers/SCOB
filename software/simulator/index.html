@@ -20,6 +20,7 @@
 
         <!-- ThreeX stuff (https://github.com/jeromeetienne) -->
         <script src="js/threex/threex.windowresize.js"></script>
+		<script src="js/threex/threex.basiclighting.js"></script>
 
         <!-- Browser stats module -->
         <script src="js/stats.min.js"></script>
@@ -53,7 +54,6 @@
 	<!-- code!! -->
 	<script type="text/javascript">
 		var stats, scene, renderer, composer;
-		var light1, light2;
 		var groundPlane, groundCanvas;
 		var camera, cameraControl;
 		var windowResize;
@@ -166,23 +166,8 @@
 			scene.add(makeScob());
 
 			// lighting
-			var light = new THREE.AmbientLight(Math.random() * 0xffffff);
-			scene.add(light);
-			var light = new THREE.DirectionalLight(Math.random() * 0xffffff);
-			light.position.set(Math.random(), Math.random(), Math.random()).normalize();
-			scene.add(light);
-			var light = new THREE.DirectionalLight(Math.random() * 0xffffff);
-			light.position.set(Math.random(), Math.random(), Math.random()).normalize();
-			scene.add(light);
-			var light = new THREE.PointLight(Math.random() * 0xffffff);
-			light.position.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5)
-						.normalize().multiplyScalar(1.2);
-			scene.add(light);
-			var light = new THREE.PointLight(Math.random() * 0xffffff);
-			light.position.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5)
-						.normalize().multiplyScalar(1.2);
-			scene.add(light);
-
+			var lighting = new THREEx.ThreePointsLighting();
+			scene.add(lighting);
 		}
 
 		var lastTime = Date.now();
