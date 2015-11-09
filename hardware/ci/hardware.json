@@ -1,7 +1,7 @@
 [
     {
         "cut": [],
-        "hash": "0ad4d26ec876243d810b2762341e84a4",
+        "hash": "8684b62c2e3c55b484e58e12de7758cc",
         "vitamins": [
             {
                 "hash": "7bb239147204653977f54edf8f85cea7",
@@ -79,7 +79,7 @@
                 "file": "vitamins/MicroServo.scad"
             },
             {
-                "hash": "8de87d77902b4b6fac0dd24f38a6e0c4",
+                "hash": "ba7e8d4d55b678986244fdc21ad814bc",
                 "title": "Servo Horn",
                 "views": [
                     {
@@ -105,7 +105,14 @@
                     }
                 ],
                 "qty": 4,
-                "parts": [],
+                "parts": [
+                    {
+                        "call": "ServoHorn_Part()",
+                        "type": "part",
+                        "children": [],
+                        "title": "ServoHorn_Part"
+                    }
+                ],
                 "call": "ServoHorn()",
                 "file": "vitamins/ServoHorn.scad"
             },
@@ -269,7 +276,7 @@
         "assemblies": [
             {
                 "cut": [],
-                "hash": "2eb9ad0dfb5f4d66551e5205653e09b6",
+                "hash": "ca799d69c108df3095c512a10c964fab",
                 "vitamins": [
                     {
                         "title": "HCSR04 Ultrasonic Sensor",
@@ -304,7 +311,14 @@
                         "title": "Servo Horn",
                         "views": [],
                         "qty": 2,
-                        "parts": [],
+                        "parts": [
+                            {
+                                "call": "ServoHorn_Part()",
+                                "type": "part",
+                                "children": [],
+                                "title": "ServoHorn_Part"
+                            }
+                        ],
                         "call": "ServoHorn()",
                         "file": "vitamins/ServoHorn.scad"
                     },
@@ -705,7 +719,7 @@
             },
             {
                 "cut": [],
-                "hash": "a89d60c66408ab9a1c976affe1783d31",
+                "hash": "99e8c6bb26f74dfb8816f20fc0426e69",
                 "vitamins": [
                     {
                         "title": "9g Micro Servo",
@@ -732,7 +746,14 @@
                         "title": "Servo Horn",
                         "views": [],
                         "qty": 1,
-                        "parts": [],
+                        "parts": [
+                            {
+                                "call": "ServoHorn_Part()",
+                                "type": "part",
+                                "children": [],
+                                "title": "ServoHorn_Part"
+                            }
+                        ],
                         "call": "ServoHorn()",
                         "file": "vitamins/ServoHorn.scad"
                     }
@@ -786,7 +807,7 @@
             },
             {
                 "cut": [],
-                "hash": "1a515ea1d09abf0e2d40d0f48ec11af6",
+                "hash": "cca2786909d97d6141228e376e533ab1",
                 "vitamins": [
                     {
                         "title": "9g Micro Servo",
@@ -813,7 +834,14 @@
                         "title": "Servo Horn",
                         "views": [],
                         "qty": 1,
-                        "parts": [],
+                        "parts": [
+                            {
+                                "call": "ServoHorn_Part()",
+                                "type": "part",
+                                "children": [],
+                                "title": "ServoHorn_Part"
+                            }
+                        ],
                         "call": "ServoHorn()",
                         "file": "vitamins/ServoHorn.scad"
                     }
@@ -1457,6 +1485,12 @@
                                             400,
                                             300
                                         ]
+                                    },
+                                    {
+                                        "call": "ServoHorn_Part()",
+                                        "type": "part",
+                                        "children": [],
+                                        "title": "ServoHorn_Part"
                                     }
                                 ],
                                 "file": "vitamins/ServoHorn.scad",
@@ -1552,6 +1586,12 @@
                                             400,
                                             300
                                         ]
+                                    },
+                                    {
+                                        "call": "ServoHorn_Part()",
+                                        "type": "part",
+                                        "children": [],
+                                        "title": "ServoHorn_Part"
                                     }
                                 ],
                                 "file": "vitamins/ServoHorn.scad",
@@ -2014,6 +2054,12 @@
                                                             400,
                                                             300
                                                         ]
+                                                    },
+                                                    {
+                                                        "call": "ServoHorn_Part()",
+                                                        "type": "part",
+                                                        "children": [],
+                                                        "title": "ServoHorn_Part"
                                                     }
                                                 ],
                                                 "file": "vitamins/ServoHorn.scad",
@@ -2174,6 +2220,12 @@
                                                             400,
                                                             300
                                                         ]
+                                                    },
+                                                    {
+                                                        "call": "ServoHorn_Part()",
+                                                        "type": "part",
+                                                        "children": [],
+                                                        "title": "ServoHorn_Part"
                                                     }
                                                 ],
                                                 "file": "vitamins/ServoHorn.scad",
