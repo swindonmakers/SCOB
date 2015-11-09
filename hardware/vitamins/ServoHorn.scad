@@ -15,29 +15,37 @@ module ServoHorn() // honk honk
 		if (DebugConnectors)
 			connector(ServoHorn_Con_Default);
 
-		color(White) {
-			linear_extrude(4.5-1.4+eta)
-			difference() {
+		ServoHorn_Part();
+	}
+}
+
+module ServoHorn_Part()
+{
+
+	part("ServoHorn_Part", "ServoHorn_Part()");
+
+	color(White) {
+		linear_extrude(4.5-1.4+eta)
+		difference() {
+			circle(d=6.8);
+			circle(d=4.4);
+		}
+	
+		translate([0, 0, 4.5-1.4])
+		linear_extrude(1.4)
+		difference() {
+			hull() {
 				circle(d=6.8);
-				circle(d=4.4);
+			
+				translate([13.8, 0, 0])
+					circle(d=3.8);
 			}
 		
-			translate([0, 0, 4.5-1.4])
-			linear_extrude(1.4)
-			difference() {
-				hull() {
-					circle(d=6.8);
-				
-					translate([13.8, 0, 0])
-						circle(d=3.8);
-				}
-			
-				circle(d=4.8);
-			
-				for(i=[0:6])
-				translate([13.8 - i*2, 0, 0,])
-					circle(d=1);
-			}
+			circle(d=4.8);
+		
+			for(i=[0:6])
+			translate([13.8 - i*2, 0, 0,])
+				circle(d=1);
 		}
 	}
 }
