@@ -6,7 +6,7 @@ module NeoPixelMouthAssembly() {
         connector(NeoPixelMouthAssembly_Con);
     }
 
-    assembly("assemblies/NeoPixelMouthAssembly.scad", "Neo Pixel Mouth", str("NeoPixelMouthAssembly()")) {
+    assembly("assemblies/NeoPixelMouth.scad", "Neo Pixel Mouth", str("NeoPixelMouthAssembly()")) {
 
         // base part
         NeoPixelMouth_STL();
