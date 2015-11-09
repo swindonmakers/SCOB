@@ -40,7 +40,8 @@
 			<div id="debug"></div>
 		</div>
 		<div class="controls" >
-			<input id="runCheck" type="checkbox" checked>Run</input>
+			<input id="runCheck" type="checkbox" checked />Run
+			<input id="limitCheck" type="checkbox" />Limit FPS
 			<br/>
 			<button id="FDBut" class="btn btn-primary">FD</button>
 			<button id="BKBut" class="btn btn-primary">BK</button>
@@ -171,7 +172,6 @@
 		}
 
 		var lastTime = Date.now();
-		var limitFps = true;
 		var fps = 15;
 		var interval = 1000 / fps;
 
@@ -181,7 +181,7 @@
 
 			    var now = Date.now();
 			    var delta = now - lastTime;
-			    if (delta > interval || !limitFps) {
+			    if (delta > interval || !$('#limitCheck').prop('checked')) {
 			        lastTime = now - (delta % interval);
 			        render();
 			        stats.update();
@@ -222,7 +222,6 @@
 			$('#RTBut').click(function() {
 				logobot.pushCmd('RT')
 			});
-
 		});
 
 
