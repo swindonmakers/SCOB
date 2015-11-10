@@ -112,16 +112,14 @@
 		    var hat = new THREE.Mesh(new THREE.BoxGeometry(65, 65, 10), printedMaterial);
 		    hat.position.z = 68;
 		    head.add(hat)
-		    loadSTL('../../hardware/printedparts/stl/Hat.stl', hat, function (mesh) { });
+		    loadSTL('../../hardware/printedparts/stl/Hat.stl', hat, null);
 
             // Left Arm
 		    var leftArm = new THREE.Mesh(new THREE.BoxGeometry(65, 10, 10), printedMaterial);
 		    leftArm.position.x = 65 / 2;
 		    leftArm.position.z = 20;
 		    head.add(leftArm);
-		    loadSTL('../../hardware/printedparts/stl/ZombieArm.stl', leftArm, function (mesh) {
-
-		    });
+		    loadSTL('../../hardware/printedparts/stl/ZombieArm.stl', leftArm, null);
 
             // Right arm
 		    var rightArm = new THREE.Mesh(new THREE.BoxGeometry(65, 10, 10), printedMaterial);
@@ -130,6 +128,20 @@
 		    rightArm.rotation.y = Math.PI;
 		    head.add(rightArm);
 		    loadSTL('../../hardware/printedparts/stl/ZombieArm.stl', rightArm, null);
+
+		    // Left hip
+		    this.leftHip = new servo();
+		    head.add(this.leftHip.object);
+		    this.leftHip.object.rotation.x = Math.PI;
+		    this.leftHip.object.rotation.z = Math.PI / 2;
+		    this.leftHip.object.position.set(28.5, 16.5, 16.5);
+
+		    // Right hip
+		    this.rightHip = new servo();
+		    head.add(this.rightHip.object);
+		    this.rightHip.object.rotation.x = Math.PI;
+		    this.rightHip.object.rotation.z = Math.PI / 2;
+		    this.rightHip.object.position.set(-16.5, 16.5, 16.5);
 
 		    // Public access to various properties
 		    this.__defineGetter__("object", function () { return g; });
