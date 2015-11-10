@@ -73,54 +73,72 @@
 			});
 		}
 
-		var head, hat, leftArm, rightArm;
-
-		function makeScob() {
+		function servo() {
+            // Private 3d object creation
 		    var g = new THREE.Object3D();
-		    g.position.z = -50;
-        
+		    
+		    var servoBody = new THREE.Mesh(new THREE.BoxGeometry(23.5, 12.6, 16.4), new THREE.MeshPhongMaterial({ color: 0x0000FF }));
+		    loadSTL('../../hardware/vitamins/stl/MicroServo_Body.stl', servoBody, null);
+
+		    var servoHorn = new THREE.Mesh(new THREE.BoxGeometry(5, 20, 3), new THREE.MeshPhongMaterial({ color: 0xFFFFFF }));
+		    servoHorn.position.set(6.3, 6.3, 26.5);
+		    loadSTL('../../hardware/vitamins/stl/ServoHorn_Part.stl', servoHorn, null);
+
+		    g.add(servoBody);
+		    servoBody.add(servoHorn);
+
+            // Public access to various properties
+		    this.__defineGetter__("object", function () { return g; });
+		    this.add = function (object) {
+		        servoHorn.add(object);
+		    };
+
+		    this.__defineSetter__("position", function (ang) { servoHorn.rotation.z = degToRad(ang - 90); });
+		    this.__defineGetter__("position", function () { return radToDeg(servoHorn.rotation.z) + 90; });
+
+		}
+
+		function scob() {
+		    var g = new THREE.Object3D();
+
 		    var printedMaterial = new THREE.MeshPhongMaterial({ color: 0xFF4C00 });
 
-		    // head
-		    head = new THREE.Mesh(
-                new THREE.BoxGeometry(65, 65, 70),
-                printedMaterial);
-		    head.position.z = 2;
+		    // Head
+		    var head = new THREE.Mesh(new THREE.BoxGeometry(65, 65, 70), printedMaterial);
 		    g.add(head);
-		    loadSTL('../../hardware/printedparts/stl/Head.stl', head, function (mesh) { });
+		    loadSTL('../../hardware/printedparts/stl/Head.stl', head, null);
 
-		    // hat
-		    hat = new THREE.Mesh(
-                new THREE.BoxGeometry(65, 65, 10),
-                printedMaterial);
-		    hat.position.z = 70;
-            g.add(hat)
-            loadSTL('../../hardware/printedparts/stl/Hat.stl', hat, function (mesh) { });
+		    // Hat
+		    var hat = new THREE.Mesh(new THREE.BoxGeometry(65, 65, 10), printedMaterial);
+		    hat.position.z = 68;
+		    head.add(hat)
+		    loadSTL('../../hardware/printedparts/stl/Hat.stl', hat, function (mesh) { });
 
-            leftArm = new THREE.Mesh(
-                new THREE.BoxGeometry(65, 10, 10),
-                printedMaterial);
-            leftArm.position.x = 65 / 2;
-            leftArm.position.z = 20;
-            g.add(leftArm);
-            loadSTL('../../hardware/printedparts/stl/ZombieArm.stl', leftArm, function (mesh) {
-                
-            });
+            // Left Arm
+		    var leftArm = new THREE.Mesh(new THREE.BoxGeometry(65, 10, 10), printedMaterial);
+		    leftArm.position.x = 65 / 2;
+		    leftArm.position.z = 20;
+		    head.add(leftArm);
+		    loadSTL('../../hardware/printedparts/stl/ZombieArm.stl', leftArm, function (mesh) {
 
-            rightArm = new THREE.Mesh(
-                new THREE.BoxGeometry(65, 10, 10),
-                printedMaterial);
-            rightArm.position.x = -65 / 2;
-            rightArm.position.z = 20 + 5;
-            rightArm.rotation.y = Math.PI;
-            g.add(rightArm);
-            loadSTL('../../hardware/printedparts/stl/ZombieArm.stl', rightArm, function (mesh) {
-                //mesh.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
 		    });
 
+            // Right arm
+		    var rightArm = new THREE.Mesh(new THREE.BoxGeometry(65, 10, 10), printedMaterial);
+		    rightArm.position.x = -65 / 2;
+		    rightArm.position.z = 20 + 5;
+		    rightArm.rotation.y = Math.PI;
+		    head.add(rightArm);
+		    loadSTL('../../hardware/printedparts/stl/ZombieArm.stl', rightArm, null);
 
-		    return g;
-		}
+		    // Public access to various properties
+		    this.__defineGetter__("object", function () { return g; });
+
+		    this.__defineSetter__("leftArmAngle", function (ang) { leftArm.rotation.x = ang; });
+		    this.__defineGetter__("leftArmAngle", function () { return leftArm.rotation.x; })
+		    this.__defineSetter__("rightArmAngle", function (ang) { rightArm.rotation.x = ang; });
+		    this.__defineGetter__("rightArmAngle", function () { return rightArm.rotation.x; })
+        }
 
 		// init the scene
 		function init(){
@@ -164,13 +182,18 @@
 			windowResize = new THREEx.WindowResize(renderer, camera);
 
 		    // setup scob
-			scene.add(makeScob());
+		    scob = new scob();
+			scene.add(scob.object);
+		    //servo = new servo();
+			//scene.add(servo.object);
 
 			// lighting
 			var lighting = new THREEx.ThreePointsLighting();
 			scene.add(lighting);
 		}
 
+		var scob;
+		var servo;
 		var lastTime = Date.now();
 		var fps = 15;
 		var interval = 1000 / fps;
@@ -193,12 +216,12 @@
 
 		function render() {
 		    cameraControls.update();
-		    leftArm.rotation.x += wave;
-		    if (leftArm.rotation.x > Math.PI / 2
-                || leftArm.rotation.x < 0)
+
+		    scob.leftArmAngle += wave;
+		    scob.rightArmAngle -= wave;
+		    if (scob.leftArmAngle > Math.PI / 2 || scob.leftArmAngle < 0)
 		        wave = -wave;
-			//updateLogobot();
-			//updateLights();
+
 			renderer.render( scene, camera );
 		}
 
