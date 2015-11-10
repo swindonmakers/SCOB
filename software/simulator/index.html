@@ -133,19 +133,54 @@
 		    this.leftHip = new servo();
 		    head.add(this.leftHip.object);
 		    this.leftHip.object.rotation.x = Math.PI;
-		    this.leftHip.object.rotation.z = Math.PI / 2;
-		    this.leftHip.object.position.set(28.5, 16.5, 16.5);
+		    this.leftHip.object.rotation.z = -Math.PI / 2;
+		    this.leftHip.object.position.set(-28, -7, 16.5);
 
+            // Left leg
+		    var leftLeg = new THREE.Mesh(new THREE.BoxGeometry(10, 20, 20), printedMaterial);
+		    leftLeg.rotation.z = Math.PI / 2;
+		    leftLeg.position.set(22, -4, 4.5);
+		    loadSTL('../../hardware/printedparts/stl/LeftLeg.stl', leftLeg, null);
+		    this.leftHip.add(leftLeg);
+
+		    // Left foot
+		    this.leftFootServo = new servo();
+		    this.leftFootServo.position = 0;
+		    this.leftFootServo.object.rotation.x = Math.PI / 2;
+		    this.leftFootServo.object.position.set(3, 33, 15);
+		    leftLeg.add(this.leftFootServo.object);
+
+		    //var leftFoot = new THREE.Mesh(new THREE.BoxGeometry(35, 2, 50), printedMaterial);
+		    //leftFoot.position.set(0, 0, 0);
+		    //loadSTL('../../hardware/printedparts/stl/Foot.stl', leftFoot, null);
+		    //leftFoot.add(leftFootServo.object);
+
+		    //leftLeg.add(leftFoot);
+
+		    
 		    // Right hip
 		    this.rightHip = new servo();
 		    head.add(this.rightHip.object);
 		    this.rightHip.object.rotation.x = Math.PI;
-		    this.rightHip.object.rotation.z = Math.PI / 2;
-		    this.rightHip.object.position.set(-16.5, 16.5, 16.5);
+		    this.rightHip.object.rotation.z = -Math.PI / 2;
+		    this.rightHip.object.position.set(16, -7, 16.5);
+
+		    // Right leg
+		    var rightLeg = new THREE.Mesh(new THREE.BoxGeometry(10, 20, 20), printedMaterial);
+		    rightLeg.rotation.z = Math.PI / 2;
+		    rightLeg.position.set(22, -9, 4.5);
+		    loadSTL('../../hardware/printedparts/stl/RightLeg.stl', rightLeg, null);
+		    this.rightHip.add(rightLeg);
+
 
 		    // Public access to various properties
-		    this.__defineGetter__("object", function () { return g; });
-
+		    //this.__defineGetter__("object", function () { return g; });
+		    Object.defineProperty(this, "object", {
+		        get: function () {
+		            return g;
+		        }
+		    });
+		    
 		    this.__defineSetter__("leftArmAngle", function (ang) { leftArm.rotation.x = ang; });
 		    this.__defineGetter__("leftArmAngle", function () { return leftArm.rotation.x; })
 		    this.__defineSetter__("rightArmAngle", function (ang) { rightArm.rotation.x = ang; });
