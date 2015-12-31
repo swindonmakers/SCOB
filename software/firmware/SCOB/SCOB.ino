@@ -36,6 +36,9 @@ int ledn = 0;
 int ledi = 0;
 unsigned long lastLedUpdate;
 
+static void parseCommand(String c);
+static void doCommand(COMMAND *c);
+
 void setup() {
   Serial.begin(9600);
   Serial.println("SCOB");
