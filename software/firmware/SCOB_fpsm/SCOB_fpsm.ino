@@ -228,8 +228,8 @@ void activity_commandMode() {
       doCommand(cmdQ.dequeue());
       lastCommandEnd = 0;
     }
-    else if (millis() - lastCommandEnd > 30000) {
-      // exit command mode after 30s of no more commands
+    else if (millis() - lastCommandEnd > 10000) {
+      // exit command mode after 10s of no more commands
       do_explore();
     }
   }
